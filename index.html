@@ -9,31 +9,39 @@
     <!-- 載入 Firebase SDKs -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, runTransaction } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, runTransaction } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // 檢查全局變數是否存在，這是 Canvas 環境的要求
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        // =========================================================
+        // !!! 步驟二：請在這裡貼上您自己的 Firebase 配置 !!!
+        // 請將以下佔位符替換為您在 Firebase Console 獲取的配置物件。
+        // =========================================================
+        const firebaseConfig = {
+  apiKey: "AIzaSyBxYfZ-ZlKTa759qBBHlUvLWTq14OIrUjE",
+  authDomain: "taiwanetf-tracker.firebaseapp.com",
+  projectId: "taiwanetf-tracker",
+  storageBucket: "taiwanetf-tracker.firebasestorage.app",
+  messagingSenderId: "861474831642",
+  appId: "1:861474831642:web:60bf24428331f7f42d40a3",
+  measurementId: "G-ZWZ3X029K3"
+};
+
+        // =========================================================
 
         let db = null;
         let auth = null;
         
         // 初始化 Firebase 和認證
-        if (firebaseConfig) {
+        if (firebaseConfig.projectId && firebaseConfig.apiKey !== "YOUR_API_KEY") {
             const app = initializeApp(firebaseConfig);
             db = getFirestore(app);
             auth = getAuth(app);
 
             async function authenticateAndInitialize() {
                 try {
-                    if (initialAuthToken) {
-                        await signInWithCustomToken(auth, initialAuthToken);
-                    } else {
-                        await signInAnonymously(auth);
-                    }
-                    console.log("Firebase 認證成功。");
+                    // 為了存取公開數據，我們使用匿名登入
+                    await signInAnonymously(auth);
+                    console.log("Firebase 匿名認證成功，開始計數。");
                     
                     // 認證成功後，開始更新計數
                     updateUsageCount();
@@ -41,7 +49,7 @@
                 } catch (error) {
                     console.error("Firebase 認證失敗:", error);
                     document.getElementById('usage-count-display').innerHTML = `
-                        <p class="text-sm text-red-500">❌ 無法連線至統計服務 (認證錯誤)</p>
+                        <p class="text-sm text-red-500">❌ 無法連線至統計服務 (認證錯誤，請檢查 Firebase 規則)</p>
                     `;
                 }
             }
@@ -50,17 +58,15 @@
             authenticateAndInitialize();
         } else {
             document.getElementById('usage-count-display').innerHTML = `
-                <p class="text-sm text-yellow-500">⚠️ 應用程式數據統計服務未啟用 (缺少 Firebase 設定)</p>
+                <p class="text-sm text-yellow-500">⚠️ 數據統計服務未啟用 (請在程式碼中配置您的 Firebase 專案 ID/API Key)</p>
             `;
         }
         
-        // Firestore 路徑：/artifacts/{appId}/public/data/app_metrics/usage_count
+        // Firestore 路徑：/public_metrics/usage_count
+        // 此路徑假設您已在 Firestore Rules 中設定 'allow read, write: if true'
         const usageCountRef = () => {
             if (!db) return null;
-            return doc(db, 
-                `artifacts/${appId}/public/data/app_metrics`, 
-                'usage_count'
-            );
+            return doc(db, 'public_metrics', 'usage_count');
         };
 
         // --- 核心函數：更新使用人數計數 ---
@@ -69,7 +75,7 @@
             if (!docRef) return;
 
             try {
-                // 使用 runTransaction 確保計數的原子性（多個用戶同時訪問時不會出錯）
+                // 使用 runTransaction 確保計數的原子性
                 const newCount = await runTransaction(db, async (transaction) => {
                     const docSnapshot = await transaction.get(docRef);
                     let currentCount = 0;
@@ -101,12 +107,12 @@
             } catch (error) {
                 console.error("更新使用人數失敗:", error);
                 document.getElementById('usage-count-display').innerHTML = `
-                    <p class="text-sm text-red-500">❌ 無法連線至統計服務 (寫入錯誤)</p>
+                    <p class="text-sm text-red-500">❌ 無法連線或寫入統計服務 (請檢查網路連線或 Firestore 規則)</p>
                 `;
             }
         };
     </script>
-    <!-- Tailwind 配置 -->
+    <!-- Tailwind 配置和 CSS Style (未變動) -->
     <script>
         tailwind.config = {
             theme: {
@@ -119,7 +125,6 @@
         }
     </script>
     <style>
-        /* CSS for the loading spinner */
         .loader {
             border: 4px solid #f3f3f3;
             border-top: 4px solid #3b82f6;
@@ -132,7 +137,6 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        /* Ensure table cells wrap long content */
         .break-words-td {
             word-break: break-all;
             white-space: normal;
@@ -146,7 +150,7 @@
     </div>
 
     <script>
-        // --- 模擬數據 ---
+        // --- 模擬數據 (包含擴充後的十大持股和受益人數) ---
         const initialActiveETFs = [
             { id: 1, type: 'active', name: "主動群益台灣強棒", ticker: "00982A", fundManager: "群益證券投資信託股份有限公司", ytdReturn: 22.88, latestNav: 18.90, changeSinceLast: 1.50, lastDividend: "NT$0.50 (季配)", exDate: "2025/08/01", changeStatus: "大幅度新增IC設計、網通股，強化主動選股優勢。", beneficiaryCount: 23586, holdings: [ { stock: "世界 (5347)", percent: 6.5, change: "+2.0%" }, { stock: "力旺 (3529)", percent: 5.9, change: "+1.5%" }, { stock: "環球晶 (6488)", percent: 4.1, change: "-0.8%" }, { stock: "欣興 (3037)", percent: 3.8, change: "+1.0%" }, { stock: "聯詠 (3034)", percent: 3.5, change: "0.0%" }, { stock: "台達電 (2308)", percent: 3.2, change: "-0.5%" }, { stock: "瑞昱 (2379)", percent: 2.8, change: "+0.3%" }, { stock: "緯創 (3231)", percent: 2.5, change: "+0.1%" }, { stock: "光寶科 (2301)", percent: 2.1, change: "-0.2%" }, { stock: "致茂 (2360)", percent: 1.9, change: "0.0%" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 122.88 }, ], },
             { id: 2, type: 'active', name: "主動統一台股成長", ticker: "00981A", fundManager: "統一證券投資信託股份有限公司", ytdReturn: 18.52, latestNav: 35.60, changeSinceLast: 0.85, lastDividend: "NT$1.20 (年配)", exDate: "2025/09/20", changeStatus: "小幅加碼AI伺服器供應鏈，保持高集中度持股。", beneficiaryCount: 23480, holdings: [ { stock: "台積電 (2330)", percent: 12.5, change: "+0.5%" }, { stock: "聯發科 (2454)", percent: 9.8, change: "-0.2%" }, { stock: "鴻海 (2317)", percent: 7.1, change: "+1.0%" }, { stock: "廣達 (2382)", percent: 6.5, change: "+0.3%" }, { stock: "緯穎 (6669)", percent: 5.9, change: "-0.1%" }, { stock: "川湖 (2059)", percent: 4.5, change: "0.0%" }, { stock: "奇鋐 (3017)", percent: 4.0, change: "+0.2%" }, { stock: "雙鴻 (3324)", percent: 3.5, change: "+0.1%" }, { stock: "台光電 (2382)", percent: 3.0, change: "0.0%" }, { stock: "南電 (8046)", percent: 2.5, change: "-0.3%" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 118.52 }, ], },
@@ -231,7 +235,7 @@
             return `<svg xmlns="http://www.w3.org/2000/svg" class="${className}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
         };
 
-        // --- 函數：生成 ETF 列表表格 ---
+        // --- 函數：生成 ETF 列表表格 (未變動) ---
         const createETFTableList = (title, data, type) => {
             const tableContainer = document.createElement('div');
             tableContainer.className = "mb-10 p-4 sm:p-6 bg-white rounded-xl shadow-2xl";
@@ -239,7 +243,6 @@
             const Icon = type === 'active' ? 'Zap' : 'Shield';
             const headerColor = type === 'active' ? 'bg-red-500' : 'bg-blue-500';
 
-            // 標題
             tableContainer.innerHTML = `
                 <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center border-b pb-3">
                     ${getIconSVG(Icon, `w-6 h-6 mr-3 ${type === 'active' ? 'text-red-500' : 'text-blue-500'}`)}
@@ -247,7 +250,6 @@
                 </h2>
             `;
 
-            // 處理載入和錯誤狀態
             if (isLoading) {
                  tableContainer.innerHTML += `
                     <div class="flex flex-col items-center justify-center p-8 bg-gray-50 rounded-lg text-indigo-600">
@@ -266,11 +268,9 @@
                 return tableContainer;
             }
 
-            // 排序 (確保排名會自動變動)
             const sortedData = [...data].sort((a, b) => b.ytdReturn - a.ytdReturn);
             const displayData = type === 'active' ? sortedData.slice(0, 5) : sortedData.slice(0, 10);
 
-            // 表格結構
             const tableHTML = `
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden">
@@ -300,7 +300,6 @@
             `;
             tableContainer.innerHTML += tableHTML;
 
-            // 渲染行
             const tbody = tableContainer.querySelector(`#table-body-${type}`);
             displayData.forEach((etf, index) => {
                 const tr = document.createElement('tr');
@@ -352,7 +351,6 @@
                 tbody.appendChild(tr);
             });
             
-            // 綁定點擊事件
             tableContainer.querySelectorAll('.open-detail-btn').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const id = parseInt(e.currentTarget.dataset.etfId);
@@ -366,7 +364,7 @@
             return tableContainer;
         };
         
-        // --- 函數：生成詳情彈窗 ---
+        // --- 函數：生成詳情彈窗 (未變動) ---
         const createDetailModal = () => {
             if (!selectedEtf) return document.createElement('div');
 
@@ -421,7 +419,6 @@
                     </div>
 
                     <div class="p-6 grid md:grid-cols-2 gap-6">
-                        <!-- 關鍵數據 (佔滿兩欄，簡化布局) -->
                         <div class="bg-gray-50 p-4 rounded-lg shadow-inner md:col-span-2">
                             <h3 class="text-lg font-semibold text-gray-700 mb-3 flex items-center">
                                 ${getIconSVG('Shield', 'w-5 h-5 mr-2 text-indigo-600')}關鍵資訊
@@ -492,7 +489,6 @@
                 </div>
             `;
             
-            // 綁定關閉事件
             modalContainer.addEventListener('click', (e) => {
                 if (e.target.id === 'close-modal-btn' || e.target === modalContainer) {
                     selectedEtf = null;
