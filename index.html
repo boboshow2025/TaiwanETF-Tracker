@@ -38,7 +38,7 @@
         // =========================================================
         const firebaseConfig = {
             // apiKey, authDomain, storageBucket, messagingSenderId, appId 全部移除
-            projectId: "taiwanetf-tracker",   // <--- 這是唯一必須填寫的連線依據
+            projectId: "taiwanetf-tracker",   // <--- 已填入您的專案 ID
         };
         // =========================================================
 
@@ -49,7 +49,7 @@
             const usageCountDisplay = document.getElementById(usageCountDisplayId);
             
             // 檢查是否已填寫專案 ID
-            if (!firebaseConfig.projectId || firebaseConfig.projectId === "taiwanetf-tracker") {
+            if (!firebaseConfig.projectId || firebaseConfig.projectId === "YOUR_PROJECT_ID") {
                 if (usageCountDisplay) {
                     usageCountDisplay.innerHTML = `<p class="text-sm text-yellow-600">⚠️ 應用程式數據統計服務未啟用 (缺少 Firebase 配置)</p>`;
                 }
@@ -124,7 +124,7 @@
             });
         };
 
-        // --- 應用程式狀態管理 ---
+        // --- 應用程式狀態管理 (初始數據) ---
         let state = {
             activeETFs: [
                 { id: 1, type: 'active', name: "主動群益台灣強棒", ticker: "00982A", fundManager: "群益證券投資信託股份有限公司", ytdReturn: 22.88, latestNav: 18.90, changeSinceLast: 1.50, lastDividend: "NT$0.50 (季配)", exDate: "2025/08/01", changeStatus: "大幅度新增IC設計、網通股，強化主動選股優勢。", beneficiaryCount: 23586, holdings: [ { stock: "世界 (5347)", percent: 6.5, change: "+2.0%" }, { stock: "力旺 (3529)", percent: 5.9, change: "+1.5%" }, { stock: "智原 (3035)", percent: 5.1, change: "+1.1%" }, { stock: "M31 (6643)", percent: 4.8, change: "+1.0%" }, { stock: "環球晶 (6488)", percent: 4.1, change: "-0.8%" }, { stock: "台積電 (2330)", percent: 3.5, change: "+0.1%" }, { stock: "聯發科 (2454)", percent: 3.2, change: "-0.2%" }, { stock: "瑞昱 (2379)", percent: 3.0, change: "+0.5%" }, { stock: "新唐 (4919)", percent: 2.8, change: "-0.1%" }, { stock: "華碩 (2357)", percent: 2.5, change: "+0.3%" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 122.88 }, { month: '10月', return: 115 }, { month: '11月', return: 120 }, ], },
@@ -165,6 +165,8 @@
             const minVal = Math.min(...values);
             const maxVal = Math.max(...values);
             const range = maxVal - minVal;
+
+            if (data.length <= 1) return '<div class="text-center text-gray-500 py-4">數據不足以繪製圖表</div>';
 
             const scaleX = (index) => padding + (index / (data.length - 1)) * (width - 2 * padding);
             const scaleY = (value) => height - padding - ((value - minVal) / range) * (height - 2 * padding);
