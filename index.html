@@ -12,55 +12,72 @@
         /* 讓載入中的圖標可以旋轉 */
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .animate-spin { animation: spin 1s linear infinite; }
+        /* 確保 SVG 內的線條顏色正確 */
+        .svg-trend-line { stroke: #10b981; }
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen">
     <div id="app" class="p-4 sm:p-6 max-w-6xl mx-auto">
-        <!-- Header will be rendered here -->
+        <!-- App content will be rendered here -->
     </div>
 
-    <!-- 載入 Firebase SDKs for statistics module -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    <!-- 載入 Firebase SDKs for statistics module (非模組方式，提高兼容性) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
+    <!-- 載入 Lucide Icons (純 SVG icon sets) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- 核心 JavaScript 邏輯 (包含 Firebase 最終連線邏輯) -->
+    <script>
+        // --- Firebase 配置 ---
         // =========================================================
         // !!! 步驟一：請在這裡貼上您自己的 Firebase 配置 !!!
-        // 請確保您移除或註解了 apiKey 和 authDomain，以保持安全。
+        // 僅保留 PROJECT_ID，以確保安全。
         // =========================================================
         const firebaseConfig = {
-            // apiKey: "YOUR_API_KEY",         // <--- 保持註解或移除，確保安全！
-            // authDomain: "YOUR_AUTH_DOMAIN", // <--- 保持註解或移除，確保安全！
-            projectId: "taiwanetf-tracker",   // <--- 必填，這是唯一連線依據    
+            // apiKey, authDomain, storageBucket, messagingSenderId, appId 全部移除
+            projectId: "taiwanetf-tracker",   // <--- 這是唯一必須填寫的連線依據
         };
         // =========================================================
 
-        const usageCountDisplay = document.getElementById('usage-count-display');
-        const APP_ID = firebaseConfig.projectId; // 使用 projectId 作為 App ID
+        const usageCountDisplayId = 'usage-count-display';
         const COUNT_DOC_PATH = `public_metrics/usage_count`; // Firestore 路徑
 
         async function updateUsageCount() {
+            const usageCountDisplay = document.getElementById(usageCountDisplayId);
+            
+            // 檢查是否已填寫專案 ID
+            if (!firebaseConfig.projectId || firebaseConfig.projectId === "taiwanetf-tracker") {
+                if (usageCountDisplay) {
+                    usageCountDisplay.innerHTML = `<p class="text-sm text-yellow-600">⚠️ 應用程式數據統計服務未啟用 (缺少 Firebase 配置)</p>`;
+                }
+                return;
+            }
+
             try {
-                const app = initializeApp(firebaseConfig);
-                const db = getFirestore(app);
-                const auth = getAuth(app);
+                // 使用 Firebase v9+ 的兼容模式 API
+                const app = firebase.initializeApp(firebaseConfig);
+                const db = firebase.firestore(app);
+                const auth = firebase.auth(app);
 
                 // 1. 執行匿名登入以滿足 Firestore 規則 request.auth != null
-                await signInAnonymously(auth);
+                await auth.signInAnonymously();
 
-                const countDocRef = doc(db, COUNT_DOC_PATH);
+                const countDocRef = db.doc(COUNT_DOC_PATH);
 
                 // 2. 使用 transaction 來確保多個用戶同時訪問時計數準確
-                await runTransaction(db, async (transaction) => {
+                await db.runTransaction(async (transaction) => {
                     const countDoc = await transaction.get(countDocRef);
 
                     let newCount = 1;
-                    if (countDoc.exists()) {
+                    if (countDoc.exists) {
                         const currentCount = countDoc.data().count;
                         newCount = currentCount + 1;
                     }
 
+                    // 儲存更新後的計數
                     transaction.set(countDocRef, { count: newCount, lastUpdate: new Date().toISOString() });
                     
                     // 3. 成功後更新 UI
@@ -70,29 +87,18 @@
                 });
 
             } catch (error) {
-                console.error("Firestore Usage Count Error:", error);
+                console.error("Firebase Usage Count Error:", error);
                 // 顯示錯誤訊息
                 if (usageCountDisplay) {
-                    usageCountDisplay.innerHTML = `<p class="text-sm text-red-600">❌ 無法連線或寫入統計服務 (請檢查 Firebase 配置與規則)</p>`;
+                    // 根據錯誤類型顯示更精確的提示
+                    const errorMsg = error.code === 'permission-denied' 
+                        ? '❌ 無法寫入統計服務 (請檢查 Firestore 規則)' 
+                        : '❌ 連線失敗 (請檢查配置或網路)';
+                    usageCountDisplay.innerHTML = `<p class="text-sm text-red-600">${errorMsg}</p>`;
                 }
             }
         }
-
-        // 檢查配置是否完整，如果沒有 ProjectId，就跳過
-        if (firebaseConfig.projectId && firebaseConfig.projectId !== "YOUR_PROJECT_ID") {
-            updateUsageCount();
-        } else {
-            if (usageCountDisplay) {
-                usageCountDisplay.innerHTML = `<p class="text-sm text-yellow-600">⚠️ 應用程式數據統計服務未啟用 (缺少 Firebase 配置)</p>`;
-            }
-        }
-    </script>
-
-    <!-- 載入 Lucide Icons (純 SVG icon sets) -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- 核心 JavaScript 邏輯 (使用 Vanilla JS 確保穩定性) -->
-    <script>
+        
         // --- 圖標函數：用於在 Vanilla JS 中繪製 SVG 圖標 ---
         const getIconSvg = (name, className = 'w-5 h-5') => {
             const icon = lucide.icons[name];
@@ -113,7 +119,6 @@
                     ytdReturn: parseFloat(newYtdReturn.toFixed(2)),
                     latestNav: parseFloat(newNav.toFixed(2)),
                     changeSinceLast: parseFloat((newNav - etf.latestNav).toFixed(2)),
-                    // 模擬更新持股變動狀態
                     changeStatus: etf.type === 'active' ? (Math.random() > 0.5 ? '經理人大幅加碼半導體與 AI 供應鏈。' : '經理人減持傳統金融與低波動股。') : etf.changeStatus,
                 };
             });
@@ -122,23 +127,23 @@
         // --- 應用程式狀態管理 ---
         let state = {
             activeETFs: [
-                { id: 1, type: 'active', name: "主動群益台灣強棒", ticker: "00982A", fundManager: "群益證券投資信託股份有限公司", ytdReturn: 22.88, latestNav: 18.90, changeSinceLast: 1.50, lastDividend: "NT$0.50 (季配)", exDate: "2025/08/01", changeStatus: "大幅度新增IC設計、網通股，強化主動選股優勢。", beneficiaryCount: 23586, holdings: [ { stock: "世界 (5347)", percent: 6.5, change: "+2.0%" }, { stock: "力旺 (3529)", percent: 5.9, change: "+1.5%" }, { stock: "智原 (3035)", percent: 5.1, change: "+1.1%" }, { stock: "M31 (6643)", percent: 4.8, change: "+1.0%" }, { stock: "環球晶 (6488)", percent: 4.1, change: "-0.8%" }, { stock: "台積電 (2330)", percent: 3.5, change: "+0.1%" }, { stock: "聯發科 (2454)", percent: 3.2, change: "-0.2%" }, { stock: "瑞昱 (2379)", percent: 3.0, change: "+0.5%" }, { stock: "新唐 (4919)", percent: 2.8, change: "-0.1%" }, { stock: "華碩 (2357)", percent: 2.5, change: "+0.3%" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 122.88 }, ], },
-                { id: 2, type: 'active', name: "主動統一台股成長", ticker: "00981A", fundManager: "統一證券投資信託股份有限公司", ytdReturn: 18.52, latestNav: 35.60, changeSinceLast: 0.85, lastDividend: "NT$1.20 (年配)", exDate: "2025/09/20", changeStatus: "小幅加碼AI伺服器供應鏈，保持高集中度持股。", beneficiaryCount: 23480, holdings: [ { stock: "台積電 (2330)", percent: 12.5, change: "+0.5%" }, { stock: "聯發科 (2454)", percent: 9.8, change: "-0.2%" }, { stock: "鴻海 (2317)", percent: 7.1, change: "+1.0%" }, { stock: "廣達 (2382)", percent: 6.5, change: "+0.8%" }, { stock: "緯創 (3231)", percent: 5.9, change: "+0.7%" }, { stock: "技嘉 (2376)", percent: 5.2, change: "+0.5%" }, { stock: "光寶科 (2301)", percent: 4.8, change: "+0.2%" }, { stock: "台達電 (2308)", percent: 4.5, change: "-0.1%" }, { stock: "華碩 (2357)", percent: 4.0, change: "+0.3%" }, { stock: "仁寶 (2324)", percent: 3.5, change: "+0.1%" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 118.52 }, ], },
-                { id: 3, type: 'active', name: "主動野村臺灣優選", ticker: "00980A", fundManager: "野村證券投資信託股份有限公司", ytdReturn: 12.35, latestNav: 24.15, changeSinceLast: -0.25, lastDividend: "NT$0.80 (季配)", exDate: "2025/10/10", changeStatus: "減持金融股比重，轉向景氣復甦的傳產領域。", beneficiaryCount: 18778, holdings: [ { stock: "富邦金 (2881)", percent: 8.2, change: "-1.0%" }, { stock: "國泰金 (2882)", percent: 7.5, change: "-0.5%" }, { stock: "台塑 (1301)", percent: 6.0, change: "+0.5%" }, { stock: "台泥 (1101)", percent: 5.5, change: "+0.3%" }, { stock: "長榮 (2603)", percent: 4.9, change: "+0.8%" }, { stock: "萬海 (2615)", percent: 4.5, change: "+0.6%" }, { stock: "中鋼 (2002)", percent: 4.0, change: "-0.1%" }, { stock: "中信金 (2891)", percent: 3.5, change: "-0.3%" }, { stock: "聯華 (1229)", percent: 3.2, change: "+0.1%" }, { stock: "統一 (1216)", percent: 3.0, change: "+0.0%" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 112.35 }, ], },
-                { id: 4, type: 'active', name: "主動野村台股50", ticker: "00985A", fundManager: "野村證券投資信託股份有限公司", ytdReturn: 8.95, latestNav: 15.20, changeSinceLast: 0.10, lastDividend: "NT$0.35 (年配)", exDate: "2025/07/01", changeStatus: "新增大型風電與綠能供應鏈，注重ESG題材。", beneficiaryCount: 18242, holdings: [ { stock: "世紀鋼 (9958)", percent: 10.1, change: "+1.5%" }, { stock: "上緯投控 (3708)", percent: 8.5, change: "0.0%" }, { stock: "中興電 (1513)", percent: 7.2, change: "+0.8%" }, { stock: "華城 (1519)", percent: 6.5, change: "+1.0%" }, { stock: "台泥 (1101)", percent: 5.9, change: "-0.2%" }, { stock: "中鋼 (2002)", percent: 5.5, change: "0.0%" }, { stock: "台積電 (2330)", percent: 5.0, change: "+0.1%" }, { stock: "聯發科 (2454)", percent: 4.5, change: "-0.1%" }, { stock: "鴻海 (2317)", percent: 4.0, change: "0.0%" }, { stock: "長榮 (2603)", percent: 3.5, change: "+0.2%" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 108.95 }, ], },
-                { id: 5, type: 'active', name: "主動安聯台灣高息", ticker: "00984A", fundManager: "安聯證券投資信託股份有限公司", ytdReturn: 5.10, latestNav: 28.50, changeSinceLast: 0.05, lastDividend: "NT$0.90 (季配)", exDate: "2025/11/01", changeStatus: "持股變動極小，維持高股息標的佈局，等待除權息旺季。", beneficiaryCount: 9371, holdings: [ { stock: "統一 (1216)", percent: 11.2, change: "0.0%" }, { stock: "台泥 (1101)", percent: 9.9, change: "-0.1%" }, { stock: "長榮 (2603)", percent: 6.5, change: "+0.1%" }, { stock: "台塑 (1301)", percent: 5.8, change: "0.0%" }, { stock: "中華電 (2412)", percent: 5.5, change: "-0.1%" }, { stock: "台灣大 (3045)", percent: 5.2, change: "0.0%" }, { stock: "遠傳 (4904)", percent: 4.8, change: "+0.1%" }, { stock: "富邦金 (2881)", percent: 4.5, change: "-0.1%" }, { stock: "國泰金 (2882)", percent: 4.2, change: "0.0%" }, { stock: "兆豐金 (2886)", percent: 3.9, change: "+0.1%" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 105.10 }, ], },
+                { id: 1, type: 'active', name: "主動群益台灣強棒", ticker: "00982A", fundManager: "群益證券投資信託股份有限公司", ytdReturn: 22.88, latestNav: 18.90, changeSinceLast: 1.50, lastDividend: "NT$0.50 (季配)", exDate: "2025/08/01", changeStatus: "大幅度新增IC設計、網通股，強化主動選股優勢。", beneficiaryCount: 23586, holdings: [ { stock: "世界 (5347)", percent: 6.5, change: "+2.0%" }, { stock: "力旺 (3529)", percent: 5.9, change: "+1.5%" }, { stock: "智原 (3035)", percent: 5.1, change: "+1.1%" }, { stock: "M31 (6643)", percent: 4.8, change: "+1.0%" }, { stock: "環球晶 (6488)", percent: 4.1, change: "-0.8%" }, { stock: "台積電 (2330)", percent: 3.5, change: "+0.1%" }, { stock: "聯發科 (2454)", percent: 3.2, change: "-0.2%" }, { stock: "瑞昱 (2379)", percent: 3.0, change: "+0.5%" }, { stock: "新唐 (4919)", percent: 2.8, change: "-0.1%" }, { stock: "華碩 (2357)", percent: 2.5, change: "+0.3%" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 122.88 }, { month: '10月', return: 115 }, { month: '11月', return: 120 }, ], },
+                { id: 2, type: 'active', name: "主動統一台股成長", ticker: "00981A", fundManager: "統一證券投資信託股份有限公司", ytdReturn: 18.52, latestNav: 35.60, changeSinceLast: 0.85, lastDividend: "NT$1.20 (年配)", exDate: "2025/09/20", changeStatus: "小幅加碼AI伺服器供應鏈，保持高集中度持股。", beneficiaryCount: 23480, holdings: [ { stock: "台積電 (2330)", percent: 12.5, change: "+0.5%" }, { stock: "聯發科 (2454)", percent: 9.8, change: "-0.2%" }, { stock: "鴻海 (2317)", percent: 7.1, change: "+1.0%" }, { stock: "廣達 (2382)", percent: 6.5, change: "+0.8%" }, { stock: "緯創 (3231)", percent: 5.9, change: "+0.7%" }, { stock: "技嘉 (2376)", percent: 5.2, change: "+0.5%" }, { stock: "光寶科 (2301)", percent: 4.8, change: "+0.2%" }, { stock: "台達電 (2308)", percent: 4.5, change: "-0.1%" }, { stock: "華碩 (2357)", percent: 4.0, change: "+0.3%" }, { stock: "仁寶 (2324)", percent: 3.5, change: "+0.1%" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 118.52 }, { month: '10月', return: 112 }, { month: '11月', return: 115 }, ], },
+                { id: 3, type: 'active', name: "主動野村臺灣優選", ticker: "00980A", fundManager: "野村證券投資信託股份有限公司", ytdReturn: 12.35, latestNav: 24.15, changeSinceLast: -0.25, lastDividend: "NT$0.80 (季配)", exDate: "2025/10/10", changeStatus: "減持金融股比重，轉向景氣復甦的傳產領域。", beneficiaryCount: 18778, holdings: [ { stock: "富邦金 (2881)", percent: 8.2, change: "-1.0%" }, { stock: "國泰金 (2882)", percent: 7.5, change: "-0.5%" }, { stock: "台塑 (1301)", percent: 6.0, change: "+0.5%" }, { stock: "台泥 (1101)", percent: 5.5, change: "+0.3%" }, { stock: "長榮 (2603)", percent: 4.9, change: "+0.8%" }, { stock: "萬海 (2615)", percent: 4.5, change: "+0.6%" }, { stock: "中鋼 (2002)", percent: 4.0, change: "-0.1%" }, { stock: "中信金 (2891)", percent: 3.5, change: "-0.3%" }, { stock: "聯華 (1229)", percent: 3.2, change: "+0.1%" }, { stock: "統一 (1216)", percent: 3.0, change: "+0.0%" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 112.35 }, { month: '10月', return: 110 }, { month: '11月', return: 111 }, ], },
+                { id: 4, type: 'active', name: "主動野村台股50", ticker: "00985A", fundManager: "野村證券投資信託股份有限公司", ytdReturn: 8.95, latestNav: 15.20, changeSinceLast: 0.10, lastDividend: "NT$0.35 (年配)", exDate: "2025/07/01", changeStatus: "新增大型風電與綠能供應鏈，注重ESG題材。", beneficiaryCount: 18242, holdings: [ { stock: "世紀鋼 (9958)", percent: 10.1, change: "+1.5%" }, { stock: "上緯投控 (3708)", percent: 8.5, change: "0.0%" }, { stock: "中興電 (1513)", percent: 7.2, change: "+0.8%" }, { stock: "華城 (1519)", percent: 6.5, change: "+1.0%" }, { stock: "台泥 (1101)", percent: 5.9, change: "-0.2%" }, { stock: "中鋼 (2002)", percent: 5.5, change: "0.0%" }, { stock: "台積電 (2330)", percent: 5.0, change: "+0.1%" }, { stock: "聯發科 (2454)", percent: 4.5, change: "-0.1%" }, { stock: "鴻海 (2317)", percent: 4.0, change: "0.0%" }, { stock: "長榮 (2603)", percent: 3.5, change: "+0.2%" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 108.95 }, { month: '10月', return: 105 }, { month: '11月', return: 107 }, ], },
+                { id: 5, type: 'active', name: "主動安聯台灣高息", ticker: "00984A", fundManager: "安聯證券投資信託股份有限公司", ytdReturn: 5.10, latestNav: 28.50, changeSinceLast: 0.05, lastDividend: "NT$0.90 (季配)", exDate: "2025/11/01", changeStatus: "持股變動極小，維持高股息標的佈局，等待除權息旺季。", beneficiaryCount: 9371, holdings: [ { stock: "統一 (1216)", percent: 11.2, change: "0.0%" }, { stock: "台泥 (1101)", percent: 9.9, change: "-0.1%" }, { stock: "長榮 (2603)", percent: 6.5, change: "+0.1%" }, { stock: "台塑 (1301)", percent: 5.8, change: "0.0%" }, { stock: "中華電 (2412)", percent: 5.5, change: "-0.1%" }, { stock: "台灣大 (3045)", percent: 5.2, change: "0.0%" }, { stock: "遠傳 (4904)", percent: 4.8, change: "+0.1%" }, { stock: "富邦金 (2881)", percent: 4.5, change: "-0.1%" }, { stock: "國泰金 (2882)", percent: 4.2, change: "0.0%" }, { stock: "兆豐金 (2886)", percent: 3.9, change: "+0.1%" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 105.10 }, { month: '10月', return: 103 }, { month: '11月', return: 104 }, ], },
             ],
             passiveETFs: [
-                { id: 108, type: 'passive', name: "中信關鍵半導體ETF基金", ticker: "00891", index: "ICE FactSet臺灣指數公司半導體指數", ytdReturn: 28.01, latestNav: 25.90, changeSinceLast: 0.90, lastDividend: "NT$0.40 (半年配)", exDate: "2025/06/20", beneficiaryCount: 88701, holdings: [ { stock: "台積電 (2330)", percent: 25.0, change: "N/A" }, { stock: "聯發科 (2454)", percent: 12.0, change: "N/A" }, { stock: "聯電 (2303)", percent: 7.5, change: "N/A" }, { stock: "日月光投控 (3711)", percent: 6.8, change: "N/A" }, { stock: "世界 (5347)", percent: 5.5, change: "N/A" }, { stock: "瑞昱 (2379)", percent: 4.9, change: "N/A" }, { stock: "力旺 (3529)", percent: 4.1, change: "N/A" }, { stock: "環球晶 (6488)", percent: 3.8, change: "N/A" }, { stock: "南亞科 (2408)", percent: 3.5, change: "N/A" }, { stock: "穩懋 (3105)", percent: 3.2, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 128.01 }, ], },
-                { id: 103, type: 'passive', name: "富邦台灣電子科技股指數型基金", ticker: "0052", index: "臺灣電子指數", ytdReturn: 25.40, latestNav: 135.80, changeSinceLast: 2.10, lastDividend: "NT$2.00 (年配)", exDate: "2025/06/10", beneficiaryCount: 52140, holdings: [ { stock: "台積電 (2330)", percent: 40.5, change: "N/A" }, { stock: "鴻海 (2317)", percent: 8.5, change: "N/A" }, { stock: "聯發科 (2454)", percent: 7.0, change: "N/A" }, { stock: "聯電 (2303)", percent: 5.0, change: "N/A" }, { stock: "台達電 (2308)", percent: 4.2, change: "N/A" }, { stock: "日月光投控 (3711)", percent: 3.8, change: "N/A" }, { stock: "廣達 (2382)", percent: 3.5, change: "N/A" }, { stock: "緯創 (3231)", percent: 3.0, change: "N/A" }, { stock: "國巨 (2327)", percent: 2.5, change: "N/A" }, { stock: "華碩 (2357)", percent: 2.0, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 125.40 }, ], },
-                { id: 101, type: 'passive', name: "元大台灣卓越50證券投資信託基金 (市值型)", ticker: "0050", index: "臺灣50指數", ytdReturn: 20.15, latestNav: 160.50, changeSinceLast: 1.50, lastDividend: "NT$3.50 (半年配)", exDate: "2025/07/19", beneficiaryCount: 955302, holdings: [ { stock: "台積電 (2330)", percent: 50.0, change: "N/A" }, { stock: "鴻海 (2317)", percent: 6.0, change: "N/A" }, { stock: "聯發科 (2454)", percent: 5.5, change: "N/A" }, { stock: "台塑 (1301)", percent: 3.0, change: "N/A" }, { stock: "國泰金 (2882)", percent: 2.8, change: "N/A" }, { stock: "富邦金 (2881)", percent: 2.5, change: "N/A" }, { stock: "台達電 (2308)", percent: 2.2, change: "N/A" }, { stock: "中鋼 (2002)", percent: 2.0, change: "N/A" }, { stock: "廣達 (2382)", percent: 1.8, change: "N/A" }, { stock: "緯創 (3231)", percent: 1.5, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 120.15 }, ], },
-                { id: 106, type: 'passive', name: "富邦MSCI台灣ETF基金", ticker: "006208", index: "MSCI台灣指數", ytdReturn: 19.55, latestNav: 95.60, changeSinceLast: 1.05, lastDividend: "NT$2.10 (年配)", exDate: "2025/07/25", beneficiaryCount: 153020, holdings: [ { stock: "台積電 (2330)", percent: 45.0, change: "N/A" }, { stock: "聯發科 (2454)", percent: 7.0, change: "N/A" }, { stock: "鴻海 (2317)", percent: 6.5, change: "N/A" }, { stock: "台塑 (1301)", percent: 3.5, change: "N/A" }, { stock: "國泰金 (2882)", percent: 3.2, change: "N/A" }, { stock: "富邦金 (2881)", percent: 3.0, change: "N/A" }, { stock: "台達電 (2308)", percent: 2.8, change: "N/A" }, { stock: "中鋼 (2002)", percent: 2.5, change: "N/A" }, { stock: "廣達 (2382)", percent: 2.0, change: "N/A" }, { stock: "緯創 (3231)", percent: 1.5, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 119.55 }, ], },
-                { id: 102, type: 'passive', name: "復華台灣科技優息ETF基金 (高股息月配)", ticker: "00929", index: "特選臺灣科技優息指數", ytdReturn: 18.90, latestNav: 21.30, changeSinceLast: 0.05, lastDividend: "NT$0.15 (月配)", exDate: "2025/10/25", beneficiaryCount: 685300, holdings: [ { stock: "聯發科 (2454)", percent: 3.5, change: "N/A" }, { stock: "廣達 (2382)", percent: 2.8, change: "N/A" }, { stock: "緯創 (3231)", percent: 2.5, change: "N/A" }, { stock: "仁寶 (2324)", percent: 2.2, change: "N/A" }, { stock: "英業達 (2356)", percent: 2.0, change: "N/A" }, { stock: "光寶科 (2301)", percent: 1.8, change: "N/A" }, { stock: "瑞昱 (2379)", percent: 1.5, change: "N/A" }, { stock: "聯電 (2303)", percent: 1.2, change: "N/A" }, { stock: "世界 (5347)", percent: 1.0, change: "N/A" }, { stock: "台積電 (2330)", percent: 0.5, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 118.90 }, ], },
-                { id: 107, type: 'passive', name: "元大台灣高股息低波動ETF基金", ticker: "00713", index: "臺灣指數公司高股息低波動指數", ytdReturn: 17.22, latestNav: 55.40, changeSinceLast: 0.35, lastDividend: "NT$0.80 (季配)", exDate: "2025/11/01", beneficiaryCount: 201350, holdings: [ { stock: "仁寶 (2324)", percent: 3.1, change: "N/A" }, { stock: "英業達 (2356)", percent: 2.9, change: "N/A" }, { stock: "廣達 (2382)", percent: 2.5, change: "N/A" }, { stock: "緯創 (3231)", percent: 2.2, change: "N/A" }, { stock: "聯發科 (2454)", percent: 2.0, change: "N/A" }, { stock: "台積電 (2330)", percent: 1.8, change: "N/A" }, { stock: "鴻海 (2317)", percent: 1.5, change: "N/A" }, { stock: "長榮 (2603)", percent: 1.2, change: "N/A" }, { stock: "統一 (1216)", percent: 1.0, change: "N/A" }, { stock: "台泥 (1101)", percent: 0.8, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 117.22 }, ], },
-                { id: 109, type: 'passive', name: "國泰永續高股息ETF基金", ticker: "00878", index: "MSCI臺灣ESG永續高股息精選30指數", ytdReturn: 16.50, latestNav: 22.10, changeSinceLast: 0.12, lastDividend: "NT$0.30 (季配)", exDate: "2025/11/16", beneficiaryCount: 1250200, holdings: [ { stock: "仁寶 (2324)", percent: 4.5, change: "N/A" }, { stock: "大聯大 (3702)", percent: 4.1, change: "N/A" }, { stock: "緯創 (3231)", percent: 3.8, change: "N/A" }, { stock: "廣達 (2382)", percent: 3.5, change: "N/A" }, { stock: "鴻海 (2317)", percent: 3.2, change: "N/A" }, { stock: "台積電 (2330)", percent: 3.0, change: "N/A" }, { stock: "聯發科 (2454)", percent: 2.8, change: "N/A" }, { stock: "長榮 (2603)", percent: 2.5, change: "N/A" }, { stock: "統一 (1216)", percent: 2.2, change: "N/A" }, { stock: "台泥 (1101)", percent: 2.0, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 116.50 }, ], },
-                { id: 105, type: 'passive', name: "富邦富櫃50 ETF基金", ticker: "006201", index: "櫃買富櫃50指數", ytdReturn: 15.85, latestNav: 75.20, changeSinceLast: 0.88, lastDividend: "NT$1.50 (半年配)", exDate: "2025/08/15", beneficiaryCount: 18030, holdings: [ { stock: "世界 (5347)", percent: 7.5, change: "N/A" }, { stock: "頎邦 (6147)", percent: 4.2, change: "N/A" }, { stock: "穩懋 (3105)", percent: 3.8, change: "N/A" }, { stock: "環球晶 (6488)", percent: 3.5, change: "N/A" }, { stock: "中美晶 (5483)", percent: 3.2, change: "N/A" }, { stock: "合晶 (6182)", percent: 3.0, change: "N/A" }, { stock: "力旺 (3529)", percent: 2.8, change: "N/A" }, { stock: "創意 (3443)", percent: 2.5, change: "N/A" }, { stock: "聯亞 (3081)", percent: 2.2, change: "N/A" }, { stock: "普誠 (6191)", percent: 2.0, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 115.85 }, ], },
-                { id: 110, type: 'passive', name: "富邦台灣金融指數ETF基金", ticker: "0055", index: "臺灣金融指數", ytdReturn: 10.20, latestNav: 32.50, changeSinceLast: 0.20, lastDividend: "NT$1.10 (年配)", exDate: "2025/05/01", beneficiaryCount: 152000, holdings: [ { stock: "富邦金 (2881)", percent: 15.0, change: "N/A" }, { stock: "國泰金 (2882)", percent: 12.0, change: "N/A" }, { stock: "中信金 (2891)", percent: 10.5, change: "N/A" }, { stock: "兆豐金 (2886)", percent: 9.8, change: "N/A" }, { stock: "玉山金 (2884)", percent: 8.5, change: "N/A" }, { stock: "台新金 (2887)", percent: 7.2, change: "N/A" }, { stock: "第一金 (2892)", percent: 6.5, change: "N/A" }, { stock: "華南金 (2880)", percent: 5.8, change: "N/A" }, { stock: "開發金 (2883)", percent: 5.5, change: "N/A" }, { stock: "永豐金 (2890)", percent: 5.0, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 110.20 }, ], },
-                { id: 104, type: 'passive', name: "國泰20年期以上美國公債ETF基金", ticker: "00679B", index: "彭博20年期以上美國公債指數", ytdReturn: -5.10, latestNav: 30.15, changeSinceLast: -0.15, lastDividend: "NT$0.25 (季配)", exDate: "2025/09/05", beneficiaryCount: 380200, holdings: [ { stock: "美國財政部債券 (20年期)", percent: 80.0, change: "N/A" }, { stock: "美國財政部債券 (25年期)", percent: 10.0, change: "N/A" }, { stock: "美國財政部債券 (30年期)", percent: 10.0, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 94.90 }, ], },
+                { id: 108, type: 'passive', name: "中信關鍵半導體ETF基金", ticker: "00891", index: "ICE FactSet臺灣指數公司半導體指數", ytdReturn: 28.01, latestNav: 25.90, changeSinceLast: 0.90, lastDividend: "NT$0.40 (半年配)", exDate: "2025/06/20", beneficiaryCount: 88701, holdings: [ { stock: "台積電 (2330)", percent: 25.0, change: "N/A" }, { stock: "聯發科 (2454)", percent: 12.0, change: "N/A" }, { stock: "聯電 (2303)", percent: 7.5, change: "N/A" }, { stock: "日月光投控 (3711)", percent: 6.8, change: "N/A" }, { stock: "世界 (5347)", percent: 5.5, change: "N/A" }, { stock: "瑞昱 (2379)", percent: 4.9, change: "N/A" }, { stock: "力旺 (3529)", percent: 4.1, change: "N/A" }, { stock: "環球晶 (6488)", percent: 3.8, change: "N/A" }, { stock: "南亞科 (2408)", percent: 3.5, change: "N/A" }, { stock: "穩懋 (3105)", percent: 3.2, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 128.01 }, { month: '10月', return: 125 }, { month: '11月', return: 126 }, ], },
+                { id: 103, type: 'passive', name: "富邦台灣電子科技股指數型基金", ticker: "0052", index: "臺灣電子指數", ytdReturn: 25.40, latestNav: 135.80, changeSinceLast: 2.10, lastDividend: "NT$2.00 (年配)", exDate: "2025/06/10", beneficiaryCount: 52140, holdings: [ { stock: "台積電 (2330)", percent: 40.5, change: "N/A" }, { stock: "鴻海 (2317)", percent: 8.5, change: "N/A" }, { stock: "聯發科 (2454)", percent: 7.0, change: "N/A" }, { stock: "聯電 (2303)", percent: 5.0, change: "N/A" }, { stock: "台達電 (2308)", percent: 4.2, change: "N/A" }, { stock: "日月光投控 (3711)", percent: 3.8, change: "N/A" }, { stock: "廣達 (2382)", percent: 3.5, change: "N/A" }, { stock: "緯創 (3231)", percent: 3.0, change: "N/A" }, { stock: "國巨 (2327)", percent: 2.5, change: "N/A" }, { stock: "華碩 (2357)", percent: 2.0, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 125.40 }, { month: '10月', return: 123 }, { month: '11月', return: 124 }, ], },
+                { id: 101, type: 'passive', name: "元大台灣卓越50證券投資信託基金 (市值型)", ticker: "0050", index: "臺灣50指數", ytdReturn: 20.15, latestNav: 160.50, changeSinceLast: 1.50, lastDividend: "NT$3.50 (半年配)", exDate: "2025/07/19", beneficiaryCount: 955302, holdings: [ { stock: "台積電 (2330)", percent: 50.0, change: "N/A" }, { stock: "鴻海 (2317)", percent: 6.0, change: "N/A" }, { stock: "聯發科 (2454)", percent: 5.5, change: "N/A" }, { stock: "台塑 (1301)", percent: 3.0, change: "N/A" }, { stock: "國泰金 (2882)", percent: 2.8, change: "N/A" }, { stock: "富邦金 (2881)", percent: 2.5, change: "N/A" }, { stock: "台達電 (2308)", percent: 2.2, change: "N/A" }, { stock: "中鋼 (2002)", percent: 2.0, change: "N/A" }, { stock: "廣達 (2382)", percent: 1.8, change: "N/A" }, { stock: "緯創 (3231)", percent: 1.5, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 120.15 }, { month: '10月', return: 118 }, { month: '11月', return: 119 }, ], },
+                { id: 106, type: 'passive', name: "富邦MSCI台灣ETF基金", ticker: "006208", index: "MSCI台灣指數", ytdReturn: 19.55, latestNav: 95.60, changeSinceLast: 1.05, lastDividend: "NT$2.10 (年配)", exDate: "2025/07/25", beneficiaryCount: 153020, holdings: [ { stock: "台積電 (2330)", percent: 45.0, change: "N/A" }, { stock: "聯發科 (2454)", percent: 7.0, change: "N/A" }, { stock: "鴻海 (2317)", percent: 6.5, change: "N/A" }, { stock: "台塑 (1301)", percent: 3.5, change: "N/A" }, { stock: "國泰金 (2882)", percent: 3.2, change: "N/A" }, { stock: "富邦金 (2881)", percent: 3.0, change: "N/A" }, { stock: "台達電 (2308)", percent: 2.8, change: "N/A" }, { stock: "中鋼 (2002)", percent: 2.5, change: "N/A" }, { stock: "廣達 (2382)", percent: 2.0, change: "N/A" }, { stock: "緯創 (3231)", percent: 1.5, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 119.55 }, { month: '10月', return: 117 }, { month: '11月', return: 118 }, ], },
+                { id: 102, type: 'passive', name: "復華台灣科技優息ETF基金 (高股息月配)", ticker: "00929", index: "特選臺灣科技優息指數", ytdReturn: 18.90, latestNav: 21.30, changeSinceLast: 0.05, lastDividend: "NT$0.15 (月配)", exDate: "2025/10/25", beneficiaryCount: 685300, holdings: [ { stock: "聯發科 (2454)", percent: 3.5, change: "N/A" }, { stock: "廣達 (2382)", percent: 2.8, change: "N/A" }, { stock: "緯創 (3231)", percent: 2.5, change: "N/A" }, { stock: "仁寶 (2324)", percent: 2.2, change: "N/A" }, { stock: "英業達 (2356)", percent: 2.0, change: "N/A" }, { stock: "光寶科 (2301)", percent: 1.8, change: "N/A" }, { stock: "瑞昱 (2379)", percent: 1.5, change: "N/A" }, { stock: "聯電 (2303)", percent: 1.2, change: "N/A" }, { stock: "世界 (5347)", percent: 1.0, change: "N/A" }, { stock: "台積電 (2330)", percent: 0.5, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 118.90 }, { month: '10月', return: 116 }, { month: '11月', return: 117 }, ], },
+                { id: 107, type: 'passive', name: "元大台灣高股息低波動ETF基金", ticker: "00713", index: "臺灣指數公司高股息低波動指數", ytdReturn: 17.22, latestNav: 55.40, changeSinceLast: 0.35, lastDividend: "NT$0.80 (季配)", exDate: "2025/11/01", beneficiaryCount: 201350, holdings: [ { stock: "仁寶 (2324)", percent: 3.1, change: "N/A" }, { stock: "英業達 (2356)", percent: 2.9, change: "N/A" }, { stock: "廣達 (2382)", percent: 2.5, change: "N/A" }, { stock: "緯創 (3231)", percent: 2.2, change: "N/A" }, { stock: "聯發科 (2454)", percent: 2.0, change: "N/A" }, { stock: "台積電 (2330)", percent: 1.8, change: "N/A" }, { stock: "鴻海 (2317)", percent: 1.5, change: "N/A" }, { stock: "長榮 (2603)", percent: 1.2, change: "N/A" }, { stock: "統一 (1216)", percent: 1.0, change: "N/A" }, { stock: "台泥 (1101)", percent: 0.8, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 117.22 }, { month: '10月', return: 115 }, { month: '11月', return: 116 }, ], },
+                { id: 109, type: 'passive', name: "國泰永續高股息ETF基金", ticker: "00878", index: "MSCI臺灣ESG永續高股息精選30指數", ytdReturn: 16.50, latestNav: 22.10, changeSinceLast: 0.12, lastDividend: "NT$0.30 (季配)", exDate: "2025/11/16", beneficiaryCount: 1250200, holdings: [ { stock: "仁寶 (2324)", percent: 4.5, change: "N/A" }, { stock: "大聯大 (3702)", percent: 4.1, change: "N/A" }, { stock: "緯創 (3231)", percent: 3.8, change: "N/A" }, { stock: "廣達 (2382)", percent: 3.5, change: "N/A" }, { stock: "鴻海 (2317)", percent: 3.2, change: "N/A" }, { stock: "台積電 (2330)", percent: 3.0, change: "N/A" }, { stock: "聯發科 (2454)", percent: 2.8, change: "N/A" }, { stock: "長榮 (2603)", percent: 2.5, change: "N/A" }, { stock: "統一 (1216)", percent: 2.2, change: "N/A" }, { stock: "台泥 (1101)", percent: 2.0, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 116.50 }, { month: '10月', return: 114 }, { month: '11月', return: 115 }, ], },
+                { id: 105, type: 'passive', name: "富邦富櫃50 ETF基金", ticker: "006201", index: "櫃買富櫃50指數", ytdReturn: 15.85, latestNav: 75.20, changeSinceLast: 0.88, lastDividend: "NT$1.50 (半年配)", exDate: "2025/08/15", beneficiaryCount: 18030, holdings: [ { stock: "世界 (5347)", percent: 7.5, change: "N/A" }, { stock: "頎邦 (6147)", percent: 4.2, change: "N/A" }, { stock: "穩懋 (3105)", percent: 3.8, change: "N/A" }, { stock: "環球晶 (6488)", percent: 3.5, change: "N/A" }, { stock: "中美晶 (5483)", percent: 3.2, change: "N/A" }, { stock: "合晶 (6182)", percent: 3.0, change: "N/A" }, { stock: "力旺 (3529)", percent: 2.8, change: "N/A" }, { stock: "創意 (3443)", percent: 2.5, change: "N/A" }, { stock: "聯亞 (3081)", percent: 2.2, change: "N/A" }, { stock: "普誠 (6191)", percent: 2.0, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 115.85 }, { month: '10月', return: 113 }, { month: '11月', return: 114 }, ], },
+                { id: 110, type: 'passive', name: "富邦台灣金融指數ETF基金", ticker: "0055", index: "臺灣金融指數", ytdReturn: 10.20, latestNav: 32.50, changeSinceLast: 0.20, lastDividend: "NT$1.10 (年配)", exDate: "2025/05/01", beneficiaryCount: 152000, holdings: [ { stock: "富邦金 (2881)", percent: 15.0, change: "N/A" }, { stock: "國泰金 (2882)", percent: 12.0, change: "N/A" }, { stock: "中信金 (2891)", percent: 10.5, change: "N/A" }, { stock: "兆豐金 (2886)", percent: 9.8, change: "N/A" }, { stock: "玉山金 (2884)", percent: 8.5, change: "N/A" }, { stock: "台新金 (2887)", percent: 7.2, change: "N/A" }, { stock: "第一金 (2892)", percent: 6.5, change: "N/A" }, { stock: "華南金 (2880)", percent: 5.8, change: "N/A" }, { stock: "開發金 (2883)", percent: 5.5, change: "N/A" }, { stock: "永豐金 (2890)", percent: 5.0, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 110.20 }, { month: '10月', return: 108 }, { month: '11月', return: 109 }, ], },
+                { id: 104, type: 'passive', name: "國泰20年期以上美國公債ETF基金", ticker: "00679B", index: "彭博20年期以上美國公債指數", ytdReturn: -5.10, latestNav: 30.15, changeSinceLast: -0.15, lastDividend: "NT$0.25 (季配)", exDate: "2025/09/05", beneficiaryCount: 380200, holdings: [ { stock: "美國財政部債券 (20年期)", percent: 80.0, change: "N/A" }, { stock: "美國財政部債券 (25年期)", percent: 10.0, change: "N/A" }, { stock: "美國財政部債券 (30年期)", percent: 10.0, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 94.90 }, { month: '10月', return: 95 }, { month: '11月', return: 96 }, ], },
             ],
             selectedEtf: null,
             isLoading: true,
@@ -148,7 +153,52 @@
         // --- DOM 元素引用 ---
         const appContainer = document.getElementById('app');
         const modalId = 'etf-detail-modal';
-        const usageCountId = 'usage-count-display';
+        
+
+        // --- 創建 SVG 走勢圖 ---
+        const createSvgChart = (data) => {
+            const width = 300;
+            const height = 150;
+            const padding = 20;
+
+            const values = data.map(d => d.return);
+            const minVal = Math.min(...values);
+            const maxVal = Math.max(...values);
+            const range = maxVal - minVal;
+
+            const scaleX = (index) => padding + (index / (data.length - 1)) * (width - 2 * padding);
+            const scaleY = (value) => height - padding - ((value - minVal) / range) * (height - 2 * padding);
+
+            let pathD = `M ${scaleX(0)} ${scaleY(data[0].return)}`;
+            for (let i = 1; i < data.length; i++) {
+                pathD += ` L ${scaleX(i)} ${scaleY(data[i].return)}`;
+            }
+            
+            // X 軸標籤 (月份)
+            const xLabels = data.map((d, i) => `<text x="${scaleX(i)}" y="${height - 5}" font-size="10" fill="#6B7280" text-anchor="middle">${d.month}</text>`).join('');
+
+            // 基準線 (平均值)
+            const avgVal = values.reduce((a, b) => a + b, 0) / values.length;
+            const avgY = scaleY(avgVal);
+            const avgLine = `<line x1="${padding}" y1="${avgY}" x2="${width - padding}" y2="${avgY}" stroke="#F59E0B" stroke-dasharray="2" />`;
+            const avgLabel = `<text x="${width - padding + 5}" y="${avgY + 4}" font-size="10" fill="#F59E0B">Avg</text>`;
+
+            return `
+                <svg width="100%" height="${height}" viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid meet">
+                    <!-- 網格線 (Y 軸) -->
+                    <line x1="${padding}" y1="${padding}" x2="${padding}" y2="${height - padding}" stroke="#E5E7EB" />
+                    <!-- 走勢線 -->
+                    <path d="${pathD}" fill="none" stroke="#10b981" stroke-width="2" class="svg-trend-line" />
+                    <!-- 基準線 -->
+                    ${avgLine}
+                    ${avgLabel}
+                    <!-- 數據點 -->
+                    ${data.map((d, i) => `<circle cx="${scaleX(i)}" cy="${scaleY(d.return)}" r="3" fill="#059669" />`).join('')}
+                    <!-- X 軸標籤 -->
+                    ${xLabels}
+                </svg>
+            `;
+        };
 
         // --- 渲染函數 ---
         const render = () => {
@@ -165,7 +215,7 @@
                 <p class="text-gray-600 mb-4">
                     同時追蹤主動式 (經理人操作) 與被動式 (指數追蹤) ETF 的年度表現。
                 </p>
-                <div id="${usageCountId}" class="text-center mb-4">
+                <div id="${usageCountDisplayId}" class="text-center mb-4">
                     <p class="text-sm text-gray-500">正在連線統計服務...</p>
                 </div>
 
@@ -387,15 +437,14 @@
                             </div>
                         </div>
                         
-                        <!-- 績效走勢圖 (簡化為文字描述，避免 Recharts 依賴) -->
+                        <!-- 績效走勢圖 (SVG 繪製) -->
                         <div class="bg-gray-50 p-4 rounded-lg shadow-inner flex flex-col justify-center">
                             <h3 class="text-lg font-semibold text-gray-700 mb-3 flex items-center">
                                 <svg class="w-5 h-5 mr-2 text-green-600" viewBox="0 0 24 24">${getIconSvg('trending-up')}</svg>
-                                近期績效走勢 (趨勢描述)
+                                近期績效走勢 (模擬淨值指數)
                             </h3>
-                            <div class="h-40 flex items-center justify-center text-center text-gray-600 italic border border-dashed border-gray-300 rounded-lg p-4">
-                                📈 圖表功能已移除以確保代碼穩定運行。<br>
-                                目前 YTD 績效為 ${etf.ytdReturn.toFixed(2)}%，顯示出穩健${etf.ytdReturn > 0 ? '上漲' : '下跌'}趨勢。
+                            <div class="h-40 w-full">
+                                ${createSvgChart(etf.performanceData)}
                             </div>
                         </div>
                     </div>
@@ -490,33 +539,18 @@
 
         // --- 應用程式初始化 ---
         window.onload = () => {
-            // 首次渲染
+            // 1. 初始化 Firebase 連線與計數
+            updateUsageCount();
+
+            // 2. 首次渲染
             render(); 
-            // 首次抓取數據
+            
+            // 3. 首次抓取數據
             fetchRealTimeData();
         };
 
-        // --- 模擬數據 (定義在全域，但由 state 使用) ---
-        state.activeETFs = [
-            { id: 1, type: 'active', name: "主動群益台灣強棒", ticker: "00982A", fundManager: "群益證券投資信託股份有限公司", ytdReturn: 22.88, latestNav: 18.90, changeSinceLast: 1.50, lastDividend: "NT$0.50 (季配)", exDate: "2025/08/01", changeStatus: "大幅度新增IC設計、網通股，強化主動選股優勢。", beneficiaryCount: 23586, holdings: [ { stock: "世界 (5347)", percent: 6.5, change: "+2.0%" }, { stock: "力旺 (3529)", percent: 5.9, change: "+1.5%" }, { stock: "智原 (3035)", percent: 5.1, change: "+1.1%" }, { stock: "M31 (6643)", percent: 4.8, change: "+1.0%" }, { stock: "環球晶 (6488)", percent: 4.1, change: "-0.8%" }, { stock: "台積電 (2330)", percent: 3.5, change: "+0.1%" }, { stock: "聯發科 (2454)", percent: 3.2, change: "-0.2%" }, { stock: "瑞昱 (2379)", percent: 3.0, change: "+0.5%" }, { stock: "新唐 (4919)", percent: 2.8, change: "-0.1%" }, { stock: "華碩 (2357)", percent: 2.5, change: "+0.3%" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 122.88 }, ], },
-            { id: 2, type: 'active', name: "主動統一台股成長", ticker: "00981A", fundManager: "統一證券投資信託股份有限公司", ytdReturn: 18.52, latestNav: 35.60, changeSinceLast: 0.85, lastDividend: "NT$1.20 (年配)", exDate: "2025/09/20", changeStatus: "小幅加碼AI伺服器供應鏈，保持高集中度持股。", beneficiaryCount: 23480, holdings: [ { stock: "台積電 (2330)", percent: 12.5, change: "+0.5%" }, { stock: "聯發科 (2454)", percent: 9.8, change: "-0.2%" }, { stock: "鴻海 (2317)", percent: 7.1, change: "+1.0%" }, { stock: "廣達 (2382)", percent: 6.5, change: "+0.8%" }, { stock: "緯創 (3231)", percent: 5.9, change: "+0.7%" }, { stock: "技嘉 (2376)", percent: 5.2, change: "+0.5%" }, { stock: "光寶科 (2301)", percent: 4.8, change: "+0.2%" }, { stock: "台達電 (2308)", percent: 4.5, change: "-0.1%" }, { stock: "華碩 (2357)", percent: 4.0, change: "+0.3%" }, { stock: "仁寶 (2324)", percent: 3.5, change: "+0.1%" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 118.52 }, ], },
-            { id: 3, type: 'active', name: "主動野村臺灣優選", ticker: "00980A", fundManager: "野村證券投資信託股份有限公司", ytdReturn: 12.35, latestNav: 24.15, changeSinceLast: -0.25, lastDividend: "NT$0.80 (季配)", exDate: "2025/10/10", changeStatus: "減持金融股比重，轉向景氣復甦的傳產領域。", beneficiaryCount: 18778, holdings: [ { stock: "富邦金 (2881)", percent: 8.2, change: "-1.0%" }, { stock: "國泰金 (2882)", percent: 7.5, change: "-0.5%" }, { stock: "台塑 (1301)", percent: 6.0, change: "+0.5%" }, { stock: "台泥 (1101)", percent: 5.5, change: "+0.3%" }, { stock: "長榮 (2603)", percent: 4.9, change: "+0.8%" }, { stock: "萬海 (2615)", percent: 4.5, change: "+0.6%" }, { stock: "中鋼 (2002)", percent: 4.0, change: "-0.1%" }, { stock: "中信金 (2891)", percent: 3.5, change: "-0.3%" }, { stock: "聯華 (1229)", percent: 3.2, change: "+0.1%" }, { stock: "統一 (1216)", percent: 3.0, change: "+0.0%" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 112.35 }, ], },
-            { id: 4, type: 'active', name: "主動野村台股50", ticker: "00985A", fundManager: "野村證券投資信託股份有限公司", ytdReturn: 8.95, latestNav: 15.20, changeSinceLast: 0.10, lastDividend: "NT$0.35 (年配)", exDate: "2025/07/01", changeStatus: "新增大型風電與綠能供應鏈，注重ESG題材。", beneficiaryCount: 18242, holdings: [ { stock: "世紀鋼 (9958)", percent: 10.1, change: "+1.5%" }, { stock: "上緯投控 (3708)", percent: 8.5, change: "0.0%" }, { stock: "中興電 (1513)", percent: 7.2, change: "+0.8%" }, { stock: "華城 (1519)", percent: 6.5, change: "+1.0%" }, { stock: "台泥 (1101)", percent: 5.9, change: "-0.2%" }, { stock: "中鋼 (2002)", percent: 5.5, change: "0.0%" }, { stock: "台積電 (2330)", percent: 5.0, change: "+0.1%" }, { stock: "聯發科 (2454)", percent: 4.5, change: "-0.1%" }, { stock: "鴻海 (2317)", percent: 4.0, change: "0.0%" }, { stock: "長榮 (2603)", percent: 3.5, change: "+0.2%" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 108.95 }, ], },
-            { id: 5, type: 'active', name: "主動安聯台灣高息", ticker: "00984A", fundManager: "安聯證券投資信託股份有限公司", ytdReturn: 5.10, latestNav: 28.50, changeSinceLast: 0.05, lastDividend: "NT$0.90 (季配)", exDate: "2025/11/01", changeStatus: "持股變動極小，維持高股息標的佈局，等待除權息旺季。", beneficiaryCount: 9371, holdings: [ { stock: "統一 (1216)", percent: 11.2, change: "0.0%" }, { stock: "台泥 (1101)", percent: 9.9, change: "-0.1%" }, { stock: "長榮 (2603)", percent: 6.5, change: "+0.1%" }, { stock: "台塑 (1301)", percent: 5.8, change: "0.0%" }, { stock: "中華電 (2412)", percent: 5.5, change: "-0.1%" }, { stock: "台灣大 (3045)", percent: 5.2, change: "0.0%" }, { stock: "遠傳 (4904)", percent: 4.8, change: "+0.1%" }, { stock: "富邦金 (2881)", percent: 4.5, change: "-0.1%" }, { stock: "國泰金 (2882)", percent: 4.2, change: "0.0%" }, { stock: "兆豐金 (2886)", percent: 3.9, change: "+0.1%" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 105.10 }, ], },
-        ];
+        // --- 模擬數據 (state 內容在程式碼頂部已定義) ---
 
-        state.passiveETFs = [
-            { id: 108, type: 'passive', name: "中信關鍵半導體ETF基金", ticker: "00891", index: "ICE FactSet臺灣指數公司半導體指數", ytdReturn: 28.01, latestNav: 25.90, changeSinceLast: 0.90, lastDividend: "NT$0.40 (半年配)", exDate: "2025/06/20", beneficiaryCount: 88701, holdings: [ { stock: "台積電 (2330)", percent: 25.0, change: "N/A" }, { stock: "聯發科 (2454)", percent: 12.0, change: "N/A" }, { stock: "聯電 (2303)", percent: 7.5, change: "N/A" }, { stock: "日月光投控 (3711)", percent: 6.8, change: "N/A" }, { stock: "世界 (5347)", percent: 5.5, change: "N/A" }, { stock: "瑞昱 (2379)", percent: 4.9, change: "N/A" }, { stock: "力旺 (3529)", percent: 4.1, change: "N/A" }, { stock: "環球晶 (6488)", percent: 3.8, change: "N/A" }, { stock: "南亞科 (2408)", percent: 3.5, change: "N/A" }, { stock: "穩懋 (3105)", percent: 3.2, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 128.01 }, ], },
-            { id: 103, type: 'passive', name: "富邦台灣電子科技股指數型基金", ticker: "0052", index: "臺灣電子指數", ytdReturn: 25.40, latestNav: 135.80, changeSinceLast: 2.10, lastDividend: "NT$2.00 (年配)", exDate: "2025/06/10", beneficiaryCount: 52140, holdings: [ { stock: "台積電 (2330)", percent: 40.5, change: "N/A" }, { stock: "鴻海 (2317)", percent: 8.5, change: "N/A" }, { stock: "聯發科 (2454)", percent: 7.0, change: "N/A" }, { stock: "聯電 (2303)", percent: 5.0, change: "N/A" }, { stock: "台達電 (2308)", percent: 4.2, change: "N/A" }, { stock: "日月光投控 (3711)", percent: 3.8, change: "N/A" }, { stock: "廣達 (2382)", percent: 3.5, change: "N/A" }, { stock: "緯創 (3231)", percent: 3.0, change: "N/A" }, { stock: "國巨 (2327)", percent: 2.5, change: "N/A" }, { stock: "華碩 (2357)", percent: 2.0, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 125.40 }, ], },
-            { id: 101, type: 'passive', name: "元大台灣卓越50證券投資信託基金 (市值型)", ticker: "0050", index: "臺灣50指數", ytdReturn: 20.15, latestNav: 160.50, changeSinceLast: 1.50, lastDividend: "NT$3.50 (半年配)", exDate: "2025/07/19", beneficiaryCount: 955302, holdings: [ { stock: "台積電 (2330)", percent: 50.0, change: "N/A" }, { stock: "鴻海 (2317)", percent: 6.0, change: "N/A" }, { stock: "聯發科 (2454)", percent: 5.5, change: "N/A" }, { stock: "台塑 (1301)", percent: 3.0, change: "N/A" }, { stock: "國泰金 (2882)", percent: 2.8, change: "N/A" }, { stock: "富邦金 (2881)", percent: 2.5, change: "N/A" }, { stock: "台達電 (2308)", percent: 2.2, change: "N/A" }, { stock: "中鋼 (2002)", percent: 2.0, change: "N/A" }, { stock: "廣達 (2382)", percent: 1.8, change: "N/A" }, { stock: "緯創 (3231)", percent: 1.5, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 120.15 }, ], },
-            { id: 106, type: 'passive', name: "富邦MSCI台灣ETF基金", ticker: "006208", index: "MSCI台灣指數", ytdReturn: 19.55, latestNav: 95.60, changeSinceLast: 1.05, lastDividend: "NT$2.10 (年配)", exDate: "2025/07/25", beneficiaryCount: 153020, holdings: [ { stock: "台積電 (2330)", percent: 45.0, change: "N/A" }, { stock: "聯發科 (2454)", percent: 7.0, change: "N/A" }, { stock: "鴻海 (2317)", percent: 6.5, change: "N/A" }, { stock: "台塑 (1301)", percent: 3.5, change: "N/A" }, { stock: "國泰金 (2882)", percent: 3.2, change: "N/A" }, { stock: "富邦金 (2881)", percent: 3.0, change: "N/A" }, { stock: "台達電 (2308)", percent: 2.8, change: "N/A" }, { stock: "中鋼 (2002)", percent: 2.5, change: "N/A" }, { stock: "廣達 (2382)", percent: 2.0, change: "N/A" }, { stock: "緯創 (3231)", percent: 1.5, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 119.55 }, ], },
-            { id: 102, type: 'passive', name: "復華台灣科技優息ETF基金 (高股息月配)", ticker: "00929", index: "特選臺灣科技優息指數", ytdReturn: 18.90, latestNav: 21.30, changeSinceLast: 0.05, lastDividend: "NT$0.15 (月配)", exDate: "2025/10/25", beneficiaryCount: 685300, holdings: [ { stock: "聯發科 (2454)", percent: 3.5, change: "N/A" }, { stock: "廣達 (2382)", percent: 2.8, change: "N/A" }, { stock: "緯創 (3231)", percent: 2.5, change: "N/A" }, { stock: "仁寶 (2324)", percent: 2.2, change: "N/A" }, { stock: "英業達 (2356)", percent: 2.0, change: "N/A" }, { stock: "光寶科 (2301)", percent: 1.8, change: "N/A" }, { stock: "瑞昱 (2379)", percent: 1.5, change: "N/A" }, { stock: "聯電 (2303)", percent: 1.2, change: "N/A" }, { stock: "世界 (5347)", percent: 1.0, change: "N/A" }, { stock: "台積電 (2330)", percent: 0.5, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 118.90 }, ], },
-            { id: 107, type: 'passive', name: "元大台灣高股息低波動ETF基金", ticker: "00713", index: "臺灣指數公司高股息低波動指數", ytdReturn: 17.22, latestNav: 55.40, changeSinceLast: 0.35, lastDividend: "NT$0.80 (季配)", exDate: "2025/11/01", beneficiaryCount: 201350, holdings: [ { stock: "仁寶 (2324)", percent: 3.1, change: "N/A" }, { stock: "英業達 (2356)", percent: 2.9, change: "N/A" }, { stock: "廣達 (2382)", percent: 2.5, change: "N/A" }, { stock: "緯創 (3231)", percent: 2.2, change: "N/A" }, { stock: "聯發科 (2454)", percent: 2.0, change: "N/A" }, { stock: "台積電 (2330)", percent: 1.8, change: "N/A" }, { stock: "鴻海 (2317)", percent: 1.5, change: "N/A" }, { stock: "長榮 (2603)", percent: 1.2, change: "N/A" }, { stock: "統一 (1216)", percent: 1.0, change: "N/A" }, { stock: "台泥 (1101)", percent: 0.8, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 117.22 }, ], },
-            { id: 109, type: 'passive', name: "國泰永續高股息ETF基金", ticker: "00878", index: "MSCI臺灣ESG永續高股息精選30指數", ytdReturn: 16.50, latestNav: 22.10, changeSinceLast: 0.12, lastDividend: "NT$0.30 (季配)", exDate: "2025/11/16", beneficiaryCount: 1250200, holdings: [ { stock: "仁寶 (2324)", percent: 4.5, change: "N/A" }, { stock: "大聯大 (3702)", percent: 4.1, change: "N/A" }, { stock: "緯創 (3231)", percent: 3.8, change: "N/A" }, { stock: "廣達 (2382)", percent: 3.5, change: "N/A" }, { stock: "鴻海 (2317)", percent: 3.2, change: "N/A" }, { stock: "台積電 (2330)", percent: 3.0, change: "N/A" }, { stock: "聯發科 (2454)", percent: 2.8, change: "N/A" }, { stock: "長榮 (2603)", percent: 2.5, change: "N/A" }, { stock: "統一 (1216)", percent: 2.2, change: "N/A" }, { stock: "台泥 (1101)", percent: 2.0, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 116.50 }, ], },
-            { id: 105, type: 'passive', name: "富邦富櫃50 ETF基金", ticker: "006201", index: "櫃買富櫃50指數", ytdReturn: 15.85, latestNav: 75.20, changeSinceLast: 0.88, lastDividend: "NT$1.50 (半年配)", exDate: "2025/08/15", beneficiaryCount: 18030, holdings: [ { stock: "世界 (5347)", percent: 7.5, change: "N/A" }, { stock: "頎邦 (6147)", percent: 4.2, change: "N/A" }, { stock: "穩懋 (3105)", percent: 3.8, change: "N/A" }, { stock: "環球晶 (6488)", percent: 3.5, change: "N/A" }, { stock: "中美晶 (5483)", percent: 3.2, change: "N/A" }, { stock: "合晶 (6182)", percent: 3.0, change: "N/A" }, { stock: "力旺 (3529)", percent: 2.8, change: "N/A" }, { stock: "創意 (3443)", percent: 2.5, change: "N/A" }, { stock: "聯亞 (3081)", percent: 2.2, change: "N/A" }, { stock: "普誠 (6191)", percent: 2.0, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 115.85 }, ], },
-            { id: 110, type: 'passive', name: "富邦台灣金融指數ETF基金", ticker: "0055", index: "臺灣金融指數", ytdReturn: 10.20, latestNav: 32.50, changeSinceLast: 0.20, lastDividend: "NT$1.10 (年配)", exDate: "2025/05/01", beneficiaryCount: 152000, holdings: [ { stock: "富邦金 (2881)", percent: 15.0, change: "N/A" }, { stock: "國泰金 (2882)", percent: 12.0, change: "N/A" }, { stock: "中信金 (2891)", percent: 10.5, change: "N/A" }, { stock: "兆豐金 (2886)", percent: 9.8, change: "N/A" }, { stock: "玉山金 (2884)", percent: 8.5, change: "N/A" }, { stock: "台新金 (2887)", percent: 7.2, change: "N/A" }, { stock: "第一金 (2892)", percent: 6.5, change: "N/A" }, { stock: "華南金 (2880)", percent: 5.8, change: "N/A" }, { stock: "開發金 (2883)", percent: 5.5, change: "N/A" }, { stock: "永豐金 (2890)", percent: 5.0, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 110.20 }, ], },
-            { id: 104, type: 'passive', name: "國泰20年期以上美國公債ETF基金", ticker: "00679B", index: "彭博20年期以上美國公債指數", ytdReturn: -5.10, latestNav: 30.15, changeSinceLast: -0.15, lastDividend: "NT$0.25 (季配)", exDate: "2025/09/05", beneficiaryCount: 380200, holdings: [ { stock: "美國財政部債券 (20年期)", percent: 80.0, change: "N/A" }, { stock: "美國財政部債券 (25年期)", percent: 10.0, change: "N/A" }, { stock: "美國財政部債券 (30年期)", percent: 10.0, change: "N/A" }, ], performanceData: [ { month: '4月', return: 100 }, { month: '9月', return: 94.90 }, ], },
-        ];
     </script>
 </body>
 </html>
