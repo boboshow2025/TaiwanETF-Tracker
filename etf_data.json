@@ -7,33 +7,33 @@
     "manager": "統一投信",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 10.0,
+    "latestNav": 0.0,
     "changeSinceLast": 0.0,
     "lastDividend": "請見公開說明書",
     "exDate": "近期",
     "fundManager": "統一投信",
-    "changeStatus": "查無資料 (使用預設值)",
+    "changeStatus": "查無資料",
     "holdings": [],
     "performanceData": [
       {
         "month": "4月",
-        "return": 98.64
+        "return": 100.21
       },
       {
         "month": "5月",
-        "return": 100.99
+        "return": 99.86
       },
       {
         "month": "6月",
-        "return": 101.14
+        "return": 100.47
       },
       {
         "month": "7月",
-        "return": 99.3
+        "return": 100.11
       },
       {
         "month": "8月",
-        "return": 101.1
+        "return": 99.69
       },
       {
         "month": "9月",
@@ -49,33 +49,33 @@
     "manager": "野村投信",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 10.0,
+    "latestNav": 0.0,
     "changeSinceLast": 0.0,
     "lastDividend": "請見公開說明書",
     "exDate": "近期",
     "fundManager": "野村投信",
-    "changeStatus": "查無資料 (使用預設值)",
+    "changeStatus": "查無資料",
     "holdings": [],
     "performanceData": [
       {
         "month": "4月",
-        "return": 101.48
+        "return": 99.78
       },
       {
         "month": "5月",
-        "return": 100.21
+        "return": 100.25
       },
       {
         "month": "6月",
-        "return": 99.86
+        "return": 99.79
       },
       {
         "month": "7月",
-        "return": 99.36
+        "return": 100.19
       },
       {
         "month": "8月",
-        "return": 100.45
+        "return": 99.88
       },
       {
         "month": "9月",
@@ -91,33 +91,33 @@
     "manager": "野村投信",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 10.0,
+    "latestNav": 0.0,
     "changeSinceLast": 0.0,
     "lastDividend": "請見公開說明書",
     "exDate": "近期",
     "fundManager": "野村投信",
-    "changeStatus": "查無資料 (使用預設值)",
+    "changeStatus": "查無資料",
     "holdings": [],
     "performanceData": [
       {
         "month": "4月",
-        "return": 98.85
+        "return": 99.79
       },
       {
         "month": "5月",
-        "return": 100.05
+        "return": 100.3
       },
       {
         "month": "6月",
-        "return": 98.77
+        "return": 100.39
       },
       {
         "month": "7月",
-        "return": 99.97
+        "return": 100.34
       },
       {
         "month": "8月",
-        "return": 101.34
+        "return": 100.26
       },
       {
         "month": "9月",
@@ -131,39 +131,39 @@
     "name": "主動安聯台灣高息",
     "type": "active",
     "manager": "安聯投信",
-    "ytdReturn": 0.0,
-    "weeklyReturn": 0.0,
-    "latestNav": 10.0,
+    "ytdReturn": 13.49,
+    "weeklyReturn": 1.93,
+    "latestNav": 11.08,
     "changeSinceLast": 0.0,
     "lastDividend": "請見公開說明書",
     "exDate": "近期",
     "fundManager": "安聯投信",
-    "changeStatus": "查無資料 (使用預設值)",
+    "changeStatus": "MoneyDJ 真實數據",
     "holdings": [],
     "performanceData": [
       {
         "month": "4月",
-        "return": 100.25
+        "return": 100.33
       },
       {
         "month": "5月",
-        "return": 101.42
+        "return": 102.59
       },
       {
         "month": "6月",
-        "return": 99.05
+        "return": 105.17
       },
       {
         "month": "7月",
-        "return": 99.28
+        "return": 108.33
       },
       {
         "month": "8月",
-        "return": 99.73
+        "return": 110.62
       },
       {
         "month": "9月",
-        "return": 100.0
+        "return": 113.49
       }
     ]
   },
@@ -175,33 +175,33 @@
     "manager": "富邦投信",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 10.0,
+    "latestNav": 0.0,
     "changeSinceLast": 0.0,
     "lastDividend": "請見公開說明書",
     "exDate": "近期",
     "fundManager": "富邦投信",
-    "changeStatus": "查無資料 (使用預設值)",
+    "changeStatus": "查無資料",
     "holdings": [],
     "performanceData": [
       {
         "month": "4月",
-        "return": 100.55
+        "return": 100.39
       },
       {
         "month": "5月",
-        "return": 99.47
+        "return": 100.16
       },
       {
         "month": "6月",
-        "return": 99.27
+        "return": 100.06
       },
       {
         "month": "7月",
-        "return": 99.2
+        "return": 99.87
       },
       {
         "month": "8月",
-        "return": 99.57
+        "return": 100.48
       },
       {
         "month": "9月",
@@ -217,33 +217,33 @@
     "index": "台灣50指數",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 10.0,
+    "latestNav": 0.0,
     "changeSinceLast": 0.0,
     "lastDividend": "請見公開說明書",
     "exDate": "近期",
     "fundManager": "N/A",
-    "changeStatus": "查無資料 (使用預設值)",
+    "changeStatus": "查無資料",
     "holdings": [],
     "performanceData": [
       {
         "month": "4月",
-        "return": 99.98
+        "return": 99.69
       },
       {
         "month": "5月",
-        "return": 98.55
+        "return": 99.73
       },
       {
         "month": "6月",
-        "return": 100.92
+        "return": 100.34
       },
       {
         "month": "7月",
-        "return": 100.36
+        "return": 100.32
       },
       {
         "month": "8月",
-        "return": 100.27
+        "return": 100.25
       },
       {
         "month": "9月",
@@ -259,33 +259,33 @@
     "index": "ESG永續高股息",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 10.0,
+    "latestNav": 0.0,
     "changeSinceLast": 0.0,
     "lastDividend": "請見公開說明書",
     "exDate": "近期",
     "fundManager": "N/A",
-    "changeStatus": "查無資料 (使用預設值)",
+    "changeStatus": "查無資料",
     "holdings": [],
     "performanceData": [
       {
         "month": "4月",
-        "return": 100.98
+        "return": 100.02
       },
       {
         "month": "5月",
-        "return": 99.62
+        "return": 100.09
       },
       {
         "month": "6月",
-        "return": 99.91
+        "return": 100.07
       },
       {
         "month": "7月",
-        "return": 98.92
+        "return": 100.06
       },
       {
         "month": "8月",
-        "return": 101.42
+        "return": 99.62
       },
       {
         "month": "9月",
@@ -301,33 +301,33 @@
     "index": "臺灣高股息指數",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 10.0,
+    "latestNav": 0.0,
     "changeSinceLast": 0.0,
     "lastDividend": "請見公開說明書",
     "exDate": "近期",
     "fundManager": "N/A",
-    "changeStatus": "查無資料 (使用預設值)",
+    "changeStatus": "查無資料",
     "holdings": [],
     "performanceData": [
       {
         "month": "4月",
-        "return": 99.85
+        "return": 100.16
       },
       {
         "month": "5月",
-        "return": 100.21
+        "return": 100.29
       },
       {
         "month": "6月",
-        "return": 100.99
+        "return": 100.13
       },
       {
         "month": "7月",
-        "return": 98.93
+        "return": 99.63
       },
       {
         "month": "8月",
-        "return": 101.49
+        "return": 100.36
       },
       {
         "month": "9月",
@@ -343,33 +343,33 @@
     "index": "科技優息指數",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 10.0,
+    "latestNav": 0.0,
     "changeSinceLast": 0.0,
     "lastDividend": "請見公開說明書",
     "exDate": "近期",
     "fundManager": "N/A",
-    "changeStatus": "查無資料 (使用預設值)",
+    "changeStatus": "查無資料",
     "holdings": [],
     "performanceData": [
       {
         "month": "4月",
-        "return": 100.86
+        "return": 100.45
       },
       {
         "month": "5月",
-        "return": 101.41
+        "return": 100.02
       },
       {
         "month": "6月",
-        "return": 98.85
+        "return": 99.72
       },
       {
         "month": "7月",
-        "return": 100.92
+        "return": 99.71
       },
       {
         "month": "8月",
-        "return": 100.5
+        "return": 100.12
       },
       {
         "month": "9月",
@@ -385,33 +385,33 @@
     "index": "ICE半導體指數",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 10.0,
+    "latestNav": 0.0,
     "changeSinceLast": 0.0,
     "lastDividend": "請見公開說明書",
     "exDate": "近期",
     "fundManager": "N/A",
-    "changeStatus": "查無資料 (使用預設值)",
+    "changeStatus": "查無資料",
     "holdings": [],
     "performanceData": [
       {
         "month": "4月",
-        "return": 99.01
+        "return": 100.1
       },
       {
         "month": "5月",
-        "return": 100.11
+        "return": 99.65
       },
       {
         "month": "6月",
-        "return": 99.62
+        "return": 99.85
       },
       {
         "month": "7月",
-        "return": 99.73
+        "return": 99.68
       },
       {
         "month": "8月",
-        "return": 100.0
+        "return": 100.25
       },
       {
         "month": "9月",
@@ -427,33 +427,33 @@
     "index": "資訊科技指數",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 10.0,
+    "latestNav": 0.0,
     "changeSinceLast": 0.0,
     "lastDividend": "請見公開說明書",
     "exDate": "近期",
     "fundManager": "N/A",
-    "changeStatus": "查無資料 (使用預設值)",
+    "changeStatus": "查無資料",
     "holdings": [],
     "performanceData": [
       {
         "month": "4月",
-        "return": 99.7
+        "return": 100.39
       },
       {
         "month": "5月",
-        "return": 99.97
+        "return": 99.91
       },
       {
         "month": "6月",
-        "return": 100.57
+        "return": 99.94
       },
       {
         "month": "7月",
-        "return": 101.2
+        "return": 100.12
       },
       {
         "month": "8月",
-        "return": 100.74
+        "return": 100.26
       },
       {
         "month": "9月",
@@ -469,33 +469,33 @@
     "index": "美債20年指數",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 10.0,
+    "latestNav": 0.0,
     "changeSinceLast": 0.0,
     "lastDividend": "請見公開說明書",
     "exDate": "近期",
     "fundManager": "N/A",
-    "changeStatus": "查無資料 (使用預設值)",
+    "changeStatus": "查無資料",
     "holdings": [],
     "performanceData": [
       {
         "month": "4月",
-        "return": 100.24
+        "return": 99.84
       },
       {
         "month": "5月",
-        "return": 100.76
+        "return": 100.37
       },
       {
         "month": "6月",
-        "return": 100.22
+        "return": 99.91
       },
       {
         "month": "7月",
-        "return": 99.02
+        "return": 100.13
       },
       {
         "month": "8月",
-        "return": 101.41
+        "return": 99.57
       },
       {
         "month": "9月",
