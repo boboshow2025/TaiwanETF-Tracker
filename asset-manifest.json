@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/TaiwanETF-Tracker/static/css/main.9b62d1e7.css",
+    "main.js": "/TaiwanETF-Tracker/static/js/main.2db95b00.js",
+    "static/js/453.2700276e.chunk.js": "/TaiwanETF-Tracker/static/js/453.2700276e.chunk.js",
+    "index.html": "/TaiwanETF-Tracker/index.html",
+    "main.9b62d1e7.css.map": "/TaiwanETF-Tracker/static/css/main.9b62d1e7.css.map",
+    "main.2db95b00.js.map": "/TaiwanETF-Tracker/static/js/main.2db95b00.js.map",
+    "453.2700276e.chunk.js.map": "/TaiwanETF-Tracker/static/js/453.2700276e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9b62d1e7.css",
+    "static/js/main.2db95b00.js"
+  ]
+}
