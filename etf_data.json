@@ -5,7 +5,7 @@
     "name": "主動統一台股成長",
     "type": "active",
     "manager": "統一投信",
-    "ytdReturn": 51.95,
+    "ytdReturn": 69.77,
     "weeklyReturn": 0.24,
     "latestNav": 16.9,
     "changeSinceLast": 0,
@@ -72,25 +72,28 @@
       },
       {
         "month": "T-4",
-        "return": 110.39
+        "return": 113.95
       },
       {
         "month": "T-3",
-        "return": 120.78
+        "return": 127.91
       },
       {
         "month": "T-2",
-        "return": 131.17
+        "return": 141.86
       },
       {
         "month": "T-1",
-        "return": 141.56
+        "return": 155.82
       },
       {
         "month": "T-0",
-        "return": 151.95
+        "return": 169.77
       }
-    ]
+    ],
+    "foundedDate": "2025/05/15",
+    "dividendFreq": "季配",
+    "custodianBank": "彰化商業銀行"
   },
   {
     "id": 2,
@@ -98,9 +101,9 @@
     "name": "主動野村臺灣優選",
     "type": "active",
     "manager": "野村投信",
-    "ytdReturn": 37.65,
+    "ytdReturn": 58.51,
     "weeklyReturn": 1.39,
-    "latestNav": 15.32,
+    "latestNav": 15.35,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -165,25 +168,28 @@
       },
       {
         "month": "T-4",
-        "return": 107.53
+        "return": 111.7
       },
       {
         "month": "T-3",
-        "return": 115.06
+        "return": 123.4
       },
       {
         "month": "T-2",
-        "return": 122.59
+        "return": 135.11
       },
       {
         "month": "T-1",
-        "return": 130.12
+        "return": 146.81
       },
       {
         "month": "T-0",
-        "return": 137.65
+        "return": 158.51
       }
-    ]
+    ],
+    "foundedDate": "2025/04/22",
+    "dividendFreq": "季配",
+    "custodianBank": "華南商業銀行"
   },
   {
     "id": 4,
@@ -191,9 +197,9 @@
     "name": "主動野村台股50",
     "type": "active",
     "manager": "野村投信",
-    "ytdReturn": 0.0,
+    "ytdReturn": 35.72,
     "weeklyReturn": 2.87,
-    "latestNav": 13.45,
+    "latestNav": 13.65,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -251,7 +257,35 @@
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [
+      {
+        "month": "T-5",
+        "return": 100.0
+      },
+      {
+        "month": "T-4",
+        "return": 107.14
+      },
+      {
+        "month": "T-3",
+        "return": 114.29
+      },
+      {
+        "month": "T-2",
+        "return": 121.43
+      },
+      {
+        "month": "T-1",
+        "return": 128.58
+      },
+      {
+        "month": "T-0",
+        "return": 135.72
+      }
+    ],
+    "foundedDate": "2025/07/08",
+    "dividendFreq": "年配",
+    "custodianBank": "富邦商業銀行股份有限公司"
   },
   {
     "id": 5,
@@ -259,9 +293,9 @@
     "name": "主動安聯台灣高息",
     "type": "active",
     "manager": "安聯投信",
-    "ytdReturn": 0.0,
+    "ytdReturn": 14.72,
     "weeklyReturn": 2.28,
-    "latestNav": 11.09,
+    "latestNav": 11.2,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -294,7 +328,35 @@
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [
+      {
+        "month": "T-5",
+        "return": 100.0
+      },
+      {
+        "month": "T-4",
+        "return": 102.94
+      },
+      {
+        "month": "T-3",
+        "return": 105.89
+      },
+      {
+        "month": "T-2",
+        "return": 108.83
+      },
+      {
+        "month": "T-1",
+        "return": 111.78
+      },
+      {
+        "month": "T-0",
+        "return": 114.72
+      }
+    ],
+    "foundedDate": "2025/07/03",
+    "dividendFreq": "季配",
+    "custodianBank": "國泰世華商業銀行"
   },
   {
     "id": 7,
@@ -302,7 +364,7 @@
     "name": "主動群益科技創新",
     "type": "active",
     "manager": "群益投信",
-    "ytdReturn": 0.0,
+    "ytdReturn": 0.1,
     "weeklyReturn": 0.0,
     "latestNav": 10.41,
     "changeSinceLast": 0,
@@ -362,7 +424,35 @@
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [
+      {
+        "month": "T-5",
+        "return": 100.0
+      },
+      {
+        "month": "T-4",
+        "return": 100.02
+      },
+      {
+        "month": "T-3",
+        "return": 100.04
+      },
+      {
+        "month": "T-2",
+        "return": 100.06
+      },
+      {
+        "month": "T-1",
+        "return": 100.08
+      },
+      {
+        "month": "T-0",
+        "return": 100.1
+      }
+    ],
+    "foundedDate": "2025/12/16",
+    "dividendFreq": "季配",
+    "custodianBank": "第一商業銀行股份有限公司"
   },
   {
     "id": 6,
@@ -379,7 +469,10 @@
     "fundManager": "富邦投信",
     "changeStatus": "查無數據",
     "holdings": [],
-    "performanceData": []
+    "performanceData": [],
+    "foundedDate": "N/A",
+    "dividendFreq": "N/A",
+    "custodianBank": "N/A"
   },
   {
     "id": 20,
@@ -387,7 +480,7 @@
     "name": "主動群益台灣強棒",
     "type": "active",
     "manager": "群益投信",
-    "ytdReturn": 39.42,
+    "ytdReturn": 51.16,
     "weeklyReturn": 2.02,
     "latestNav": 14.81,
     "changeSinceLast": 0,
@@ -454,25 +547,28 @@
       },
       {
         "month": "T-4",
-        "return": 107.88
+        "return": 110.23
       },
       {
         "month": "T-3",
-        "return": 115.77
+        "return": 120.46
       },
       {
         "month": "T-2",
-        "return": 123.65
+        "return": 130.7
       },
       {
         "month": "T-1",
-        "return": 131.54
+        "return": 140.93
       },
       {
         "month": "T-0",
-        "return": 139.42
+        "return": 151.16
       }
-    ]
+    ],
+    "foundedDate": "2025/05/13",
+    "dividendFreq": "季配",
+    "custodianBank": "中國信託銀行"
   },
   {
     "id": 21,
@@ -480,7 +576,7 @@
     "name": "主動台新龍頭成長",
     "type": "active",
     "manager": "台新投信",
-    "ytdReturn": 0.0,
+    "ytdReturn": 15.04,
     "weeklyReturn": -1.28,
     "latestNav": 11.73,
     "changeSinceLast": 0,
@@ -540,7 +636,35 @@
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [
+      {
+        "month": "T-5",
+        "return": 100.0
+      },
+      {
+        "month": "T-4",
+        "return": 103.01
+      },
+      {
+        "month": "T-3",
+        "return": 106.02
+      },
+      {
+        "month": "T-2",
+        "return": 109.02
+      },
+      {
+        "month": "T-1",
+        "return": 112.03
+      },
+      {
+        "month": "T-0",
+        "return": 115.04
+      }
+    ],
+    "foundedDate": "2025/08/18",
+    "dividendFreq": "年配",
+    "custodianBank": "台灣中小企銀"
   },
   {
     "id": 22,
@@ -548,7 +672,7 @@
     "name": "主動台新科技高息",
     "type": "active",
     "manager": "台新投信",
-    "ytdReturn": 0.0,
+    "ytdReturn": 0.1,
     "weeklyReturn": 0.0,
     "latestNav": 10.08,
     "changeSinceLast": 0,
@@ -559,56 +683,84 @@
     "holdings": [
       {
         "stock": "台積電(2330.TW)",
-        "percent": 9.01,
+        "percent": 8.64,
         "change": "-"
       },
       {
         "stock": "富世達(6805.TW)",
-        "percent": 5.57,
+        "percent": 4.93,
         "change": "-"
       },
       {
         "stock": "奇鋐(3017.TW)",
-        "percent": 5.41,
+        "percent": 4.89,
         "change": "-"
       },
       {
         "stock": "世芯-KY(3661.TW)",
-        "percent": 4.74,
+        "percent": 4.6,
         "change": "-"
       },
       {
         "stock": "亞翔(6139.TW)",
-        "percent": 4.5,
-        "change": "-"
-      },
-      {
-        "stock": "順達(3211.TW)",
-        "percent": 4.5,
-        "change": "-"
-      },
-      {
-        "stock": "聖暉*(5536.TW)",
-        "percent": 4.42,
+        "percent": 4.32,
         "change": "-"
       },
       {
         "stock": "貿聯-KY(3665.TW)",
-        "percent": 4.42,
+        "percent": 4.16,
+        "change": "-"
+      },
+      {
+        "stock": "順達(3211.TW)",
+        "percent": 4.11,
+        "change": "-"
+      },
+      {
+        "stock": "聖暉*(5536.TW)",
+        "percent": 4.04,
         "change": "-"
       },
       {
         "stock": "緯穎(6669.TW)",
-        "percent": 3.96,
+        "percent": 3.71,
         "change": "-"
       },
       {
         "stock": "鴻勁(7769.TW)",
-        "percent": 3.56,
+        "percent": 3.34,
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [
+      {
+        "month": "T-5",
+        "return": 100.0
+      },
+      {
+        "month": "T-4",
+        "return": 100.02
+      },
+      {
+        "month": "T-3",
+        "return": 100.04
+      },
+      {
+        "month": "T-2",
+        "return": 100.06
+      },
+      {
+        "month": "T-1",
+        "return": 100.08
+      },
+      {
+        "month": "T-0",
+        "return": 100.1
+      }
+    ],
+    "foundedDate": "2025/12/16",
+    "dividendFreq": "年配",
+    "custodianBank": "彰化商業銀行股份有限公司"
   },
   {
     "id": 23,
@@ -616,7 +768,7 @@
     "name": "主動中信ARK創新",
     "type": "active",
     "manager": "中信投信",
-    "ytdReturn": 16.6,
+    "ytdReturn": 17.87,
     "weeklyReturn": -3.02,
     "latestNav": 13.34,
     "changeSinceLast": 0,
@@ -683,25 +835,28 @@
       },
       {
         "month": "T-4",
-        "return": 103.32
+        "return": 103.57
       },
       {
         "month": "T-3",
-        "return": 106.64
+        "return": 107.15
       },
       {
         "month": "T-2",
-        "return": 109.96
+        "return": 110.72
       },
       {
         "month": "T-1",
-        "return": 113.28
+        "return": 114.3
       },
       {
         "month": "T-0",
-        "return": 116.6
+        "return": 117.87
       }
-    ]
+    ],
+    "foundedDate": "2025/06/10",
+    "dividendFreq": "年配",
+    "custodianBank": "第一商業銀行"
   },
   {
     "id": 24,
@@ -709,7 +864,7 @@
     "name": "主動統一全球創新",
     "type": "active",
     "manager": "統一投信",
-    "ytdReturn": 0.0,
+    "ytdReturn": -0.69,
     "weeklyReturn": -1.17,
     "latestNav": 10.3,
     "changeSinceLast": 0,
@@ -769,7 +924,35 @@
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [
+      {
+        "month": "T-5",
+        "return": 100.0
+      },
+      {
+        "month": "T-4",
+        "return": 99.86
+      },
+      {
+        "month": "T-3",
+        "return": 99.72
+      },
+      {
+        "month": "T-2",
+        "return": 99.59
+      },
+      {
+        "month": "T-1",
+        "return": 99.45
+      },
+      {
+        "month": "T-0",
+        "return": 99.31
+      }
+    ],
+    "foundedDate": "2025/10/21",
+    "dividendFreq": "年配",
+    "custodianBank": "元大商業銀行"
   },
   {
     "id": 25,
@@ -837,7 +1020,10 @@
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [],
+    "foundedDate": "2025/10/14",
+    "dividendFreq": "季配",
+    "custodianBank": "中國信託商業銀行"
   },
   {
     "id": 26,
@@ -845,7 +1031,7 @@
     "name": "主動元大AI新經濟",
     "type": "active",
     "manager": "元大投信",
-    "ytdReturn": 0.0,
+    "ytdReturn": 1.1,
     "weeklyReturn": -4.96,
     "latestNav": 10.19,
     "changeSinceLast": 0,
@@ -905,7 +1091,35 @@
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [
+      {
+        "month": "T-5",
+        "return": 100.0
+      },
+      {
+        "month": "T-4",
+        "return": 100.22
+      },
+      {
+        "month": "T-3",
+        "return": 100.44
+      },
+      {
+        "month": "T-2",
+        "return": 100.66
+      },
+      {
+        "month": "T-1",
+        "return": 100.88
+      },
+      {
+        "month": "T-0",
+        "return": 101.1
+      }
+    ],
+    "foundedDate": "2025/12/02",
+    "dividendFreq": "nan",
+    "custodianBank": "臺灣銀行股份有限公司"
   },
   {
     "id": 27,
@@ -913,7 +1127,7 @@
     "name": "主動復華未來50",
     "type": "active",
     "manager": "復華投信",
-    "ytdReturn": 0.0,
+    "ytdReturn": 7.87,
     "weeklyReturn": 0.68,
     "latestNav": 10.45,
     "changeSinceLast": 0,
@@ -973,7 +1187,35 @@
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [
+      {
+        "month": "T-5",
+        "return": 100.0
+      },
+      {
+        "month": "T-4",
+        "return": 101.57
+      },
+      {
+        "month": "T-3",
+        "return": 103.15
+      },
+      {
+        "month": "T-2",
+        "return": 104.72
+      },
+      {
+        "month": "T-1",
+        "return": 106.3
+      },
+      {
+        "month": "T-0",
+        "return": 107.87
+      }
+    ],
+    "foundedDate": "2025/12/09",
+    "dividendFreq": "半年配",
+    "custodianBank": "第一商業銀行股份有限公司"
   },
   {
     "id": 3,
@@ -981,7 +1223,7 @@
     "name": "元大台灣50",
     "type": "passive",
     "index": "台灣50指數",
-    "ytdReturn": 38.59,
+    "ytdReturn": 1382.45,
     "weeklyReturn": 3.96,
     "latestNav": 65.88,
     "changeSinceLast": 0,
@@ -1048,25 +1290,28 @@
       },
       {
         "month": "T-4",
-        "return": 107.72
+        "return": 376.49
       },
       {
         "month": "T-3",
-        "return": 115.44
+        "return": 652.98
       },
       {
         "month": "T-2",
-        "return": 123.15
+        "return": 929.47
       },
       {
         "month": "T-1",
-        "return": 130.87
+        "return": 1205.96
       },
       {
         "month": "T-0",
-        "return": 138.59
+        "return": 1482.45
       }
-    ]
+    ],
+    "foundedDate": "2003/06/25",
+    "dividendFreq": "半年配",
+    "custodianBank": "中國信託銀行"
   },
   {
     "id": 101,
@@ -1074,7 +1319,7 @@
     "name": "國泰永續高股息",
     "type": "passive",
     "index": "ESG永續高股息",
-    "ytdReturn": 7.94,
+    "ytdReturn": 104.53,
     "weeklyReturn": 1.34,
     "latestNav": 22.93,
     "changeSinceLast": 0,
@@ -1141,25 +1386,28 @@
       },
       {
         "month": "T-4",
-        "return": 101.59
+        "return": 120.91
       },
       {
         "month": "T-3",
-        "return": 103.18
+        "return": 141.81
       },
       {
         "month": "T-2",
-        "return": 104.76
+        "return": 162.72
       },
       {
         "month": "T-1",
-        "return": 106.35
+        "return": 183.62
       },
       {
         "month": "T-0",
-        "return": 107.94
+        "return": 204.53
       }
-    ]
+    ],
+    "foundedDate": "2020/07/10",
+    "dividendFreq": "季配",
+    "custodianBank": "台新銀行"
   },
   {
     "id": 102,
@@ -1167,7 +1415,7 @@
     "name": "元大高股息",
     "type": "passive",
     "index": "臺灣高股息指數",
-    "ytdReturn": 11.4,
+    "ytdReturn": 314.16,
     "weeklyReturn": 1.09,
     "latestNav": 37.71,
     "changeSinceLast": 0,
@@ -1234,25 +1482,28 @@
       },
       {
         "month": "T-4",
-        "return": 102.28
+        "return": 162.83
       },
       {
         "month": "T-3",
-        "return": 104.56
+        "return": 225.66
       },
       {
         "month": "T-2",
-        "return": 106.84
+        "return": 288.5
       },
       {
         "month": "T-1",
-        "return": 109.12
+        "return": 351.33
       },
       {
         "month": "T-0",
-        "return": 111.4
+        "return": 414.16
       }
-    ]
+    ],
+    "foundedDate": "2007/12/13",
+    "dividendFreq": "季配",
+    "custodianBank": "中國信託商業銀行"
   },
   {
     "id": 103,
@@ -1260,7 +1511,7 @@
     "name": "復華台灣科技優息",
     "type": "passive",
     "index": "科技優息指數",
-    "ytdReturn": 6.84,
+    "ytdReturn": 40.89,
     "weeklyReturn": 1.62,
     "latestNav": 19.14,
     "changeSinceLast": 0,
@@ -1327,25 +1578,28 @@
       },
       {
         "month": "T-4",
-        "return": 101.37
+        "return": 108.18
       },
       {
         "month": "T-3",
-        "return": 102.74
+        "return": 116.36
       },
       {
         "month": "T-2",
-        "return": 104.1
+        "return": 124.53
       },
       {
         "month": "T-1",
-        "return": 105.47
+        "return": 132.71
       },
       {
         "month": "T-0",
-        "return": 106.84
+        "return": 140.89
       }
-    ]
+    ],
+    "foundedDate": "2023/06/01",
+    "dividendFreq": "月配",
+    "custodianBank": "台北富邦銀行"
   },
   {
     "id": 108,
@@ -1353,9 +1607,9 @@
     "name": "中信關鍵半導體",
     "type": "passive",
     "index": "ICE半導體指數",
-    "ytdReturn": 26.7,
+    "ytdReturn": 84.68,
     "weeklyReturn": 4.52,
-    "latestNav": 20.03,
+    "latestNav": 20.39,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -1363,53 +1617,53 @@
     "changeStatus": "MoneyDJ 真實數據",
     "holdings": [
       {
-        "stock": "台積電(2330.TW)",
-        "percent": 20.85,
+        "stock": "聯發科(2454.TW)",
+        "percent": 21.01,
         "change": "-"
       },
       {
-        "stock": "聯發科(2454.TW)",
-        "percent": 20.77,
+        "stock": "台積電(2330.TW)",
+        "percent": 20.94,
         "change": "-"
       },
       {
         "stock": "日月光投控(3711.TW)",
-        "percent": 10.14,
+        "percent": 10.26,
         "change": "-"
       },
       {
         "stock": "聯電(2303.TW)",
-        "percent": 8.55,
+        "percent": 8.31,
         "change": "-"
       },
       {
         "stock": "世芯-KY(3661.TW)",
-        "percent": 4.27,
+        "percent": 4.35,
         "change": "-"
       },
       {
         "stock": "京元電子(2449.TW)",
-        "percent": 4.03,
+        "percent": 4.28,
         "change": "-"
       },
       {
         "stock": "瑞昱(2379.TW)",
-        "percent": 3.62,
+        "percent": 3.54,
         "change": "-"
       },
       {
         "stock": "聯詠(3034.TW)",
-        "percent": 3.22,
+        "percent": 3.11,
         "change": "-"
       },
       {
         "stock": "信驊(5274.TW)",
-        "percent": 2.82,
+        "percent": 2.77,
         "change": "-"
       },
       {
         "stock": "旺矽(6223.TW)",
-        "percent": 2.59,
+        "percent": 2.55,
         "change": "-"
       }
     ],
@@ -1420,25 +1674,28 @@
       },
       {
         "month": "T-4",
-        "return": 105.34
+        "return": 116.94
       },
       {
         "month": "T-3",
-        "return": 110.68
+        "return": 133.87
       },
       {
         "month": "T-2",
-        "return": 116.02
+        "return": 150.81
       },
       {
         "month": "T-1",
-        "return": 121.36
+        "return": 167.74
       },
       {
         "month": "T-0",
-        "return": 126.7
+        "return": 184.68
       }
-    ]
+    ],
+    "foundedDate": "2021/05/20",
+    "dividendFreq": "季配",
+    "custodianBank": "永豐商業銀行"
   },
   {
     "id": 109,
@@ -1446,9 +1703,9 @@
     "name": "富邦科技",
     "type": "passive",
     "index": "資訊科技指數",
-    "ytdReturn": 42.99,
+    "ytdReturn": 1350.71,
     "weeklyReturn": 5.07,
-    "latestNav": 37.97,
+    "latestNav": 38.72,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -1513,25 +1770,28 @@
       },
       {
         "month": "T-4",
-        "return": 108.6
+        "return": 370.14
       },
       {
         "month": "T-3",
-        "return": 117.2
+        "return": 640.28
       },
       {
         "month": "T-2",
-        "return": 125.79
+        "return": 910.43
       },
       {
         "month": "T-1",
-        "return": 134.39
+        "return": 1180.57
       },
       {
         "month": "T-0",
-        "return": 142.99
+        "return": 1450.71
       }
-    ]
+    ],
+    "foundedDate": "2006/08/28",
+    "dividendFreq": "年配",
+    "custodianBank": "台新國際商業銀行"
   },
   {
     "id": 110,
@@ -1539,7 +1799,7 @@
     "name": "元大美債20年",
     "type": "passive",
     "index": "美債20年指數",
-    "ytdReturn": 9.19,
+    "ytdReturn": -11.0,
     "weeklyReturn": -0.84,
     "latestNav": 30.0606,
     "changeSinceLast": 0,
@@ -1606,24 +1866,27 @@
       },
       {
         "month": "T-4",
-        "return": 101.84
+        "return": 97.8
       },
       {
         "month": "T-3",
-        "return": 103.68
+        "return": 95.6
       },
       {
         "month": "T-2",
-        "return": 105.51
+        "return": 93.4
       },
       {
         "month": "T-1",
-        "return": 107.35
+        "return": 91.2
       },
       {
         "month": "T-0",
-        "return": 109.19
+        "return": 89.0
       }
-    ]
+    ],
+    "foundedDate": "2017/01/11",
+    "dividendFreq": "季配",
+    "custodianBank": "華南商業銀行"
   }
 ]
