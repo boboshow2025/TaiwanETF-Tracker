@@ -197,7 +197,7 @@
     "manager": "野村投信",
     "ytdReturn": 58.51,
     "weeklyReturn": 1.39,
-    "latestNav": 15.35,
+    "latestNav": 15.32,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -565,7 +565,7 @@
     "manager": "安聯投信",
     "ytdReturn": 14.72,
     "weeklyReturn": 2.28,
-    "latestNav": 11.2,
+    "latestNav": 11.09,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -1817,7 +1817,7 @@
     "manager": "復華投信",
     "ytdReturn": 7.87,
     "weeklyReturn": 0.68,
-    "latestNav": 0.0,
+    "latestNav": 10.45,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -2671,7 +2671,7 @@
     "index": "ICE半導體指數",
     "ytdReturn": 84.68,
     "weeklyReturn": 4.52,
-    "latestNav": 20.03,
+    "latestNav": 20.39,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -2849,9 +2849,9 @@
         "return": 20.36
       }
     ],
-    "foundedDate": "N/A",
-    "dividendFreq": "N/A",
-    "custodianBank": "N/A"
+    "foundedDate": "2021/05/20",
+    "dividendFreq": "季配",
+    "custodianBank": "永豐商業銀行"
   },
   {
     "id": 109,
@@ -2861,7 +2861,7 @@
     "index": "資訊科技指數",
     "ytdReturn": 1350.71,
     "weeklyReturn": 5.07,
-    "latestNav": 37.97,
+    "latestNav": 38.72,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
