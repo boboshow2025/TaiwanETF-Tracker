@@ -5,8 +5,8 @@
     "name": "主動群益科技創新",
     "type": "active",
     "manager": "群益投信",
-    "ytdReturn": 0.0,
-    "weeklyReturn": 0.0,
+    "ytdReturn": NaN,
+    "weeklyReturn": 2.36,
     "latestNav": 10.41,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
@@ -65,7 +65,32 @@
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [
+      {
+        "month": "T-5",
+        "return": NaN
+      },
+      {
+        "month": "T-4",
+        "return": NaN
+      },
+      {
+        "month": "T-3",
+        "return": NaN
+      },
+      {
+        "month": "T-2",
+        "return": NaN
+      },
+      {
+        "month": "T-1",
+        "return": NaN
+      },
+      {
+        "month": "T-0",
+        "return": NaN
+      }
+    ]
   },
   {
     "id": 1,
@@ -73,8 +98,8 @@
     "name": "主動統一台股成長",
     "type": "active",
     "manager": "統一投信",
-    "ytdReturn": 0.0,
-    "weeklyReturn": 0.0,
+    "ytdReturn": 51.18,
+    "weeklyReturn": -0.06,
     "latestNav": 16.9,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
@@ -133,7 +158,32 @@
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [
+      {
+        "month": "T-5",
+        "return": 100.0
+      },
+      {
+        "month": "T-4",
+        "return": 110.24
+      },
+      {
+        "month": "T-3",
+        "return": 120.47
+      },
+      {
+        "month": "T-2",
+        "return": 130.71
+      },
+      {
+        "month": "T-1",
+        "return": 140.94
+      },
+      {
+        "month": "T-0",
+        "return": 151.18
+      }
+    ]
   },
   {
     "id": 2,
@@ -141,8 +191,8 @@
     "name": "主動野村臺灣優選",
     "type": "active",
     "manager": "野村投信",
-    "ytdReturn": 0.0,
-    "weeklyReturn": 0.0,
+    "ytdReturn": 39.44,
+    "weeklyReturn": 1.46,
     "latestNav": 15.32,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
@@ -201,7 +251,32 @@
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [
+      {
+        "month": "T-5",
+        "return": 100.0
+      },
+      {
+        "month": "T-4",
+        "return": 107.89
+      },
+      {
+        "month": "T-3",
+        "return": 115.78
+      },
+      {
+        "month": "T-2",
+        "return": 123.66
+      },
+      {
+        "month": "T-1",
+        "return": 131.55
+      },
+      {
+        "month": "T-0",
+        "return": 139.44
+      }
+    ]
   },
   {
     "id": 4,
@@ -209,8 +284,8 @@
     "name": "主動野村台股50",
     "type": "active",
     "manager": "野村投信",
-    "ytdReturn": 0.0,
-    "weeklyReturn": 0.0,
+    "ytdReturn": NaN,
+    "weeklyReturn": 1.97,
     "latestNav": 13.45,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
@@ -269,7 +344,32 @@
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [
+      {
+        "month": "T-5",
+        "return": NaN
+      },
+      {
+        "month": "T-4",
+        "return": NaN
+      },
+      {
+        "month": "T-3",
+        "return": NaN
+      },
+      {
+        "month": "T-2",
+        "return": NaN
+      },
+      {
+        "month": "T-1",
+        "return": NaN
+      },
+      {
+        "month": "T-0",
+        "return": NaN
+      }
+    ]
   },
   {
     "id": 5,
@@ -277,8 +377,8 @@
     "name": "主動安聯台灣高息",
     "type": "active",
     "manager": "安聯投信",
-    "ytdReturn": 0.0,
-    "weeklyReturn": 0.0,
+    "ytdReturn": NaN,
+    "weeklyReturn": 1.46,
     "latestNav": 11.09,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
@@ -312,7 +412,32 @@
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [
+      {
+        "month": "T-5",
+        "return": NaN
+      },
+      {
+        "month": "T-4",
+        "return": NaN
+      },
+      {
+        "month": "T-3",
+        "return": NaN
+      },
+      {
+        "month": "T-2",
+        "return": NaN
+      },
+      {
+        "month": "T-1",
+        "return": NaN
+      },
+      {
+        "month": "T-0",
+        "return": NaN
+      }
+    ]
   },
   {
     "id": 6,
@@ -337,8 +462,8 @@
     "name": "元大台灣50",
     "type": "passive",
     "index": "台灣50指數",
-    "ytdReturn": 0.0,
-    "weeklyReturn": 0.0,
+    "ytdReturn": 38.68,
+    "weeklyReturn": 2.7,
     "latestNav": 65.88,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
@@ -397,7 +522,32 @@
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [
+      {
+        "month": "T-5",
+        "return": 100.0
+      },
+      {
+        "month": "T-4",
+        "return": 107.74
+      },
+      {
+        "month": "T-3",
+        "return": 115.47
+      },
+      {
+        "month": "T-2",
+        "return": 123.21
+      },
+      {
+        "month": "T-1",
+        "return": 130.94
+      },
+      {
+        "month": "T-0",
+        "return": 138.68
+      }
+    ]
   },
   {
     "id": 101,
@@ -405,9 +555,9 @@
     "name": "國泰永續高股息",
     "type": "passive",
     "index": "ESG永續高股息",
-    "ytdReturn": 0.0,
-    "weeklyReturn": 0.0,
-    "latestNav": 21.79,
+    "ytdReturn": 8.08,
+    "weeklyReturn": 0.37,
+    "latestNav": 22.93,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -465,7 +615,32 @@
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [
+      {
+        "month": "T-5",
+        "return": 100.0
+      },
+      {
+        "month": "T-4",
+        "return": 101.62
+      },
+      {
+        "month": "T-3",
+        "return": 103.23
+      },
+      {
+        "month": "T-2",
+        "return": 104.85
+      },
+      {
+        "month": "T-1",
+        "return": 106.46
+      },
+      {
+        "month": "T-0",
+        "return": 108.08
+      }
+    ]
   },
   {
     "id": 102,
@@ -473,9 +648,9 @@
     "name": "元大高股息",
     "type": "passive",
     "index": "臺灣高股息指數",
-    "ytdReturn": 0.0,
-    "weeklyReturn": 0.0,
-    "latestNav": 36.7,
+    "ytdReturn": 11.73,
+    "weeklyReturn": 0.6,
+    "latestNav": 37.71,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -489,51 +664,76 @@
       },
       {
         "stock": "廣達(2382.TW)",
-        "percent": 4.32,
+        "percent": 4.35,
         "change": "-"
       },
       {
         "stock": "聯發科(2454.TW)",
-        "percent": 4.26,
+        "percent": 4.32,
         "change": "-"
       },
       {
         "stock": "聯電(2303.TW)",
-        "percent": 4.06,
+        "percent": 3.97,
         "change": "-"
       },
       {
         "stock": "緯創(3231.TW)",
-        "percent": 3.9,
+        "percent": 3.97,
         "change": "-"
       },
       {
         "stock": "華碩(2357.TW)",
-        "percent": 3.76,
+        "percent": 3.77,
         "change": "-"
       },
       {
         "stock": "長榮(2603.TW)",
-        "percent": 3.5,
+        "percent": 3.51,
         "change": "-"
       },
       {
         "stock": "日月光投控(3711.TW)",
-        "percent": 3.34,
+        "percent": 3.39,
         "change": "-"
       },
       {
         "stock": "光寶科(2301.TW)",
-        "percent": 3.22,
+        "percent": 3.24,
         "change": "-"
       },
       {
         "stock": "華南金(2880.TW)",
-        "percent": 3.21,
+        "percent": 3.22,
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [
+      {
+        "month": "T-5",
+        "return": 100.0
+      },
+      {
+        "month": "T-4",
+        "return": 102.35
+      },
+      {
+        "month": "T-3",
+        "return": 104.69
+      },
+      {
+        "month": "T-2",
+        "return": 107.04
+      },
+      {
+        "month": "T-1",
+        "return": 109.38
+      },
+      {
+        "month": "T-0",
+        "return": 111.73
+      }
+    ]
   },
   {
     "id": 103,
@@ -541,9 +741,9 @@
     "name": "復華台灣科技優息",
     "type": "passive",
     "index": "科技優息指數",
-    "ytdReturn": 0.0,
-    "weeklyReturn": 0.0,
-    "latestNav": 18.14,
+    "ytdReturn": 6.78,
+    "weeklyReturn": 0.95,
+    "latestNav": 19.14,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -601,7 +801,32 @@
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [
+      {
+        "month": "T-5",
+        "return": 100.0
+      },
+      {
+        "month": "T-4",
+        "return": 101.36
+      },
+      {
+        "month": "T-3",
+        "return": 102.71
+      },
+      {
+        "month": "T-2",
+        "return": 104.07
+      },
+      {
+        "month": "T-1",
+        "return": 105.42
+      },
+      {
+        "month": "T-0",
+        "return": 106.78
+      }
+    ]
   },
   {
     "id": 108,
@@ -609,8 +834,8 @@
     "name": "中信關鍵半導體",
     "type": "passive",
     "index": "ICE半導體指數",
-    "ytdReturn": 0.0,
-    "weeklyReturn": 0.0,
+    "ytdReturn": 26.09,
+    "weeklyReturn": 3.51,
     "latestNav": 20.03,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
@@ -669,7 +894,32 @@
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [
+      {
+        "month": "T-5",
+        "return": 100.0
+      },
+      {
+        "month": "T-4",
+        "return": 105.22
+      },
+      {
+        "month": "T-3",
+        "return": 110.44
+      },
+      {
+        "month": "T-2",
+        "return": 115.65
+      },
+      {
+        "month": "T-1",
+        "return": 120.87
+      },
+      {
+        "month": "T-0",
+        "return": 126.09
+      }
+    ]
   },
   {
     "id": 109,
@@ -677,8 +927,8 @@
     "name": "富邦科技",
     "type": "passive",
     "index": "資訊科技指數",
-    "ytdReturn": 0.0,
-    "weeklyReturn": 0.0,
+    "ytdReturn": 42.39,
+    "weeklyReturn": 3.4,
     "latestNav": 37.97,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
@@ -737,7 +987,32 @@
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [
+      {
+        "month": "T-5",
+        "return": 100.0
+      },
+      {
+        "month": "T-4",
+        "return": 108.48
+      },
+      {
+        "month": "T-3",
+        "return": 116.96
+      },
+      {
+        "month": "T-2",
+        "return": 125.43
+      },
+      {
+        "month": "T-1",
+        "return": 133.91
+      },
+      {
+        "month": "T-0",
+        "return": 142.39
+      }
+    ]
   },
   {
     "id": 110,
@@ -745,9 +1020,9 @@
     "name": "元大美債20年",
     "type": "passive",
     "index": "美債20年指數",
-    "ytdReturn": 0.0,
-    "weeklyReturn": 0.0,
-    "latestNav": 27.1078,
+    "ytdReturn": 9.06,
+    "weeklyReturn": -0.93,
+    "latestNav": 30.0606,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -805,6 +1080,31 @@
         "change": "-"
       }
     ],
-    "performanceData": []
+    "performanceData": [
+      {
+        "month": "T-5",
+        "return": 100.0
+      },
+      {
+        "month": "T-4",
+        "return": 101.81
+      },
+      {
+        "month": "T-3",
+        "return": 103.62
+      },
+      {
+        "month": "T-2",
+        "return": 105.44
+      },
+      {
+        "month": "T-1",
+        "return": 107.25
+      },
+      {
+        "month": "T-0",
+        "return": 109.06
+      }
+    ]
   }
 ]
