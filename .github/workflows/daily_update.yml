@@ -40,6 +40,7 @@ jobs:
           git add public/etf_data.json
           # 如果沒有變更就不報錯
           git commit -m "Auto-update ETF data" || exit 0
+          git pull --rebase
           git push
 
       - name: Set up Node.js
