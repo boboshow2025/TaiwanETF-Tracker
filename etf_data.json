@@ -98,8 +98,8 @@
     "name": "主動統一台股成長",
     "type": "active",
     "manager": "統一投信",
-    "ytdReturn": 51.18,
-    "weeklyReturn": -0.06,
+    "ytdReturn": 54.34,
+    "weeklyReturn": 1.87,
     "latestNav": 16.9,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
@@ -165,23 +165,23 @@
       },
       {
         "month": "T-4",
-        "return": 110.24
+        "return": 110.87
       },
       {
         "month": "T-3",
-        "return": 120.47
+        "return": 121.74
       },
       {
         "month": "T-2",
-        "return": 130.71
+        "return": 132.6
       },
       {
         "month": "T-1",
-        "return": 140.94
+        "return": 143.47
       },
       {
         "month": "T-0",
-        "return": 151.18
+        "return": 154.34
       }
     ]
   },
@@ -202,52 +202,52 @@
     "holdings": [
       {
         "stock": "台積電(2330.TW)",
-        "percent": 8.53,
+        "percent": 8.7,
         "change": "-"
       },
       {
         "stock": "鴻海(2317.TW)",
-        "percent": 4.16,
+        "percent": 4.18,
         "change": "-"
       },
       {
         "stock": "緯穎(6669.TW)",
-        "percent": 3.2,
-        "change": "-"
-      },
-      {
-        "stock": "川湖(2059.TW)",
         "percent": 3.19,
         "change": "-"
       },
       {
-        "stock": "奇鋐(3017.TW)",
-        "percent": 3.04,
-        "change": "-"
-      },
-      {
         "stock": "台達電(2308.TW)",
-        "percent": 2.99,
-        "change": "-"
-      },
-      {
-        "stock": "金像電(2368.TW)",
-        "percent": 2.99,
+        "percent": 3.09,
         "change": "-"
       },
       {
         "stock": "中信金(2891.TW)",
-        "percent": 2.97,
+        "percent": 3.0,
+        "change": "-"
+      },
+      {
+        "stock": "川湖(2059.TW)",
+        "percent": 2.94,
+        "change": "-"
+      },
+      {
+        "stock": "奇鋐(3017.TW)",
+        "percent": 2.93,
         "change": "-"
       },
       {
         "stock": "智邦(2345.TW)",
-        "percent": 2.96,
+        "percent": 2.86,
+        "change": "-"
+      },
+      {
+        "stock": "金像電(2368.TW)",
+        "percent": 2.79,
         "change": "-"
       },
       {
         "stock": "聯發科(2454.TW)",
-        "percent": 2.69,
+        "percent": 2.76,
         "change": "-"
       }
     ],
@@ -473,22 +473,22 @@
     "holdings": [
       {
         "stock": "台積電(2330.TW)",
-        "percent": 62.06,
+        "percent": 61.71,
         "change": "-"
       },
       {
         "stock": "鴻海(2317.TW)",
-        "percent": 4.53,
+        "percent": 4.58,
         "change": "-"
       },
       {
         "stock": "聯發科(2454.TW)",
-        "percent": 3.46,
+        "percent": 3.42,
         "change": "-"
       },
       {
         "stock": "台達電(2308.TW)",
-        "percent": 3.08,
+        "percent": 3.03,
         "change": "-"
       },
       {
@@ -498,12 +498,12 @@
       },
       {
         "stock": "日月光投控(3711.TW)",
-        "percent": 1.36,
+        "percent": 1.34,
         "change": "-"
       },
       {
         "stock": "富邦金(2881.TW)",
-        "percent": 1.28,
+        "percent": 1.31,
         "change": "-"
       },
       {
@@ -513,12 +513,12 @@
       },
       {
         "stock": "國泰金(2882.TW)",
-        "percent": 1.13,
+        "percent": 1.16,
         "change": "-"
       },
       {
         "stock": "智邦(2345.TW)",
-        "percent": 0.91,
+        "percent": 0.95,
         "change": "-"
       }
     ],
@@ -664,47 +664,47 @@
       },
       {
         "stock": "廣達(2382.TW)",
-        "percent": 4.35,
-        "change": "-"
-      },
-      {
-        "stock": "聯發科(2454.TW)",
         "percent": 4.32,
         "change": "-"
       },
       {
+        "stock": "聯發科(2454.TW)",
+        "percent": 4.26,
+        "change": "-"
+      },
+      {
         "stock": "聯電(2303.TW)",
-        "percent": 3.97,
+        "percent": 4.06,
         "change": "-"
       },
       {
         "stock": "緯創(3231.TW)",
-        "percent": 3.97,
+        "percent": 3.9,
         "change": "-"
       },
       {
         "stock": "華碩(2357.TW)",
-        "percent": 3.77,
+        "percent": 3.76,
         "change": "-"
       },
       {
         "stock": "長榮(2603.TW)",
-        "percent": 3.51,
+        "percent": 3.5,
         "change": "-"
       },
       {
         "stock": "日月光投控(3711.TW)",
-        "percent": 3.39,
+        "percent": 3.34,
         "change": "-"
       },
       {
         "stock": "光寶科(2301.TW)",
-        "percent": 3.24,
+        "percent": 3.22,
         "change": "-"
       },
       {
         "stock": "華南金(2880.TW)",
-        "percent": 3.22,
+        "percent": 3.21,
         "change": "-"
       }
     ],
@@ -1020,8 +1020,8 @@
     "name": "元大美債20年",
     "type": "passive",
     "index": "美債20年指數",
-    "ytdReturn": 9.06,
-    "weeklyReturn": -0.93,
+    "ytdReturn": 9.73,
+    "weeklyReturn": 0.02,
     "latestNav": 30.0606,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
@@ -1087,23 +1087,23 @@
       },
       {
         "month": "T-4",
-        "return": 101.81
+        "return": 101.95
       },
       {
         "month": "T-3",
-        "return": 103.62
+        "return": 103.89
       },
       {
         "month": "T-2",
-        "return": 105.44
+        "return": 105.84
       },
       {
         "month": "T-1",
-        "return": 107.25
+        "return": 107.78
       },
       {
         "month": "T-0",
-        "return": 109.06
+        "return": 109.73
       }
     ]
   }
