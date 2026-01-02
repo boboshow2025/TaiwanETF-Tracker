@@ -1,5 +1,73 @@
 [
   {
+    "id": 7,
+    "ticker": "00992A",
+    "name": "主動群益科技創新",
+    "type": "active",
+    "manager": "群益投信",
+    "ytdReturn": 0.0,
+    "weeklyReturn": 0.0,
+    "latestNav": 10.41,
+    "changeSinceLast": 0,
+    "lastDividend": "N/A",
+    "exDate": "N/A",
+    "fundManager": "群益投信",
+    "changeStatus": "MoneyDJ 真實數據",
+    "holdings": [
+      {
+        "stock": "台積電(2330.TW)",
+        "percent": 8.05,
+        "change": "-"
+      },
+      {
+        "stock": "奇鋐(3017.TW)",
+        "percent": 5.05,
+        "change": "-"
+      },
+      {
+        "stock": "群聯(8299.TW)",
+        "percent": 4.54,
+        "change": "-"
+      },
+      {
+        "stock": "台光電(2383.TW)",
+        "percent": 4.46,
+        "change": "-"
+      },
+      {
+        "stock": "台達電(2308.TW)",
+        "percent": 4.45,
+        "change": "-"
+      },
+      {
+        "stock": "貿聯-KY(3665.TW)",
+        "percent": 4.27,
+        "change": "-"
+      },
+      {
+        "stock": "智邦(2345.TW)",
+        "percent": 3.95,
+        "change": "-"
+      },
+      {
+        "stock": "川湖(2059.TW)",
+        "percent": 3.53,
+        "change": "-"
+      },
+      {
+        "stock": "旺矽(6223.TW)",
+        "percent": 3.51,
+        "change": "-"
+      },
+      {
+        "stock": "緯穎(6669.TW)",
+        "percent": 3.44,
+        "change": "-"
+      }
+    ],
+    "performanceData": []
+  },
+  {
     "id": 1,
     "ticker": "00981A",
     "name": "主動統一台股成長",
@@ -7,39 +75,65 @@
     "manager": "統一投信",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 0.0,
-    "changeSinceLast": 0.0,
-    "lastDividend": "請見公開說明書",
-    "exDate": "近期",
+    "latestNav": 16.9,
+    "changeSinceLast": 0,
+    "lastDividend": "N/A",
+    "exDate": "N/A",
     "fundManager": "統一投信",
-    "changeStatus": "查無資料",
-    "holdings": [],
-    "performanceData": [
+    "changeStatus": "MoneyDJ 真實數據",
+    "holdings": [
       {
-        "month": "4月",
-        "return": 100.21
+        "stock": "台積電(2330.TW)",
+        "percent": 9.69,
+        "change": "-"
       },
       {
-        "month": "5月",
-        "return": 99.86
+        "stock": "台光電(2383.TW)",
+        "percent": 6.66,
+        "change": "-"
       },
       {
-        "month": "6月",
-        "return": 100.47
+        "stock": "奇鋐(3017.TW)",
+        "percent": 6.41,
+        "change": "-"
       },
       {
-        "month": "7月",
-        "return": 100.11
+        "stock": "緯穎(6669.TW)",
+        "percent": 6.17,
+        "change": "-"
       },
       {
-        "month": "8月",
-        "return": 99.69
+        "stock": "金像電(2368.TW)",
+        "percent": 5.78,
+        "change": "-"
       },
       {
-        "month": "9月",
-        "return": 100.0
+        "stock": "智邦(2345.TW)",
+        "percent": 5.55,
+        "change": "-"
+      },
+      {
+        "stock": "台達電(2308.TW)",
+        "percent": 4.84,
+        "change": "-"
+      },
+      {
+        "stock": "旺矽(6223.TW)",
+        "percent": 4.81,
+        "change": "-"
+      },
+      {
+        "stock": "台燿(6274.TW)",
+        "percent": 4.74,
+        "change": "-"
+      },
+      {
+        "stock": "貿聯-KY(3665.TW)",
+        "percent": 4.63,
+        "change": "-"
       }
-    ]
+    ],
+    "performanceData": []
   },
   {
     "id": 2,
@@ -49,39 +143,65 @@
     "manager": "野村投信",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 0.0,
-    "changeSinceLast": 0.0,
-    "lastDividend": "請見公開說明書",
-    "exDate": "近期",
+    "latestNav": 15.32,
+    "changeSinceLast": 0,
+    "lastDividend": "N/A",
+    "exDate": "N/A",
     "fundManager": "野村投信",
-    "changeStatus": "查無資料",
-    "holdings": [],
-    "performanceData": [
+    "changeStatus": "MoneyDJ 真實數據",
+    "holdings": [
       {
-        "month": "4月",
-        "return": 99.78
+        "stock": "台積電(2330.TW)",
+        "percent": 8.53,
+        "change": "-"
       },
       {
-        "month": "5月",
-        "return": 100.25
+        "stock": "鴻海(2317.TW)",
+        "percent": 4.16,
+        "change": "-"
       },
       {
-        "month": "6月",
-        "return": 99.79
+        "stock": "緯穎(6669.TW)",
+        "percent": 3.2,
+        "change": "-"
       },
       {
-        "month": "7月",
-        "return": 100.19
+        "stock": "川湖(2059.TW)",
+        "percent": 3.19,
+        "change": "-"
       },
       {
-        "month": "8月",
-        "return": 99.88
+        "stock": "奇鋐(3017.TW)",
+        "percent": 3.04,
+        "change": "-"
       },
       {
-        "month": "9月",
-        "return": 100.0
+        "stock": "台達電(2308.TW)",
+        "percent": 2.99,
+        "change": "-"
+      },
+      {
+        "stock": "金像電(2368.TW)",
+        "percent": 2.99,
+        "change": "-"
+      },
+      {
+        "stock": "中信金(2891.TW)",
+        "percent": 2.97,
+        "change": "-"
+      },
+      {
+        "stock": "智邦(2345.TW)",
+        "percent": 2.96,
+        "change": "-"
+      },
+      {
+        "stock": "聯發科(2454.TW)",
+        "percent": 2.69,
+        "change": "-"
       }
-    ]
+    ],
+    "performanceData": []
   },
   {
     "id": 4,
@@ -91,39 +211,65 @@
     "manager": "野村投信",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 0.0,
-    "changeSinceLast": 0.0,
-    "lastDividend": "請見公開說明書",
-    "exDate": "近期",
+    "latestNav": 13.45,
+    "changeSinceLast": 0,
+    "lastDividend": "N/A",
+    "exDate": "N/A",
     "fundManager": "野村投信",
-    "changeStatus": "查無資料",
-    "holdings": [],
-    "performanceData": [
+    "changeStatus": "MoneyDJ 真實數據",
+    "holdings": [
       {
-        "month": "4月",
-        "return": 99.79
+        "stock": "台積電(2330.TW)",
+        "percent": 21.32,
+        "change": "-"
       },
       {
-        "month": "5月",
-        "return": 100.3
+        "stock": "南亞科(2408.TW)",
+        "percent": 4.19,
+        "change": "-"
       },
       {
-        "month": "6月",
-        "return": 100.39
+        "stock": "聯發科(2454.TW)",
+        "percent": 4.07,
+        "change": "-"
       },
       {
-        "month": "7月",
-        "return": 100.34
+        "stock": "華邦電(2344.TW)",
+        "percent": 3.48,
+        "change": "-"
       },
       {
-        "month": "8月",
-        "return": 100.26
+        "stock": "富邦金(2881.TW)",
+        "percent": 3.12,
+        "change": "-"
       },
       {
-        "month": "9月",
-        "return": 100.0
+        "stock": "中華電(2412.TW)",
+        "percent": 3.03,
+        "change": "-"
+      },
+      {
+        "stock": "智邦(2345.TW)",
+        "percent": 2.99,
+        "change": "-"
+      },
+      {
+        "stock": "鴻海(2317.TW)",
+        "percent": 2.74,
+        "change": "-"
+      },
+      {
+        "stock": "台達電(2308.TW)",
+        "percent": 2.53,
+        "change": "-"
+      },
+      {
+        "stock": "華新(1605.TW)",
+        "percent": 2.53,
+        "change": "-"
       }
-    ]
+    ],
+    "performanceData": []
   },
   {
     "id": 5,
@@ -131,41 +277,42 @@
     "name": "主動安聯台灣高息",
     "type": "active",
     "manager": "安聯投信",
-    "ytdReturn": 13.49,
-    "weeklyReturn": 1.93,
-    "latestNav": 11.08,
-    "changeSinceLast": 0.0,
-    "lastDividend": "請見公開說明書",
-    "exDate": "近期",
+    "ytdReturn": 0.0,
+    "weeklyReturn": 0.0,
+    "latestNav": 11.09,
+    "changeSinceLast": 0,
+    "lastDividend": "N/A",
+    "exDate": "N/A",
     "fundManager": "安聯投信",
     "changeStatus": "MoneyDJ 真實數據",
-    "holdings": [],
-    "performanceData": [
+    "holdings": [
       {
-        "month": "4月",
-        "return": 100.33
+        "stock": "台積電(2330)",
+        "percent": 5.03,
+        "change": "-"
       },
       {
-        "month": "5月",
-        "return": 102.59
+        "stock": "富邦金(2881)",
+        "percent": 3.81,
+        "change": "-"
       },
       {
-        "month": "6月",
-        "return": 105.17
+        "stock": "國泰金(2882)",
+        "percent": 3.76,
+        "change": "-"
       },
       {
-        "month": "7月",
-        "return": 108.33
+        "stock": "中信金(2891)",
+        "percent": 3.53,
+        "change": "-"
       },
       {
-        "month": "8月",
-        "return": 110.62
-      },
-      {
-        "month": "9月",
-        "return": 113.49
+        "stock": "廣達(2382)",
+        "percent": 3.32,
+        "change": "-"
       }
-    ]
+    ],
+    "performanceData": []
   },
   {
     "id": 6,
@@ -176,38 +323,13 @@
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
     "latestNav": 0.0,
-    "changeSinceLast": 0.0,
-    "lastDividend": "請見公開說明書",
-    "exDate": "近期",
+    "changeSinceLast": 0,
+    "lastDividend": "N/A",
+    "exDate": "N/A",
     "fundManager": "富邦投信",
-    "changeStatus": "查無資料",
+    "changeStatus": "查無數據",
     "holdings": [],
-    "performanceData": [
-      {
-        "month": "4月",
-        "return": 100.39
-      },
-      {
-        "month": "5月",
-        "return": 100.16
-      },
-      {
-        "month": "6月",
-        "return": 100.06
-      },
-      {
-        "month": "7月",
-        "return": 99.87
-      },
-      {
-        "month": "8月",
-        "return": 100.48
-      },
-      {
-        "month": "9月",
-        "return": 100.0
-      }
-    ]
+    "performanceData": []
   },
   {
     "id": 3,
@@ -217,39 +339,65 @@
     "index": "台灣50指數",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 0.0,
-    "changeSinceLast": 0.0,
-    "lastDividend": "請見公開說明書",
-    "exDate": "近期",
+    "latestNav": 65.88,
+    "changeSinceLast": 0,
+    "lastDividend": "N/A",
+    "exDate": "N/A",
     "fundManager": "N/A",
-    "changeStatus": "查無資料",
-    "holdings": [],
-    "performanceData": [
+    "changeStatus": "MoneyDJ 真實數據",
+    "holdings": [
       {
-        "month": "4月",
-        "return": 99.69
+        "stock": "台積電(2330.TW)",
+        "percent": 62.06,
+        "change": "-"
       },
       {
-        "month": "5月",
-        "return": 99.73
+        "stock": "鴻海(2317.TW)",
+        "percent": 4.53,
+        "change": "-"
       },
       {
-        "month": "6月",
-        "return": 100.34
+        "stock": "聯發科(2454.TW)",
+        "percent": 3.46,
+        "change": "-"
       },
       {
-        "month": "7月",
-        "return": 100.32
+        "stock": "台達電(2308.TW)",
+        "percent": 3.08,
+        "change": "-"
       },
       {
-        "month": "8月",
-        "return": 100.25
+        "stock": "中信金(2891.TW)",
+        "percent": 1.44,
+        "change": "-"
       },
       {
-        "month": "9月",
-        "return": 100.0
+        "stock": "日月光投控(3711.TW)",
+        "percent": 1.36,
+        "change": "-"
+      },
+      {
+        "stock": "富邦金(2881.TW)",
+        "percent": 1.28,
+        "change": "-"
+      },
+      {
+        "stock": "廣達(2382.TW)",
+        "percent": 1.17,
+        "change": "-"
+      },
+      {
+        "stock": "國泰金(2882.TW)",
+        "percent": 1.13,
+        "change": "-"
+      },
+      {
+        "stock": "智邦(2345.TW)",
+        "percent": 0.91,
+        "change": "-"
       }
-    ]
+    ],
+    "performanceData": []
   },
   {
     "id": 101,
@@ -259,39 +407,65 @@
     "index": "ESG永續高股息",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 0.0,
-    "changeSinceLast": 0.0,
-    "lastDividend": "請見公開說明書",
-    "exDate": "近期",
+    "latestNav": 21.79,
+    "changeSinceLast": 0,
+    "lastDividend": "N/A",
+    "exDate": "N/A",
     "fundManager": "N/A",
-    "changeStatus": "查無資料",
-    "holdings": [],
-    "performanceData": [
+    "changeStatus": "MoneyDJ 真實數據",
+    "holdings": [
       {
-        "month": "4月",
-        "return": 100.02
+        "stock": "國泰金(2882.TW)",
+        "percent": 10.38,
+        "change": "-"
       },
       {
-        "month": "5月",
-        "return": 100.09
+        "stock": "中信金(2891.TW)",
+        "percent": 9.4,
+        "change": "-"
       },
       {
-        "month": "6月",
-        "return": 100.07
+        "stock": "富邦金(2881.TW)",
+        "percent": 9.0,
+        "change": "-"
       },
       {
-        "month": "7月",
-        "return": 100.06
+        "stock": "聯電(2303.TW)",
+        "percent": 6.45,
+        "change": "-"
       },
       {
-        "month": "8月",
-        "return": 99.62
+        "stock": "聯發科(2454.TW)",
+        "percent": 5.1,
+        "change": "-"
       },
       {
-        "month": "9月",
-        "return": 100.0
+        "stock": "華碩(2357.TW)",
+        "percent": 4.15,
+        "change": "-"
+      },
+      {
+        "stock": "日月光投控(3711.TW)",
+        "percent": 3.19,
+        "change": "-"
+      },
+      {
+        "stock": "京元電子(2449.TW)",
+        "percent": 3.11,
+        "change": "-"
+      },
+      {
+        "stock": "元大金(2885.TW)",
+        "percent": 2.88,
+        "change": "-"
+      },
+      {
+        "stock": "台灣大(3045.TW)",
+        "percent": 2.61,
+        "change": "-"
       }
-    ]
+    ],
+    "performanceData": []
   },
   {
     "id": 102,
@@ -301,39 +475,65 @@
     "index": "臺灣高股息指數",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 0.0,
-    "changeSinceLast": 0.0,
-    "lastDividend": "請見公開說明書",
-    "exDate": "近期",
+    "latestNav": 36.7,
+    "changeSinceLast": 0,
+    "lastDividend": "N/A",
+    "exDate": "N/A",
     "fundManager": "N/A",
-    "changeStatus": "查無資料",
-    "holdings": [],
-    "performanceData": [
+    "changeStatus": "MoneyDJ 真實數據",
+    "holdings": [
       {
-        "month": "4月",
-        "return": 100.16
+        "stock": "中信金(2891.TW)",
+        "percent": 4.61,
+        "change": "-"
       },
       {
-        "month": "5月",
-        "return": 100.29
+        "stock": "廣達(2382.TW)",
+        "percent": 4.32,
+        "change": "-"
       },
       {
-        "month": "6月",
-        "return": 100.13
+        "stock": "聯發科(2454.TW)",
+        "percent": 4.26,
+        "change": "-"
       },
       {
-        "month": "7月",
-        "return": 99.63
+        "stock": "聯電(2303.TW)",
+        "percent": 4.06,
+        "change": "-"
       },
       {
-        "month": "8月",
-        "return": 100.36
+        "stock": "緯創(3231.TW)",
+        "percent": 3.9,
+        "change": "-"
       },
       {
-        "month": "9月",
-        "return": 100.0
+        "stock": "華碩(2357.TW)",
+        "percent": 3.76,
+        "change": "-"
+      },
+      {
+        "stock": "長榮(2603.TW)",
+        "percent": 3.5,
+        "change": "-"
+      },
+      {
+        "stock": "日月光投控(3711.TW)",
+        "percent": 3.34,
+        "change": "-"
+      },
+      {
+        "stock": "光寶科(2301.TW)",
+        "percent": 3.22,
+        "change": "-"
+      },
+      {
+        "stock": "華南金(2880.TW)",
+        "percent": 3.21,
+        "change": "-"
       }
-    ]
+    ],
+    "performanceData": []
   },
   {
     "id": 103,
@@ -343,39 +543,65 @@
     "index": "科技優息指數",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 0.0,
-    "changeSinceLast": 0.0,
-    "lastDividend": "請見公開說明書",
-    "exDate": "近期",
+    "latestNav": 18.14,
+    "changeSinceLast": 0,
+    "lastDividend": "N/A",
+    "exDate": "N/A",
     "fundManager": "N/A",
-    "changeStatus": "查無資料",
-    "holdings": [],
-    "performanceData": [
+    "changeStatus": "MoneyDJ 真實數據",
+    "holdings": [
       {
-        "month": "4月",
-        "return": 100.45
+        "stock": "聯電(2303.TW)",
+        "percent": 7.39,
+        "change": "-"
       },
       {
-        "month": "5月",
-        "return": 100.02
+        "stock": "華碩(2357.TW)",
+        "percent": 6.11,
+        "change": "-"
       },
       {
-        "month": "6月",
-        "return": 99.72
+        "stock": "漢唐(2404.TW)",
+        "percent": 5.08,
+        "change": "-"
       },
       {
-        "month": "7月",
-        "return": 99.71
+        "stock": "光寶科(2301.TW)",
+        "percent": 4.43,
+        "change": "-"
       },
       {
-        "month": "8月",
-        "return": 100.12
+        "stock": "力成(6239.TW)",
+        "percent": 4.2,
+        "change": "-"
       },
       {
-        "month": "9月",
-        "return": 100.0
+        "stock": "仁寶(2324.TW)",
+        "percent": 4.1,
+        "change": "-"
+      },
+      {
+        "stock": "聯詠(3034.TW)",
+        "percent": 4.02,
+        "change": "-"
+      },
+      {
+        "stock": "健鼎(3044.TW)",
+        "percent": 3.9,
+        "change": "-"
+      },
+      {
+        "stock": "聯發科(2454.TW)",
+        "percent": 3.68,
+        "change": "-"
+      },
+      {
+        "stock": "大立光(3008.TW)",
+        "percent": 3.24,
+        "change": "-"
       }
-    ]
+    ],
+    "performanceData": []
   },
   {
     "id": 108,
@@ -385,39 +611,65 @@
     "index": "ICE半導體指數",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 0.0,
-    "changeSinceLast": 0.0,
-    "lastDividend": "請見公開說明書",
-    "exDate": "近期",
+    "latestNav": 20.03,
+    "changeSinceLast": 0,
+    "lastDividend": "N/A",
+    "exDate": "N/A",
     "fundManager": "N/A",
-    "changeStatus": "查無資料",
-    "holdings": [],
-    "performanceData": [
+    "changeStatus": "MoneyDJ 真實數據",
+    "holdings": [
       {
-        "month": "4月",
-        "return": 100.1
+        "stock": "台積電(2330.TW)",
+        "percent": 20.85,
+        "change": "-"
       },
       {
-        "month": "5月",
-        "return": 99.65
+        "stock": "聯發科(2454.TW)",
+        "percent": 20.77,
+        "change": "-"
       },
       {
-        "month": "6月",
-        "return": 99.85
+        "stock": "日月光投控(3711.TW)",
+        "percent": 10.14,
+        "change": "-"
       },
       {
-        "month": "7月",
-        "return": 99.68
+        "stock": "聯電(2303.TW)",
+        "percent": 8.55,
+        "change": "-"
       },
       {
-        "month": "8月",
-        "return": 100.25
+        "stock": "世芯-KY(3661.TW)",
+        "percent": 4.27,
+        "change": "-"
       },
       {
-        "month": "9月",
-        "return": 100.0
+        "stock": "京元電子(2449.TW)",
+        "percent": 4.03,
+        "change": "-"
+      },
+      {
+        "stock": "瑞昱(2379.TW)",
+        "percent": 3.62,
+        "change": "-"
+      },
+      {
+        "stock": "聯詠(3034.TW)",
+        "percent": 3.22,
+        "change": "-"
+      },
+      {
+        "stock": "信驊(5274.TW)",
+        "percent": 2.82,
+        "change": "-"
+      },
+      {
+        "stock": "旺矽(6223.TW)",
+        "percent": 2.59,
+        "change": "-"
       }
-    ]
+    ],
+    "performanceData": []
   },
   {
     "id": 109,
@@ -427,39 +679,65 @@
     "index": "資訊科技指數",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 0.0,
-    "changeSinceLast": 0.0,
-    "lastDividend": "請見公開說明書",
-    "exDate": "近期",
+    "latestNav": 37.97,
+    "changeSinceLast": 0,
+    "lastDividend": "N/A",
+    "exDate": "N/A",
     "fundManager": "N/A",
-    "changeStatus": "查無資料",
-    "holdings": [],
-    "performanceData": [
+    "changeStatus": "MoneyDJ 真實數據",
+    "holdings": [
       {
-        "month": "4月",
-        "return": 100.39
+        "stock": "台積電(2330.TW)",
+        "percent": 70.1,
+        "change": "-"
       },
       {
-        "month": "5月",
-        "return": 99.91
+        "stock": "鴻海(2317.TW)",
+        "percent": 5.21,
+        "change": "-"
       },
       {
-        "month": "6月",
-        "return": 99.94
+        "stock": "聯發科(2454.TW)",
+        "percent": 3.9,
+        "change": "-"
       },
       {
-        "month": "7月",
-        "return": 100.12
+        "stock": "日月光投控(3711.TW)",
+        "percent": 1.52,
+        "change": "-"
       },
       {
-        "month": "8月",
-        "return": 100.26
+        "stock": "廣達(2382.TW)",
+        "percent": 1.33,
+        "change": "-"
       },
       {
-        "month": "9月",
-        "return": 100.0
+        "stock": "聯電(2303.TW)",
+        "percent": 1.06,
+        "change": "-"
+      },
+      {
+        "stock": "奇鋐(3017.TW)",
+        "percent": 0.91,
+        "change": "-"
+      },
+      {
+        "stock": "緯穎(6669.TW)",
+        "percent": 0.86,
+        "change": "-"
+      },
+      {
+        "stock": "台光電(2383.TW)",
+        "percent": 0.86,
+        "change": "-"
+      },
+      {
+        "stock": "緯創(3231.TW)",
+        "percent": 0.84,
+        "change": "-"
       }
-    ]
+    ],
+    "performanceData": []
   },
   {
     "id": 110,
@@ -469,38 +747,64 @@
     "index": "美債20年指數",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 0.0,
-    "changeSinceLast": 0.0,
-    "lastDividend": "請見公開說明書",
-    "exDate": "近期",
+    "latestNav": 27.1078,
+    "changeSinceLast": 0,
+    "lastDividend": "N/A",
+    "exDate": "N/A",
     "fundManager": "N/A",
-    "changeStatus": "查無資料",
-    "holdings": [],
-    "performanceData": [
+    "changeStatus": "MoneyDJ 真實數據",
+    "holdings": [
       {
-        "month": "4月",
-        "return": 99.84
+        "stock": "US TREASURY N/B 4.75% 11/15/2053",
+        "percent": 5.6,
+        "change": "-"
       },
       {
-        "month": "5月",
-        "return": 100.37
+        "stock": "US TREASURY N/B 4.625% 05/15/2054",
+        "percent": 5.6,
+        "change": "-"
       },
       {
-        "month": "6月",
-        "return": 99.91
+        "stock": "US TREASURY N/B 4.5% 11/15/2054",
+        "percent": 5.38,
+        "change": "-"
       },
       {
-        "month": "7月",
-        "return": 100.13
+        "stock": "US TREASURY N/B 4.25% 08/15/2054",
+        "percent": 5.25,
+        "change": "-"
       },
       {
-        "month": "8月",
-        "return": 99.57
+        "stock": "US TREASURY N/B 4.625% 02/15/2055",
+        "percent": 5.18,
+        "change": "-"
       },
       {
-        "month": "9月",
-        "return": 100.0
+        "stock": "US TREASURY N/B 4.25% 02/15/2054",
+        "percent": 4.8,
+        "change": "-"
+      },
+      {
+        "stock": "US TREASURY N/B 4.75% 05/15/2055",
+        "percent": 4.58,
+        "change": "-"
+      },
+      {
+        "stock": "US TREASURY N/B 4.125% 08/15/2053",
+        "percent": 3.66,
+        "change": "-"
+      },
+      {
+        "stock": "US TREASURY N/B 4% 11/15/2052",
+        "percent": 3.34,
+        "change": "-"
+      },
+      {
+        "stock": "US TREASURY N/B 4.75% 08/15/2055",
+        "percent": 3.25,
+        "change": "-"
       }
-    ]
+    ],
+    "performanceData": []
   }
 ]
