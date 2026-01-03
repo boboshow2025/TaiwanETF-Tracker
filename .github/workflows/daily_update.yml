@@ -53,6 +53,7 @@ jobs:
       - name: Install and Deploy
         run: |
           npm install
+          npm install gh-pages
           npm run deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
