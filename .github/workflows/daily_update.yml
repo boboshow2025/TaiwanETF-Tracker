@@ -54,6 +54,6 @@ jobs:
         run: |
           npm install
           npm run build              # 1. 先手動執行打包 (產生 build 資料夾)
-          npx -y gh-pages -d build   # 2. 用 npx 免安裝直接上傳 build 資料夾
+          npx -y gh-pages -d build  # retry  # 2. 用 npx 免安裝直接上傳 build 資料夾
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
