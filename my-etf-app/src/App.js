@@ -390,10 +390,11 @@ const App = () => {
             />
         </div>
 
-        {/* --- 被動式區塊 (已新增切換按鈕) --- */}
+        {/* --- 被動式區塊 (關鍵修改點) --- */}
         <div>
             <div className="flex justify-between items-end mb-2 px-2">
                 <h3 className="text-lg font-semibold text-gray-500 hidden sm:block">被動式 (指數) 排行</h3>
+                {/* 這裡就是被動式的切換按鈕 */}
                 <div className="bg-gray-200 p-1 rounded-lg inline-flex shadow-inner">
                     <button onClick={() => setPassiveTimeRange('year')} className={`px-4 py-1.5 rounded-md text-sm font-bold transition-all ${passiveTimeRange === 'year' ? 'bg-white text-blue-600 shadow-md' : 'text-gray-500'}`}>年績效 (YTD)</button>
                     <button onClick={() => setPassiveTimeRange('week')} className={`px-4 py-1.5 rounded-md text-sm font-bold transition-all ${passiveTimeRange === 'week' ? 'bg-white text-blue-600 shadow-md' : 'text-gray-500'}`}>週績效 (1W)</button>
