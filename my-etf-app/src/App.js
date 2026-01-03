@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { TrendingUp, TrendingDown, Eye, Zap, Shield, RefreshCw, Loader, AlertCircle } from 'lucide-react';
+import { TrendingUp, Eye, Zap, Shield, RefreshCw, Loader, AlertCircle } from 'lucide-react';
 
 // --- 1. 輔助組件: ETF 詳情彈窗 (已修復捲動與顯示) ---
 const ETFDetailModal = ({ etf, onClose }) => {
