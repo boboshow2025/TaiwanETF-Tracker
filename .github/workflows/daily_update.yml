@@ -47,12 +47,12 @@ jobs:
 
       - name: Install and Build
         run: |
-          npm install
-          npm run build
+          cd my-etf-app            # <--- 關鍵！先走進去資料夾
+          npm install              # 安裝 React 需要的套件 (包含 recharts, lucide-react)
+          npm run build            # 這樣才會真的打包到新的程式碼！
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./my-etf-app/build
-          
