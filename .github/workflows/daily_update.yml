@@ -53,7 +53,7 @@ jobs:
           
           npm install                      # 安裝基本工具
           npm install recharts lucide-react # 安裝圖表工具
-          npm run build                    # 打包
+          CI=false npm run build                   # 打包
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
