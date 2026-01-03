@@ -205,7 +205,7 @@ const ETFDetailModal = ({ etf, onClose }) => {
                             <p className={`text-3xl font-black font-mono ${THEME.textPrimary} flex justify-center items-baseline`}>
                                 <span className="text-lg mr-1 text-slate-500">NT$</span>
                                 {etf.latestNav.toFixed(2)}
-                            </button>
+                            </p>
                         </div>
 
                         <div className="space-y-4">
