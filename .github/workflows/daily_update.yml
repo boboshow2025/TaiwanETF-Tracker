@@ -46,13 +46,14 @@ jobs:
           git push
 
       - name: Install and Build
+        working-directory: ./my-etf-app  # <--- 關鍵！直接指定工作目錄，不再用 cd 指令
         run: |
-          echo "=== 機器人眼中的檔案列表 Start ==="
+          echo "目前目錄是："
+          pwd
+          echo "目錄裡的檔案有："
           ls -la
-          echo "=== 機器人眼中的檔案列表 End ==="
           
-          # 嘗試進入資料夾 (如果失敗會繼續印出錯誤，但我們已經有上面的線索了)
-          cd my-etf-app
+          # 開始安裝與打包
           npm install
           npm install recharts lucide-react
           npm run build
