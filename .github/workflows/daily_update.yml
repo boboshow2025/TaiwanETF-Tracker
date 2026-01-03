@@ -46,15 +46,14 @@ jobs:
           git push
 
       - name: Install and Build
-        working-directory: ./my-etf-app    # <--- 關鍵！這行指令會讓機器人直接「瞬移」進去，不再需要 cd
-        run: |
-          echo "確認目前位置..."
-          ls -la                           # 列出檔案檢查 (這次一定會有東西！)
+        working-directory: ./my-etf-app    # 1. 機器人直接瞬移進去
+        run: |                             # 2. 不需要再打 cd 了，直接開始安裝！
+          echo "我現在的位置是："
+          pwd
           
-          echo "開始安裝與打包..."
           npm install                      # 安裝基本工具
           npm install recharts lucide-react # 安裝圖表工具
-          npm run build                    # 產生深色版網頁
+          npm run build                    # 打包
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
