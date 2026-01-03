@@ -53,7 +53,7 @@ jobs:
       - name: Install and Deploy
         run: |
           npm install
-          npm install gh-pages
-          npm run deploy
+          npm run build              # 1. 先手動執行打包 (產生 build 資料夾)
+          npx -y gh-pages -d build   # 2. 用 npx 免安裝直接上傳 build 資料夾
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
