@@ -1,326 +1,476 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { Search, TrendingUp, TrendingDown, Minus, Info, X, Eye } from 'lucide-react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { TrendingUp, Eye, Zap, Shield, RefreshCw, Loader, AlertCircle, Activity, BarChart2 } from 'lucide-react';
 
-// 模擬的 ETF 數據 (包含更多歷史資料以供圖表使用)
-const etfData = [
-  { 
-    id: '0050', 
-    name: '元大台灣50', 
-    price: 135.5, 
-    change: +1.2, 
-    volume: '15,230',
-    description: '追蹤臺灣50指數，涵蓋臺灣市場市值前50大上市公司。',
-    history: [
-      { date: '2023-10', price: 125.0 }, { date: '2023-11', price: 128.5 }, { date: '2023-12', price: 130.2 }, { date: '2024-01', price: 129.5 }, { date: '2024-02', price: 133.0 }, { date: '2024-03', price: 135.5 }
-    ]
-  },
-  { 
-    id: '0056', 
-    name: '元大高股息', 
-    price: 34.2, 
-    change: -0.15, 
-    volume: '28,450',
-    description: '從臺灣50指數與臺灣中型100指數中，挑選未來一年預測現金股利殖利率最高的30檔股票。',
-    history: [
-      { date: '2023-10', price: 32.0 }, { date: '2023-11', price: 32.8 }, { date: '2023-12', price: 33.5 }, { date: '2024-01', price: 33.1 }, { date: '2024-02', price: 33.8 }, { date: '2024-03', price: 34.2 }
-    ]
-  },
-  { 
-    id: '00878', 
-    name: '國泰永續高股息', 
-    price: 20.8, 
-    change: 0, 
-    volume: '45,120',
-    description: '追蹤MSCI臺灣ESG永續高股息精選30指數，結合ESG與高股息特性。',
-    history: [
-      { date: '2023-10', price: 19.5 }, { date: '2023-11', price: 19.8 }, { date: '2023-12', price: 20.2 }, { date: '2024-01', price: 20.0 }, { date: '2024-02', price: 20.5 }, { date: '2024-03', price: 20.8 }
-    ]
-  },
-  { 
-    id: '00929', 
-    name: '復華台灣科技優息', 
-    price: 18.5, 
-    change: +0.3, 
-    volume: '62,300',
-    description: '聚焦臺灣科技產業，並納入收益平準金機制，追求穩定配息。',
-    history: [
-      { date: '2023-10', price: 17.0 }, { date: '2023-11', price: 17.5 }, { date: '2023-12', price: 18.1 }, { date: '2024-01', price: 17.8 }, { date: '2024-02', price: 18.2 }, { date: '2024-03', price: 18.5 }
-    ]
-  },
-  { 
-    id: '00919', 
-    name: '群益台灣精選高息', 
-    price: 22.1, 
-    change: +0.25, 
-    volume: '38,900',
-    description: '精選臺灣上市上櫃股票中，兼具高股息與獲利能力的個股。',
-    history: [
-      { date: '2023-10', price: 20.0 }, { date: '2023-11', price: 20.8 }, { date: '2023-12', price: 21.5 }, { date: '2024-01', price: 21.2 }, { date: '2024-02', price: 21.8 }, { date: '2024-03', price: 22.1 }
-    ]
-  },
-];
+// --- 自定義 UI 組件：科技感卡片 ---
+const TechCard = ({ children, className = "" }) => (
+  <div className={`bg-slate-900/80 backdrop-blur-md border border-slate-700/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] rounded-xl ${className}`}>
+    {children}
+  </div>
+);
 
-// 自定義的圖表 Tooltip 組件
-const CustomTooltip = ({ active, payload, label }) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="bg-gray-800 border border-gray-700 p-3 rounded shadow-lg">
-        <p className="text-gray-300 mb-1">{`日期: ${label}`}</p>
-        <p className="text-blue-400 font-bold">{`價格: ${payload[0].value} 元`}</p>
-      </div>
-    );
-  }
-  return null;
+// --- 自定義 UI 組件：霓虹標籤 ---
+const NeonBadge = ({ type, text }) => {
+  const styles = type === 'passive' 
+    ? 'bg-cyan-500/10 text-cyan-400 border-cyan-500/50 shadow-[0_0_10px_rgba(6,182,212,0.2)]' 
+    : 'bg-rose-500/10 text-rose-400 border-rose-500/50 shadow-[0_0_10px_rgba(244,63,94,0.2)]';
+  
+  return (
+    <span className={`px-3 py-1 rounded-full text-xs font-mono font-bold border ${styles}`}>
+      {text}
+    </span>
+  );
 };
 
-function App() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filteredData, setFilteredData] = useState(etfData);
-  const [selectedEtf, setSelectedEtf] = useState(null); // 用於控制彈出視窗顯示哪個 ETF
-  const [animateCards, setAnimateCards] = useState(false);
-
-  // 處理搜尋功能
+// --- 1. 輔助組件: ETF 詳情彈窗 ---
+const ETFDetailModal = ({ etf, onClose }) => {
   useEffect(() => {
-    const results = etfData.filter(etf =>
-      etf.name.includes(searchTerm) || etf.id.includes(searchTerm)
-    );
-    setFilteredData(results);
-  }, [searchTerm]);
+    if (etf) document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [etf]);
 
-  // 處理卡片動畫
-  useEffect(() => {
-    setAnimateCards(true);
-    const timer = setTimeout(() => setAnimateCards(false), 500);
-    return () => clearTimeout(timer);
-  }, [searchTerm]);
-
-  // 處理漲跌顏色和圖示
-  const getTrendDetails = (change) => {
-    if (change > 0) return { color: 'text-red-400', icon: <TrendingUp size={16} />, bgColor: 'bg-red-400/10' };
-    if (change < 0) return { color: 'text-green-400', icon: <TrendingDown size={16} />, bgColor: 'bg-green-400/10' };
-    return { color: 'text-gray-400', icon: <Minus size={16} />, bgColor: 'bg-gray-400/10' };
-  };
-
-  // 處理開啟彈出視窗
-  const handleOpenModal = (etf) => {
-    setSelectedEtf(etf);
-    // 防止背景滾動
-    document.body.style.overflow = 'hidden';
-  };
-
-  // 處理關閉彈出視窗
-  const handleCloseModal = () => {
-    setSelectedEtf(null);
-    // 恢復背景滾動
-    document.body.style.overflow = 'unset';
-  };
-
-  // 計算圖表所需的最小值和最大值，讓圖表看起來更生動
-  const chartDomain = useMemo(() => {
-    if (!selectedEtf) return [0, 0];
-    const prices = selectedEtf.history.map(h => h.price);
-    const min = Math.min(...prices);
-    const max = Math.max(...prices);
-    // 設定上下邊界緩衝，讓線條不要貼底或貼頂
-    return [min * 0.98, max * 1.02];
-  }, [selectedEtf]);
-
+  if (!etf) return null;
+  const isPassive = etf.type === 'passive';
 
   return (
-    // 修改 1: 科技感底圖
-    // 我們移除了 bg-gray-900，改用 style 添加一個深色的放射狀漸層背景
-    <div 
-      className="min-h-screen text-white p-4 sm:p-8 font-sans transition-all duration-300 ease-in-out"
-      style={{
-        background: 'radial-gradient(circle at center top, #1e293b 0%, #0f172a 60%, #020617 100%)'
-      }}
-    >
-      <div className="max-w-4xl mx-auto">
-        {/* Header 標題區 */}
-        <header className="mb-8 text-center sm:text-left">
-          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-300">
-            台灣 ETF 市場追蹤
-          </h1>
-          <p className="text-gray-400 text-sm sm:text-base">
-            即時掌握熱門 ETF 行情與趨勢分析
-          </p>
-        </header>
-
-        {/* 搜尋框 */}
-        <div className="relative mb-8 group">
-          <input
-            type="text"
-            placeholder="輸入代號或名稱搜尋 ETF..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full p-4 pl-12 rounded-xl bg-gray-800/50 border border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 transition-all duration-300 outline-none text-gray-100 placeholder-gray-500 backdrop-blur-sm group-hover:bg-gray-800/70"
-          />
-          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 group-hover:text-blue-400 transition-colors duration-300" size={20} />
-        </div>
-
-        {/* ETF 卡片列表 */}
-        <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredData.map((etf, index) => {
-            const trend = getTrendDetails(etf.change);
-            return (
-              <div 
-                key={etf.id} 
-                className={`bg-gray-800/40 border border-gray-700/50 rounded-2xl p-5 sm:p-6 hover:shadow-lg hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 backdrop-blur-md relative overflow-hidden group ${animateCards ? 'animate-pulse-subtle' : ''}`}
-                style={{ animationDelay: `${index * 75}ms` }}
-              >
-                {/* 卡片背景裝飾光暈 */}
-                <div className="absolute -top-10 -right-10 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl transition-all duration-500 group-hover:bg-blue-500/20 group-hover:scale-150"></div>
-
-                <div className="flex justify-between items-start mb-4 relative z-10">
-                  <div>
-                    <h2 className="text-xl font-bold mb-1 flex items-center">
-                      <span className="bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded text-sm mr-2 font-mono">{etf.id}</span>
-                      {etf.name}
-                    </h2>
-                  </div>
-                  {/* 分析按鈕 */}
-                  <button 
-                    onClick={() => handleOpenModal(etf)}
-                    className="text-gray-400 hover:text-blue-400 p-2 rounded-full hover:bg-blue-400/10 transition-all duration-300 group/btn"
-                    title="查看詳情與趨勢"
-                  >
-                    {/* 修改 2: 白色分析眼睛 */}
-                    {/* 在 Eye 組件上添加 className="text-white" */}
-                    <Eye size={20} className="text-white transition-transform duration-300 group-hover/btn:scale-110" />
-                  </button>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
+        {/* 背景遮罩：深色模糊 */}
+        <div className="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity"></div>
+        
+        {/* 彈窗本體 */}
+        <div 
+            className="bg-slate-900 border border-slate-700 w-full max-w-4xl max-h-[90vh] overflow-y-auto relative z-10 rounded-2xl shadow-2xl flex flex-col text-slate-200"
+            onClick={(e) => e.stopPropagation()}
+        >
+            {/* 標題區 */}
+            <div className="p-6 border-b border-slate-700 sticky top-0 bg-slate-900/95 backdrop-blur z-20 flex justify-between items-start">
+                <div>
+                    <div className="flex items-baseline gap-3">
+                        <h2 className="text-2xl font-bold text-white tracking-tight">
+                            {etf.name}
+                        </h2>
+                        <span className="text-slate-400 font-mono text-lg">({etf.ticker})</span>
+                    </div>
+                    <div className="mt-3 flex items-center gap-3">
+                        <NeonBadge type={etf.type} text={isPassive ? '被動式 (指數追蹤)' : '主動式 (經理人操作)'} />
+                        {etf.fundManager && (
+                            <span className="text-xs text-slate-400 bg-slate-800 px-2 py-1 rounded border border-slate-700">
+                                {etf.fundManager}
+                            </span>
+                        )}
+                    </div>
                 </div>
-                
-                <div className="flex items-end justify-between relative z-10">
-                  <div>
-                    <p className="text-gray-400 text-xs mb-1">成交價</p>
-                    <p className={`text-3xl font-extrabold tracking-wider ${trend.color}`}>
-                      {etf.price.toFixed(2)}
-                    </p>
-                  </div>
-                  <div className={`flex flex-col items-end ${trend.color}`}>
-                     <div className={`flex items-center px-2 py-1 rounded-lg ${trend.bgColor} mb-1`}>
-                        {trend.icon}
-                        <span className="ml-1 font-bold">{Math.abs(etf.change).toFixed(2)}</span>
-                     </div>
-                    <p className="text-gray-400 text-xs">漲跌幅</p>
-                  </div>
-                </div>
-                
-                <div className="mt-4 pt-4 border-t border-gray-700/50 flex justify-between text-sm text-gray-500 relative z-10">
-                  <span>成交量: {etf.volume} 張</span>
-                  <span className="flex items-center text-blue-400/70"><Info size={14} className="mr-1"/> 即時數據</span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+                <button 
+                    onClick={onClose}
+                    className="text-slate-400 hover:text-white hover:bg-slate-800 transition p-2 rounded-full"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+            </div>
 
-        {/* 無搜尋結果提示 */}
-        {filteredData.length === 0 && (
-          <div className="text-center text-gray-500 mt-12 p-8 bg-gray-800/30 rounded-2xl border border-gray-700/30 backdrop-blur-sm">
-            <Info size={48} className="mx-auto mb-4 opacity-50" />
-            <p className="text-xl">沒有找到符合 "{searchTerm}" 的 ETF</p>
-            <p className="text-sm mt-2">請嘗試其他關鍵字</p>
-          </div>
-        )}
-      </div>
+            {/* 內容區 */}
+            <div className="p-6 grid md:grid-cols-2 gap-6">
+                {/* 走勢圖 */}
+                <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50">
+                    <h3 className="text-sm font-semibold text-cyan-400 mb-4 flex items-center uppercase tracking-wider">
+                        <TrendingUp className="w-4 h-4 mr-2"/> 績效走勢模擬 (YTD)
+                    </h3>
+                    <div className="h-64 w-full">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <LineChart data={etf.performanceData}>
+                                <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
+                                <XAxis dataKey="month" stroke="#94a3b8" tick={{fontSize: 12}} tickLine={false} axisLine={false} />
+                                <YAxis domain={['auto', 'auto']} stroke="#94a3b8" tick={{fontSize: 12}} tickLine={false} axisLine={false} />
+                                <Tooltip 
+                                    contentStyle={{ backgroundColor: '#1e293b', borderColor: '#475569', color: '#f8fafc' }}
+                                    itemStyle={{ color: '#22d3ee' }}
+                                    formatter={(value) => [`${value.toFixed(2)}`, '淨值指數']} 
+                                    labelFormatter={(label) => `月份: ${label}`}
+                                />
+                                <Line 
+                                    type="monotone" 
+                                    dataKey="return" 
+                                    stroke="#22d3ee" 
+                                    strokeWidth={3} 
+                                    dot={{ fill: '#0f172a', stroke: '#22d3ee', strokeWidth: 2, r: 4 }} 
+                                    activeDot={{ r: 6, fill: '#22d3ee' }} 
+                                />
+                            </LineChart>
+                        </ResponsiveContainer>
+                    </div>
+                </div>
 
-      {/* 彈出視窗 (Modal) */}
-      {selectedEtf && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50 transition-opacity duration-300 ease-in-out">
-          <div 
-            className="bg-zinc-800 rounded-2xl w-full max-w-2xl shadow-2xl border border-zinc-700 overflow-hidden transform transition-all duration-300 ease-in-out scale-100 opacity-100"
-            onClick={(e) => e.stopPropagation()} // 防止點擊視窗內容關閉
-          >
-            {/* 修改 3: 岩石灰視窗 */}
-            {/* 上面的 div 將 bg-gray-800 改成了 bg-zinc-800，邊框也改為 border-zinc-700 */}
-            
-            {/* Modal Header */}
-            <div className="flex justify-between items-center p-6 border-b border-zinc-700 bg-zinc-800/50">
-              <div>
-                <h3 className="text-2xl font-bold flex items-center">
-                  <span className="bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded text-sm mr-3 font-mono">{selectedEtf.id}</span>
-                  {selectedEtf.name}
+                {/* 關鍵數據 */}
+                <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 flex flex-col justify-center">
+                    <h3 className="text-sm font-semibold text-indigo-400 mb-4 flex items-center uppercase tracking-wider">
+                        <Activity className="w-4 h-4 mr-2"/> 關鍵指標
+                    </h3>
+                    <div className="space-y-4">
+                        <div className="flex justify-between items-center p-3 bg-slate-900/50 rounded-lg border border-slate-700/30">
+                            <span className="text-slate-400 text-sm">最新淨值 (NAV)</span>
+                            <span className="text-2xl font-mono font-bold text-white">
+                                NT$ <span className="text-cyan-400">{etf.latestNav.toFixed(2)}</span>
+                            </span>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-3">
+                            <div className="p-3 bg-slate-900/50 rounded-lg border border-slate-700/30">
+                                <p className="text-slate-500 text-xs mb-1">今年以來 (YTD)</p>
+                                <p className={`text-lg font-mono font-bold ${etf.ytdReturn >= 0 ? 'text-red-400' : 'text-emerald-400'}`}>
+                                    {etf.ytdReturn >= 0 ? '+' : ''}{etf.ytdReturn.toFixed(2)}%
+                                </p>
+                            </div>
+                            <div className="p-3 bg-slate-900/50 rounded-lg border border-slate-700/30">
+                                <p className="text-slate-500 text-xs mb-1">近一週 (Weekly)</p>
+                                <p className={`text-lg font-mono font-bold ${etf.weeklyReturn >= 0 ? 'text-red-400' : 'text-emerald-400'}`}>
+                                    {etf.weeklyReturn !== undefined ? (etf.weeklyReturn >= 0 ? '+' : '') + etf.weeklyReturn.toFixed(2) : '0.00'}%
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="space-y-2 text-sm pt-2">
+                             <div className="flex justify-between border-b border-slate-700 pb-2">
+                                <span className="text-slate-500">成立日期</span>
+                                <span className="text-slate-300 font-mono">{etf.foundedDate || "N/A"}</span>
+                            </div>
+                            <div className="flex justify-between border-b border-slate-700 py-2">
+                                <span className="text-slate-500">配息頻率</span>
+                                <span className="text-slate-300">{etf.dividendFreq || "N/A"}</span>
+                            </div>
+                            <div className="flex justify-between pt-2">
+                                <span className="text-slate-500">保管銀行</span>
+                                <span className="text-slate-300">{etf.custodianBank || "N/A"}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* 持股明細 */}
+            <div className="p-6 pt-0">
+                <h3 className="text-lg font-bold text-white mb-4 flex items-center">
+                    <BarChart2 className="w-5 h-5 mr-2 text-slate-400"/>
+                    {isPassive ? '指數成分股' : '經理人配置'}
                 </h3>
-              </div>
-              <button 
-                onClick={handleCloseModal}
-                className="text-gray-400 hover:text-white hover:bg-zinc-700/50 p-2 rounded-full transition-colors duration-200"
-              >
-                <X size={24} />
-              </button>
+                
+                <div className="overflow-hidden rounded-lg border border-slate-700">
+                    <table className="min-w-full divide-y divide-slate-700">
+                        <thead className="bg-slate-800">
+                            <tr>
+                                <th className="px-6 py-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">股票名稱</th>
+                                <th className="px-6 py-3 text-right text-xs font-semibold text-slate-400 uppercase tracking-wider">持股比例</th>
+                                <th className="px-6 py-3 text-right text-xs font-semibold text-slate-400 uppercase tracking-wider">模擬變動</th>
+                            </tr>
+                        </thead>
+                        <tbody className="bg-slate-900 divide-y divide-slate-800">
+                          {etf.holdings && etf.holdings.length > 0 ? (
+                            etf.holdings.map((holding, index) => (
+                              <tr key={index} className="hover:bg-slate-800/50 transition duration-150">
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-200">
+                                  {holding.stock}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-400 text-right font-mono">
+                                  {holding.percent}%
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-right font-mono">
+                                  <span className={`${
+                                    holding.change.includes("🔺") || holding.change.includes("新")
+                                      ? "text-red-400"
+                                      : holding.change.includes("🔻")
+                                      ? "text-emerald-400"
+                                      : "text-slate-500"
+                                  }`}>
+                                    {holding.change}
+                                  </span>
+                                </td>
+                              </tr>
+                            ))
+                          ) : (
+                            <tr>
+                              <td colSpan="3" className="px-6 py-8 text-center text-slate-500 italic">
+                                暫無持股資料
+                              </td>
+                            </tr>
+                          )}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            
-            {/* Modal Content */}
-            <div className="p-6">
-              {/* 簡介 */}
-              <div className="mb-8">
-                <h4 className="text-lg font-semibold mb-3 text-blue-300">ETF 簡介</h4>
-                <p className="text-gray-300 leading-relaxed bg-zinc-700/30 p-4 rounded-xl border border-zinc-700/50">
-                  {selectedEtf.description}
-                </p>
-              </div>
-
-              {/* 價格趨勢圖表 */}
-              <div>
-                 <h4 className="text-lg font-semibold mb-4 text-blue-300 flex items-center justify-between">
-                  <span>近半年價格趨勢</span>
-                  {(() => {
-                      const trend = getTrendDetails(selectedEtf.change);
-                      return (
-                        <span className={`text-xl font-bold flex items-center ${trend.color}`}>
-                          {trend.icon} {selectedEtf.price}
-                        </span>
-                      );
-                  })()}
-                </h4>
-                <div className="w-full h-[250px] sm:h-[300px] bg-zinc-900/50 rounded-xl p-2 border border-zinc-700/50">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={selectedEtf.history} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-                      <defs>
-                       {/* 這裡是你截圖斷掉的地方，請從這裡開始覆蓋/補上 */}
-                    <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.4}/>
-                      <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.05}/>
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#ffffff10" vertical={false} />
-                  <XAxis 
-                    dataKey="date" 
-                    stroke="#9ca3af" 
-                    tick={{fontSize: 12}}
-                    tickMargin={10}
-                    axisLine={false}
-                  />
-                  <YAxis 
-                    stroke="#9ca3af" 
-                    tick={{fontSize: 12}}
-                    tickMargin={10}
-                    axisLine={false}
-                    domain={chartDomain}
-                    tickFormatter={(value) => `${value.toFixed(0)}`}
-                  />
-                  <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#ffffff30', strokeWidth: 1, strokeDasharray: '5 5' }} />
-                  <Line 
-                    type="monotone" 
-                    dataKey="price" 
-                    stroke="#60a5fa" 
-                    strokeWidth={3}
-                    dot={{ r: 4, fill: '#1e3a8a', stroke: '#60a5fa', strokeWidth: 2 }}
-                    activeDot={{ r: 6, fill: '#60a5fa', stroke: 'white', strokeWidth: 2 }}
-                    fill="url(#colorPrice)"
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  )}
-</div>
   );
-}
+};
 
-export default App; 
+// --- 2. 輔助組件: 列表表格 ---
+const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeRange = 'year' }) => {
+    const metricKey = timeRange === 'week' ? 'weeklyReturn' : 'ytdReturn';
+    const metricLabel = timeRange === 'week' ? '近一週 (1W)' : '今年以來 (YTD)';
+    const highlightThreshold = timeRange === 'week' ? 3 : 15;
+
+    const sortedData = useMemo(() => {
+        let items = [...data].sort((a, b) => (b[metricKey] || 0) - (a[metricKey] || 0));
+        if (type === 'active') return items.slice(0, 5);
+        if (type === 'passive') return items.slice(0, 10);
+        return items;
+    }, [data, type, metricKey]);
+
+    const IconComponent = type === 'active' ? Zap : Shield;
+    // 調整標題顏色：主動式用霓虹紅/橙，被動式用霓虹青/藍
+    const accentColorClass = type === 'active' ? 'text-rose-400' : 'text-cyan-400';
+    const gradientHeader = type === 'active' 
+        ? 'bg-gradient-to-r from-rose-900/80 to-slate-900' 
+        : 'bg-gradient-to-r from-cyan-900/80 to-slate-900';
+    
+    let content;
+    if (isLoading) {
+        content = (
+            <div className="flex flex-col items-center justify-center p-12 text-cyan-500">
+                <Loader className="w-10 h-10 animate-spin mb-4" />
+                <p className="text-lg font-medium tracking-wider animate-pulse">SYSTEM LOADING...</p>
+            </div>
+        );
+    } else if (isError) {
+        content = (
+             <div className="flex flex-col items-center justify-center p-8 text-rose-500 border border-rose-900/50 bg-rose-950/20 rounded-lg">
+                <AlertCircle className="w-10 h-10 mb-2" />
+                <p className="text-lg font-bold">DATA CONNECTION FAILED</p>
+                <p className="text-sm opacity-70">請檢查 etf_data.json 源文件</p>
+            </div>
+        );
+    } else if (sortedData.length === 0) {
+        content = (
+            <div className="p-8 text-center text-slate-500 border border-slate-800 rounded-lg border-dashed">
+                <p>No Data Available</p>
+            </div>
+        );
+    } else {
+        content = (
+            <div className="overflow-x-auto">
+                <table className="min-w-full">
+                    <thead>
+                        <tr className="border-b border-slate-700/50 text-slate-400 text-xs uppercase tracking-widest">
+                            <th className="px-6 py-4 text-left font-semibold">排名 / 名稱</th>
+                            <th className="px-6 py-4 text-right font-semibold">{metricLabel}</th>
+                            <th className="px-6 py-4 text-right font-semibold hidden sm:table-cell">最新淨值</th>
+                            <th className="px-6 py-4 text-center font-semibold">分析</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-800/50">
+                        {sortedData.map((etf, index) => (
+                            <tr key={etf.id || etf.ticker} className="group hover:bg-slate-800/40 transition duration-200">
+                                <td className="px-6 py-4 align-top"> 
+                                    <div className="flex items-start">
+                                        {/* 排名徽章 */}
+                                        <div className={`
+                                            flex items-center justify-center w-8 h-8 rounded bg-slate-800 font-mono font-bold text-lg mr-4 border border-slate-700
+                                            ${index < 3 ? 'text-yellow-400 border-yellow-500/30 shadow-[0_0_10px_rgba(234,179,8,0.1)]' : 'text-slate-500'}
+                                        `}>
+                                            {index + 1}
+                                        </div>
+                                        <div>
+                                            <div className="text-sm font-bold text-slate-200 group-hover:text-white transition-colors">
+                                                {etf.name}
+                                            </div>
+                                            <div className="text-xs text-slate-500 font-mono mt-1 flex items-center">
+                                                <span className="bg-slate-800 px-1.5 py-0.5 rounded text-cyan-300/70 border border-slate-700/50">
+                                                    {etf.ticker}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                
+                                <td className="px-6 py-4 whitespace-nowrap text-right">
+                                    <span className={`font-mono text-base font-bold ${
+                                        (etf[metricKey] || 0) >= highlightThreshold 
+                                            ? 'text-red-400 drop-shadow-[0_0_8px_rgba(248,113,113,0.4)]' // 高亮紅 (台股紅漲)
+                                            : (etf[metricKey] || 0) >= 0 
+                                                ? 'text-red-400' 
+                                                : 'text-emerald-400' // 綠跌
+                                    }`}>
+                                        {etf[metricKey] >= 0 ? '+' : ''}{(etf[metricKey] !== undefined ? etf[metricKey] : 0).toFixed(2)}%
+                                    </span>
+                                </td>
+                                
+                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-slate-400 font-mono hidden sm:table-cell">
+                                    {etf.latestNav ? etf.latestNav.toFixed(2) : 'N/A'}
+                                </td>
+                                
+                                <td className="px-6 py-4 whitespace-nowrap text-center">
+                                    <button 
+                                        onClick={() => openDetail(etf)}
+                                        className="p-2 text-cyan-400 hover:text-cyan-300 hover:bg-cyan-900/30 rounded-lg transition-all transform hover:scale-110"
+                                    >
+                                        <Eye className="w-5 h-5" />
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        );
+    }
+
+    return (
+        <TechCard className="mb-10 overflow-hidden">
+            <div className={`p-4 sm:p-6 border-b border-slate-700/50 flex items-center ${gradientHeader}`}>
+                <div className={`p-2 rounded-lg bg-slate-900/50 mr-4 border border-slate-700 ${accentColorClass}`}>
+                    <IconComponent className="w-6 h-6" />
+                </div>
+                <h2 className="text-xl font-bold text-white tracking-wide">
+                    {title}
+                </h2>
+            </div>
+            {content}
+        </TechCard>
+    );
+};
+
+// --- 3. 主應用程式 ---
+const App = () => {
+  const [selectedEtf, setSelectedEtf] = useState(null);
+  const [activeETFs, setActiveETFs] = useState([]);
+  const [passiveETFs, setPassiveETFs] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  
+  const [activeTimeRange, setActiveTimeRange] = useState('year'); 
+  const [passiveTimeRange, setPassiveTimeRange] = useState('year'); 
+
+  const fetchRealData = useCallback(async () => {
+    setIsLoading(true);
+    setIsError(false);
+    
+    try {
+      const response = await fetch(`${process.env.PUBLIC_URL}/etf_data.json?t=${new Date().getTime()}`);
+      
+      if (!response.ok) {
+        throw new Error('無法讀取數據檔案');
+      }
+
+      const data = await response.json();
+      const activeData = data.filter(item => item.type === 'active');
+      const passiveData = data.filter(item => item.type === 'passive');
+
+      setActiveETFs(activeData);
+      setPassiveETFs(passiveData);
+
+    } catch (error) {
+      console.error("Fetch Error:", error);
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []); 
+
+  useEffect(() => {
+    fetchRealData();
+  }, [fetchRealData]); 
+
+  // 切換按鈕的樣式生成器
+  const getToggleClass = (isActive) => `
+    px-4 py-1.5 rounded-md text-xs font-bold font-mono transition-all border
+    ${isActive 
+        ? 'bg-slate-700 text-white border-slate-500 shadow-inner' 
+        : 'text-slate-500 border-transparent hover:text-slate-300'}
+  `;
+
+  return (
+    <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-cyan-500 selection:text-white pb-20">
+      {/* 裝飾性背景光暈 */}
+      <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-cyan-900/20 rounded-full blur-[120px]"></div>
+          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-900/20 rounded-full blur-[120px]"></div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-8">
+        {/* Header 區域 */}
+        <header className="mb-10 flex flex-col items-center text-center">
+            <div className="inline-block mb-4 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-900/10 text-cyan-400 text-xs font-mono tracking-widest uppercase">
+                Taiwan ETF Monitor v2.0
+            </div>
+            <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-slate-400 mb-4 tracking-tight drop-shadow-lg">
+                ETF 績效觀測站
+            </h1>
+            <p className="text-slate-400 max-w-2xl text-sm md:text-base leading-relaxed mb-8">
+                即時追蹤台灣市場主動與被動式 ETF 表現。數據來源為自動化串接 MoneyDJ，
+                <span className="text-cyan-400"> 每日 AI 運算更新</span>。
+            </p>
+
+            <button
+                onClick={fetchRealData}
+                disabled={isLoading}
+                className={`
+                    group relative overflow-hidden rounded-full px-8 py-3 font-bold transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)]
+                    ${isLoading ? 'bg-slate-800 text-slate-500 cursor-not-allowed' : 'bg-cyan-600 text-white hover:bg-cyan-500 hover:shadow-[0_0_30px_rgba(6,182,212,0.6)]'}
+                `}
+            >
+                <div className="relative z-10 flex items-center">
+                    {isLoading ? <Loader className="w-5 h-5 mr-2 animate-spin" /> : <RefreshCw className="w-5 h-5 mr-2 group-hover:rotate-180 transition-transform duration-500" />}
+                    <span>{isLoading ? 'SYNCING DATA...' : 'REFRESH DATA'}</span>
+                </div>
+            </button>
+        </header>
+        
+        <div className="grid lg:grid-cols-2 gap-8">
+            {/* --- 主動式區塊 --- */}
+            <div>
+                <div className="flex justify-between items-end mb-4 px-1">
+                    <h3 className="text-sm font-bold text-rose-400 uppercase tracking-widest flex items-center">
+                        <span className="w-2 h-2 bg-rose-500 rounded-full mr-2 animate-pulse"></span>
+                        Active Funds
+                    </h3>
+                    <div className="bg-slate-900 p-1 rounded-lg inline-flex border border-slate-800">
+                        <button onClick={() => setActiveTimeRange('year')} className={getToggleClass(activeTimeRange === 'year')}>YTD</button>
+                        <button onClick={() => setActiveTimeRange('week')} className={getToggleClass(activeTimeRange === 'week')}>1W</button>
+                    </div>
+                </div>
+
+                <ETFTableList 
+                    title={`主動式精選 (${activeTimeRange === 'year' ? 'YTD' : '1 Week'})`}
+                    data={activeETFs} 
+                    type="active" 
+                    timeRange={activeTimeRange}
+                    openDetail={setSelectedEtf} 
+                    isLoading={isLoading} 
+                    isError={isError}
+                />
+            </div>
+
+            {/* --- 被動式區塊 --- */}
+            <div>
+                <div className="flex justify-between items-end mb-4 px-1">
+                    <h3 className="text-sm font-bold text-cyan-400 uppercase tracking-widest flex items-center">
+                        <span className="w-2 h-2 bg-cyan-500 rounded-full mr-2 animate-pulse"></span>
+                        Passive Indices
+                    </h3>
+                    <div className="bg-slate-900 p-1 rounded-lg inline-flex border border-slate-800">
+                        <button onClick={() => setPassiveTimeRange('year')} className={getToggleClass(passiveTimeRange === 'year')}>YTD</button>
+                        <button onClick={() => setPassiveTimeRange('week')} className={getToggleClass(passiveTimeRange === 'week')}>1W</button>
+                    </div>
+                </div>
+
+                <ETFTableList 
+                    title={`指數追蹤榜 (${passiveTimeRange === 'year' ? 'YTD' : '1 Week'})`}
+                    data={passiveETFs} 
+                    type="passive" 
+                    timeRange={passiveTimeRange} 
+                    openDetail={setSelectedEtf} 
+                    isLoading={isLoading} 
+                    isError={isError}
+                />
+            </div>
+        </div>
+        
+        <footer className="text-center text-slate-600 text-xs mt-12 font-mono">
+            SYSTEM STATUS: ONLINE • DATA PROVIDER: MONEYDJ • TW STOCK MARKET
+        </footer>
+      </div>
+      
+      <ETFDetailModal etf={selectedEtf} onClose={() => setSelectedEtf(null)} />
+    </div>
+  );
+};
+
+export default App;
