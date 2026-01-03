@@ -45,15 +45,13 @@ jobs:
           git pull --rebase
           git push
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Install and Deploy
+      - name: Install and Build
         run: |
           npm install
-          npm run build              # 1. 先手動執行打包 (產生 build 資料夾)
-          npx -y gh-pages -d build  # retry  # 2. 用 npx 免安裝直接上傳 build 資料夾
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
