@@ -47,10 +47,15 @@ jobs:
 
       - name: Install and Build
         run: |
-          cd my-etf-app                      # 1. 關鍵！先走進去內層資料夾
-          npm install                        # 2. 安裝基本工具
-          npm install recharts lucide-react  # 3. 強制安裝新介面需要的圖表工具
-          npm run build                      # 4. 在這裡打包，才會產生深色版網頁！
+          echo "=== 機器人眼中的檔案列表 Start ==="
+          ls -la
+          echo "=== 機器人眼中的檔案列表 End ==="
+          
+          # 嘗試進入資料夾 (如果失敗會繼續印出錯誤，但我們已經有上面的線索了)
+          cd my-etf-app
+          npm install
+          npm install recharts lucide-react
+          npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
