@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/TaiwanETF-Tracker/static/css/main.57c216b2.css",
-    "main.js": "/TaiwanETF-Tracker/static/js/main.2ccb2189.js",
+    "main.css": "/TaiwanETF-Tracker/static/css/main.9487a34c.css",
+    "main.js": "/TaiwanETF-Tracker/static/js/main.3c679074.js",
     "static/js/453.2700276e.chunk.js": "/TaiwanETF-Tracker/static/js/453.2700276e.chunk.js",
     "index.html": "/TaiwanETF-Tracker/index.html",
-    "main.57c216b2.css.map": "/TaiwanETF-Tracker/static/css/main.57c216b2.css.map",
-    "main.2ccb2189.js.map": "/TaiwanETF-Tracker/static/js/main.2ccb2189.js.map",
+    "main.9487a34c.css.map": "/TaiwanETF-Tracker/static/css/main.9487a34c.css.map",
+    "main.3c679074.js.map": "/TaiwanETF-Tracker/static/js/main.3c679074.js.map",
     "453.2700276e.chunk.js.map": "/TaiwanETF-Tracker/static/js/453.2700276e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.57c216b2.css",
-    "static/js/main.2ccb2189.js"
+    "static/css/main.9487a34c.css",
+    "static/js/main.3c679074.js"
   ]
 }
