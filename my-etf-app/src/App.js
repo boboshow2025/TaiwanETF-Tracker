@@ -2,17 +2,16 @@ import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { TrendingUp, Eye, Zap, Shield, RefreshCw, Loader, AlertCircle, Activity, BarChart2 } from 'lucide-react';
 
-// --- 自定義 UI 組件：科技感卡片 (修改：岩石灰底+淡藍漸層) ---
+// --- 自定義 UI 組件：科技感卡片 (修改：配合藍色背景調整色調) ---
 const TechCard = ({ children, className = "" }) => (
-  // 使用從深岩灰到極淡藍色的漸層，加上模糊和淡藍色邊框
-  <div className={`bg-gradient-to-br from-slate-800/80 via-slate-900/80 to-blue-950/30 backdrop-blur-md border border-blue-500/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] rounded-2xl ${className}`}>
+  // 將原本的 slate 灰色系改為更偏向深藍色的漸層
+  <div className={`bg-gradient-to-br from-blue-900/60 via-[#0a192f]/80 to-blue-950/30 backdrop-blur-md border border-cyan-500/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] rounded-2xl ${className}`}>
     {children}
   </div>
 );
 
-// --- 自定義 UI 組件：霓虹標籤 (修改：配色調淡更專業) ---
+// --- 自定義 UI 組件：霓虹標籤 ---
 const NeonBadge = ({ type, text }) => {
-  // Passive 改用 Sky Blue, Active 改用 Red，移除過強的陰影
   const styles = type === 'passive' 
     ? 'bg-sky-500/10 text-sky-400 border-sky-500/30' 
     : 'bg-red-500/10 text-red-400 border-red-500/30';
@@ -24,7 +23,7 @@ const NeonBadge = ({ type, text }) => {
   );
 };
 
-// --- 1. 輔助組件: ETF 詳情彈窗 (修改：配合卡片風格) ---
+// --- 1. 輔助組件: ETF 詳情彈窗 (修改：配合藍色背景調整色調) ---
 const ETFDetailModal = ({ etf, onClose }) => {
   useEffect(() => {
     if (etf) document.body.style.overflow = 'hidden';
@@ -36,27 +35,27 @@ const ETFDetailModal = ({ etf, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
-        {/* 背景遮罩 - 加深一點以凸顯彈窗 */}
-        <div className="absolute inset-0 bg-gray-950/90 backdrop-blur-sm transition-opacity"></div>
+        {/* 背景遮罩 - 改用深藍黑色 */}
+        <div className="absolute inset-0 bg-[#020c1b]/90 backdrop-blur-sm transition-opacity"></div>
         
-        {/* 彈窗本體 - 使用與 TechCard 相同的淡藍漸層風格 */}
+        {/* 彈窗本體 - 調整為深藍色系漸層 */}
         <div 
-            className="bg-gradient-to-br from-slate-800/95 to-blue-950/50 border border-blue-500/20 w-full max-w-5xl max-h-[90vh] overflow-y-auto relative z-10 rounded-3xl shadow-2xl flex flex-col text-slate-200"
+            className="bg-gradient-to-br from-blue-950/95 to-[#0a192f]/95 border border-cyan-500/20 w-full max-w-5xl max-h-[90vh] overflow-y-auto relative z-10 rounded-3xl shadow-2xl flex flex-col text-blue-100"
             onClick={(e) => e.stopPropagation()}
         >
-            {/* 標題區 - 背景稍微加深 */}
-            <div className="p-8 border-b border-blue-500/20 sticky top-0 bg-slate-900/95 backdrop-blur z-20 flex justify-between items-start">
+            {/* 標題區 */}
+            <div className="p-8 border-b border-cyan-500/20 sticky top-0 bg-blue-950/95 backdrop-blur z-20 flex justify-between items-start">
                 <div>
                     <div className="flex items-baseline gap-4">
                         <h2 className="text-4xl font-bold text-white tracking-tight">
                             {etf.name}
                         </h2>
-                        <span className="text-slate-400 font-mono text-2xl">({etf.ticker})</span>
+                        <span className="text-blue-300 font-mono text-2xl">({etf.ticker})</span>
                     </div>
                     <div className="mt-4 flex items-center gap-4">
                         <NeonBadge type={etf.type} text={isPassive ? '被動式 (指數追蹤)' : '主動式 (經理人操作)'} />
                         {etf.fundManager && (
-                            <span className="text-base text-slate-400 bg-slate-800/50 px-3 py-1.5 rounded border border-blue-500/20">
+                            <span className="text-base text-blue-300 bg-blue-900/50 px-3 py-1.5 rounded border border-cyan-500/20">
                                 {etf.fundManager}
                             </span>
                         )}
@@ -64,7 +63,7 @@ const ETFDetailModal = ({ etf, onClose }) => {
                 </div>
                 <button 
                     onClick={onClose}
-                    className="text-slate-400 hover:text-white hover:bg-slate-700/50 transition p-2 rounded-full"
+                    className="text-blue-400 hover:text-white hover:bg-blue-800/50 transition p-2 rounded-full"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
@@ -72,30 +71,29 @@ const ETFDetailModal = ({ etf, onClose }) => {
 
             {/* 內容區 */}
             <div className="p-8 grid md:grid-cols-2 gap-8">
-                {/* 走勢圖 - 內部區塊底色調淡 */}
-                <div className="bg-slate-800/30 p-6 rounded-2xl border border-blue-500/10">
-                    {/* 配色改為 Sky Blue */}
+                {/* 走勢圖 */}
+                <div className="bg-blue-900/20 p-6 rounded-2xl border border-cyan-500/10">
                     <h3 className="text-lg font-semibold text-sky-400 mb-6 flex items-center uppercase tracking-wider">
                         <TrendingUp className="w-6 h-6 mr-3"/> 績效走勢模擬 (今年以來)
                     </h3>
                     <div className="h-80 w-full">
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart data={etf.performanceData}>
-                                <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
-                                <XAxis dataKey="month" stroke="#94a3b8" tick={{fontSize: 16}} tickLine={false} axisLine={false} dy={10} />
-                                <YAxis domain={['auto', 'auto']} stroke="#94a3b8" tick={{fontSize: 16}} tickLine={false} axisLine={false} dx={-10}/>
+                                <CartesianGrid strokeDasharray="3 3" stroke="#1e3a8a" vertical={false} />
+                                <XAxis dataKey="month" stroke="#93c5fd" tick={{fontSize: 16}} tickLine={false} axisLine={false} dy={10} />
+                                <YAxis domain={['auto', 'auto']} stroke="#93c5fd" tick={{fontSize: 16}} tickLine={false} axisLine={false} dx={-10}/>
                                 <Tooltip 
-                                    contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', color: '#f8fafc', fontSize: '16px' }}
-                                    itemStyle={{ color: '#38bdf8' }} // Sky-400
+                                    contentStyle={{ backgroundColor: '#0a192f', borderColor: '#1e3a8a', color: '#f8fafc', fontSize: '16px' }}
+                                    itemStyle={{ color: '#38bdf8' }}
                                     formatter={(value) => [`${value.toFixed(2)}`, '淨值指數']} 
                                     labelFormatter={(label) => `月份: ${label}`}
                                 />
                                 <Line 
                                     type="monotone" 
                                     dataKey="return" 
-                                    stroke="#38bdf8" // Sky-400
+                                    stroke="#38bdf8" 
                                     strokeWidth={4} 
-                                    dot={{ fill: '#0f172a', stroke: '#38bdf8', strokeWidth: 3, r: 6 }} 
+                                    dot={{ fill: '#0a192f', stroke: '#38bdf8', strokeWidth: 3, r: 6 }} 
                                     activeDot={{ r: 8, fill: '#38bdf8' }} 
                                 />
                             </LineChart>
@@ -104,29 +102,27 @@ const ETFDetailModal = ({ etf, onClose }) => {
                 </div>
 
                 {/* 關鍵數據 */}
-                <div className="bg-slate-800/30 p-6 rounded-2xl border border-blue-500/10 flex flex-col justify-center">
-                    {/* 配色改為較淡的 Indigo */}
+                <div className="bg-blue-900/20 p-6 rounded-2xl border border-cyan-500/10 flex flex-col justify-center">
                     <h3 className="text-lg font-semibold text-indigo-300 mb-6 flex items-center uppercase tracking-wider">
                         <Activity className="w-6 h-6 mr-3"/> 關鍵指標
                     </h3>
                     <div className="space-y-6">
-                        <div className="flex justify-between items-center p-4 bg-slate-800/40 rounded-xl border border-blue-500/10">
-                            <span className="text-slate-400 text-lg">最新淨值 (NAV)</span>
+                        <div className="flex justify-between items-center p-4 bg-blue-900/30 rounded-xl border border-cyan-500/10">
+                            <span className="text-blue-300 text-lg">最新淨值 (NAV)</span>
                             <span className="text-4xl font-mono font-bold text-white">
                                 NT$ <span className="text-sky-400">{etf.latestNav.toFixed(2)}</span>
                             </span>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
-                            <div className="p-4 bg-slate-800/40 rounded-xl border border-blue-500/10">
-                                <p className="text-slate-500 text-base mb-2">今年以來 (YTD)</p>
-                                {/* 漲跌顏色改用標準 Red/Emerald */}
+                            <div className="p-4 bg-blue-900/30 rounded-xl border border-cyan-500/10">
+                                <p className="text-blue-300 text-base mb-2">今年以來 (YTD)</p>
                                 <p className={`text-3xl font-mono font-bold ${etf.ytdReturn >= 0 ? 'text-red-400' : 'text-emerald-400'}`}>
                                     {etf.ytdReturn >= 0 ? '+' : ''}{etf.ytdReturn.toFixed(2)}%
                                 </p>
                             </div>
-                            <div className="p-4 bg-slate-800/40 rounded-xl border border-blue-500/10">
-                                <p className="text-slate-500 text-base mb-2">近一週 (Weekly)</p>
+                            <div className="p-4 bg-blue-900/30 rounded-xl border border-cyan-500/10">
+                                <p className="text-blue-300 text-base mb-2">近一週 (Weekly)</p>
                                 <p className={`text-3xl font-mono font-bold ${etf.weeklyReturn >= 0 ? 'text-red-400' : 'text-emerald-400'}`}>
                                     {etf.weeklyReturn !== undefined ? (etf.weeklyReturn >= 0 ? '+' : '') + etf.weeklyReturn.toFixed(2) : '0.00'}%
                                 </p>
@@ -134,17 +130,17 @@ const ETFDetailModal = ({ etf, onClose }) => {
                         </div>
 
                         <div className="space-y-4 text-lg pt-4">
-                             <div className="flex justify-between border-b border-slate-700/50 pb-3">
-                                <span className="text-slate-500">成立日期</span>
-                                <span className="text-slate-300 font-mono">{etf.foundedDate || "N/A"}</span>
+                             <div className="flex justify-between border-b border-blue-800/30 pb-3">
+                                <span className="text-blue-400">成立日期</span>
+                                <span className="text-blue-200 font-mono">{etf.foundedDate || "N/A"}</span>
                             </div>
-                            <div className="flex justify-between border-b border-slate-700/50 py-3">
-                                <span className="text-slate-500">配息頻率</span>
-                                <span className="text-slate-300">{etf.dividendFreq || "N/A"}</span>
+                            <div className="flex justify-between border-b border-blue-800/30 py-3">
+                                <span className="text-blue-400">配息頻率</span>
+                                <span className="text-blue-200">{etf.dividendFreq || "N/A"}</span>
                             </div>
                             <div className="flex justify-between pt-3">
-                                <span className="text-slate-500">保管銀行</span>
-                                <span className="text-slate-300">{etf.custodianBank || "N/A"}</span>
+                                <span className="text-blue-400">保管銀行</span>
+                                <span className="text-blue-200">{etf.custodianBank || "N/A"}</span>
                             </div>
                         </div>
                     </div>
@@ -154,27 +150,27 @@ const ETFDetailModal = ({ etf, onClose }) => {
             {/* 持股明細 */}
             <div className="p-8 pt-0">
                 <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
-                    <BarChart2 className="w-6 h-6 mr-3 text-slate-400"/>
+                    <BarChart2 className="w-6 h-6 mr-3 text-blue-300"/>
                     {isPassive ? '指數成分股' : '經理人配置'}
                 </h3>
                 
-                <div className="overflow-hidden rounded-xl border border-blue-500/20">
-                    <table className="min-w-full divide-y divide-slate-700/50">
-                        <thead className="bg-slate-800/60">
+                <div className="overflow-hidden rounded-xl border border-cyan-500/20">
+                    <table className="min-w-full divide-y divide-blue-800/30">
+                        <thead className="bg-blue-900/40">
                             <tr>
-                                <th className="px-8 py-4 text-left text-base font-semibold text-slate-400 uppercase tracking-wider">股票名稱</th>
-                                <th className="px-8 py-4 text-right text-base font-semibold text-slate-400 uppercase tracking-wider">持股比例</th>
-                                <th className="px-8 py-4 text-right text-base font-semibold text-slate-400 uppercase tracking-wider">模擬變動</th>
+                                <th className="px-8 py-4 text-left text-base font-semibold text-blue-300 uppercase tracking-wider">股票名稱</th>
+                                <th className="px-8 py-4 text-right text-base font-semibold text-blue-300 uppercase tracking-wider">持股比例</th>
+                                <th className="px-8 py-4 text-right text-base font-semibold text-blue-300 uppercase tracking-wider">模擬變動</th>
                             </tr>
                         </thead>
-                        <tbody className="bg-slate-900/40 divide-y divide-slate-700/50">
+                        <tbody className="bg-blue-950/20 divide-y divide-blue-800/30">
                           {etf.holdings && etf.holdings.length > 0 ? (
                             etf.holdings.map((holding, index) => (
-                              <tr key={index} className="hover:bg-slate-800/50 transition duration-150">
-                                <td className="px-8 py-5 whitespace-nowrap text-lg font-medium text-slate-200">
+                              <tr key={index} className="hover:bg-blue-800/30 transition duration-150">
+                                <td className="px-8 py-5 whitespace-nowrap text-lg font-medium text-blue-100">
                                   {holding.stock}
                                 </td>
-                                <td className="px-8 py-5 whitespace-nowrap text-lg text-slate-400 text-right font-mono">
+                                <td className="px-8 py-5 whitespace-nowrap text-lg text-blue-300 text-right font-mono">
                                   {holding.percent}%
                                 </td>
                                 <td className="px-8 py-5 whitespace-nowrap text-lg text-right font-mono">
@@ -183,7 +179,7 @@ const ETFDetailModal = ({ etf, onClose }) => {
                                       ? "text-red-400"
                                       : holding.change.includes("🔻")
                                       ? "text-emerald-400"
-                                      : "text-slate-500"
+                                      : "text-blue-400"
                                   }`}>
                                     {holding.change}
                                   </span>
@@ -192,7 +188,7 @@ const ETFDetailModal = ({ etf, onClose }) => {
                             ))
                           ) : (
                             <tr>
-                              <td colSpan="3" className="px-8 py-10 text-center text-slate-500 italic text-lg">
+                              <td colSpan="3" className="px-8 py-10 text-center text-blue-400 italic text-lg">
                                 暫無持股資料
                               </td>
                             </tr>
@@ -206,7 +202,7 @@ const ETFDetailModal = ({ etf, onClose }) => {
   );
 };
 
-// --- 2. 輔助組件: 列表表格 (修改：配色與漸層調淡) ---
+// --- 2. 輔助組件: 列表表格 (修改：配合藍色背景調整色調) ---
 const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeRange = 'year' }) => {
     const metricKey = timeRange === 'week' ? 'weeklyReturn' : 'ytdReturn';
     const highlightThreshold = timeRange === 'week' ? 3 : 15;
@@ -219,12 +215,11 @@ const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeR
     }, [data, type, metricKey]);
 
     const IconComponent = type === 'active' ? Zap : Shield;
-    // 配色改為 Red / Sky Blue
     const accentColorClass = type === 'active' ? 'text-red-400' : 'text-sky-400';
-    // 標題漸層調淡，使其更融合新的卡片背景
+    // 調整標題漸層為藍色系
     const gradientHeader = type === 'active' 
-        ? 'bg-gradient-to-r from-red-900/30 to-transparent' 
-        : 'bg-gradient-to-r from-sky-900/30 to-transparent';
+        ? 'bg-gradient-to-r from-red-900/20 to-transparent' 
+        : 'bg-gradient-to-r from-sky-900/20 to-transparent';
     
     let content;
     if (isLoading) {
@@ -244,7 +239,7 @@ const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeR
         );
     } else if (sortedData.length === 0) {
         content = (
-            <div className="p-12 text-center text-slate-500 border border-slate-700/50 rounded-xl border-dashed text-xl">
+            <div className="p-12 text-center text-blue-400 border border-blue-700/50 rounded-xl border-dashed text-xl">
                 <p>目前無可用數據</p>
             </div>
         );
@@ -253,7 +248,7 @@ const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeR
             <div className="overflow-x-auto">
                 <table className="min-w-full">
                     <thead>
-                        <tr className="border-b border-slate-700/50 text-slate-400 text-base uppercase tracking-widest">
+                        <tr className="border-b border-blue-700/30 text-blue-300 text-base uppercase tracking-widest">
                             <th className="px-8 py-5 text-left font-semibold">排名 / 名稱</th>
                             <th className="px-8 py-5 text-right font-semibold">
                                 {timeRange === 'week' ? '近一週 (1W)' : '今年以來 (YTD)'}
@@ -262,24 +257,24 @@ const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeR
                             <th className="px-8 py-5 text-center font-semibold">分析</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-700/30">
+                    <tbody className="divide-y divide-blue-800/20">
                         {sortedData.map((etf, index) => (
-                            <tr key={etf.id || etf.ticker} className="group hover:bg-slate-800/30 transition duration-200">
+                            <tr key={etf.id || etf.ticker} className="group hover:bg-blue-800/20 transition duration-200">
                                 <td className="px-8 py-6 align-top"> 
                                     <div className="flex items-start">
-                                        {/* 排名徽章 - 邊框調淡 */}
+                                        {/* 排名徽章 */}
                                         <div className={`
-                                            flex items-center justify-center w-10 h-10 rounded-md bg-slate-800/50 font-mono font-bold text-2xl mr-6 border border-slate-700/50
-                                            ${index < 3 ? 'text-yellow-400 border-yellow-500/20 shadow-[0_0_15px_rgba(234,179,8,0.1)]' : 'text-slate-500'}
+                                            flex items-center justify-center w-10 h-10 rounded-md bg-blue-900/40 font-mono font-bold text-2xl mr-6 border border-blue-700/50
+                                            ${index < 3 ? 'text-yellow-400 border-yellow-500/20 shadow-[0_0_15px_rgba(234,179,8,0.1)]' : 'text-blue-500'}
                                         `}>
                                             {index + 1}
                                         </div>
                                         <div>
-                                            <div className="text-lg font-bold text-slate-200 group-hover:text-white transition-colors">
+                                            <div className="text-lg font-bold text-blue-100 group-hover:text-white transition-colors">
                                                 {etf.name}
                                             </div>
-                                            <div className="text-base text-slate-500 font-mono mt-2 flex items-center">
-                                                <span className="bg-slate-800/50 px-2 py-0.5 rounded text-sky-300/70 border border-slate-700/50">
+                                            <div className="text-base text-blue-400 font-mono mt-2 flex items-center">
+                                                <span className="bg-blue-900/40 px-2 py-0.5 rounded text-sky-300/70 border border-blue-700/50">
                                                     {etf.ticker}
                                                 </span>
                                             </div>
@@ -299,15 +294,14 @@ const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeR
                                     </span>
                                 </td>
                                 
-                                <td className="px-8 py-6 whitespace-nowrap text-right text-lg text-slate-400 font-mono hidden sm:table-cell">
+                                <td className="px-8 py-6 whitespace-nowrap text-right text-lg text-blue-400 font-mono hidden sm:table-cell">
                                     {etf.latestNav ? etf.latestNav.toFixed(2) : 'N/A'}
                                 </td>
                                 
                                 <td className="px-8 py-6 whitespace-nowrap text-center">
-                                    {/* 按鈕改用 Sky Blue */}
                                     <button 
                                         onClick={() => openDetail(etf)}
-                                        className="p-3 text-sky-400 hover:text-sky-300 hover:bg-sky-900/20 rounded-xl transition-all transform hover:scale-110"
+                                        className="p-3 text-sky-400 hover:text-sky-300 hover:bg-sky-900/30 rounded-xl transition-all transform hover:scale-110"
                                     >
                                         <Eye className="w-6 h-6" />
                                     </button>
@@ -322,8 +316,8 @@ const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeR
 
     return (
         <TechCard className="mb-12 overflow-hidden">
-            <div className={`p-6 sm:p-8 border-b border-slate-700/30 flex items-center ${gradientHeader}`}>
-                <div className={`p-3 rounded-xl bg-slate-900/30 mr-6 border border-slate-700/50 ${accentColorClass}`}>
+            <div className={`p-6 sm:p-8 border-b border-blue-700/30 flex items-center ${gradientHeader}`}>
+                <div className={`p-3 rounded-xl bg-blue-900/30 mr-6 border border-blue-700/50 ${accentColorClass}`}>
                     <IconComponent className="w-8 h-8" />
                 </div>
                 <h2 className="text-3xl font-bold text-white tracking-wide">
@@ -335,7 +329,7 @@ const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeR
     );
 };
 
-// --- 3. 主應用程式 (背景替換、配色專業化) ---
+// --- 3. 主應用程式 (背景完全替換為藍色金融科技風) ---
 const App = () => {
   const [selectedEtf, setSelectedEtf] = useState(null);
   const [activeETFs, setActiveETFs] = useState([]);
@@ -376,54 +370,52 @@ const App = () => {
     fetchRealData();
   }, [fetchRealData]); 
 
-  // 切換按鈕樣式 (調淡)
+  // 切換按鈕樣式 (配合藍色背景)
   const getToggleClass = (isActive) => `
     px-6 py-2 rounded-lg text-lg font-bold font-mono transition-all border
     ${isActive 
-        ? 'bg-slate-700/50 text-white border-slate-500/50 shadow-inner' 
-        : 'text-slate-500 border-transparent hover:text-slate-300'}
+        ? 'bg-blue-700/50 text-white border-blue-500/50 shadow-inner' 
+        : 'text-blue-400 border-transparent hover:text-blue-200'}
   `;
 
   return (
-    // 基底改為更深沉專業的 Gray-900 岩石灰
-    <div className="min-h-screen bg-gray-900 text-slate-200 font-sans selection:bg-sky-500 selection:text-white pb-24">
-      {/* --- 全新金融科技背景 (岩石灰底+專業感) --- */}
+    // 基底顏色改為深邃的金融藍
+    <div className="min-h-screen bg-[#0a192f] text-blue-100 font-sans selection:bg-sky-500 selection:text-white pb-24">
+      {/* --- 全新金融科技背景 (靈感來自提供的圖片) --- */}
       <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-          {/* 1. 基底漸層：從深岩灰到純黑，製造穩重感 */}
-          <div className="absolute inset-0 bg-gradient-to-b from-gray-800 via-gray-900 to-black"></div>
+          {/* 1. 基底漸層：深藍到更深的黑藍，營造深度 */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a192f] via-[#061021] to-black"></div>
           
-          {/* 2. 抽象幾何紋理：使用低調的立方體/網格紋理，增加金融數據感 (透明度極低) */}
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 mix-blend-overlay"></div>
+          {/* 2. 數位城市網絡圖層：使用一張類似靈感圖的向量背景，低透明度疊加 */}
+          <div className="absolute inset-0 bg-[url('https://img.freepik.com/free-vector/gradient-network-connection-background_23-2148879890.jpg')] bg-cover bg-center opacity-20 mix-blend-screen"></div>
 
-          {/* 3. 極淡的專業光暈：使用 Sky Blue 和深藍，而非之前的霓虹色，且模糊度極高，僅作為環境光 */}
-          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-600/10 rounded-full blur-[120px] animate-pulse-slow"></div>
-          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-sky-600/10 rounded-full blur-[120px] animate-pulse-slow delay-1000"></div>
+          {/* 3. 頂部數據光流：模擬靈感圖上方的弧形光影 */}
+          <div className="absolute top-[-50%] left-[-20%] w-[140%] h-[80%] bg-gradient-to-b from-sky-600/20 via-cyan-500/10 to-transparent rounded-[100%] blur-[150px]"></div>
       </div>
 
       <div className="relative z-10 max-w-[90rem] mx-auto px-6 sm:px-8 pt-12">
         {/* Header 區域 */}
         <header className="mb-16 flex flex-col items-center text-center">
             {/* Badge 改用 Sky Blue */}
-            <div className="inline-block mb-6 px-4 py-2 rounded-full border border-sky-500/20 bg-sky-900/10 text-sky-400 text-base font-mono tracking-[0.1em]">
+            <div className="inline-block mb-6 px-4 py-2 rounded-full border border-cyan-400/30 bg-blue-900/30 text-cyan-300 text-base font-mono tracking-[0.1em] backdrop-blur-sm">
                 台灣 ETF 觀測站 v2.0
             </div>
-            {/* 標題漸層改為更專業的白到天藍 */}
-            <h1 className="text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-sky-100 to-slate-300 mb-6 tracking-tight drop-shadow-2xl">
+            {/* 標題漸層改為白到天藍 */}
+            <h1 className="text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-sky-200 to-blue-400 mb-6 tracking-tight drop-shadow-2xl">
                 ETF 績效觀測站
             </h1>
-            <p className="text-slate-400 max-w-3xl text-sm md:text-base leading-relaxed mb-10">
+            <p className="text-blue-300 max-w-3xl text-sm md:text-base leading-relaxed mb-10">
                 即時追蹤台灣市場主動與被動式 ETF 表現。數據來源為自動化串接 MoneyDJ，
-                {/* 強調色改為 Sky Blue */}
-                <span className="text-sky-400 font-semibold"> 每日 AI 運算更新</span>。
+                <span className="text-cyan-400 font-semibold"> 每日 AI 運算更新</span>。
             </p>
 
             <button
                 onClick={fetchRealData}
                 disabled={isLoading}
-                // 按鈕改為 Sky Blue，陰影調淡
+                // 按鈕改為 Sky/Cyan 色系
                 className={`
-                    group relative overflow-hidden rounded-full px-10 py-4 text-lg font-bold transition-all duration-300 shadow-[0_0_20px_rgba(14,165,233,0.2)]
-                    ${isLoading ? 'bg-slate-800/50 text-slate-500 cursor-not-allowed' : 'bg-sky-600 text-white hover:bg-sky-500 hover:shadow-[0_0_30px_rgba(14,165,233,0.4)]'}
+                    group relative overflow-hidden rounded-full px-10 py-4 text-lg font-bold transition-all duration-300 shadow-[0_0_25px_rgba(14,165,233,0.3)]
+                    ${isLoading ? 'bg-blue-800/50 text-blue-400 cursor-not-allowed' : 'bg-gradient-to-r from-sky-600 to-cyan-600 text-white hover:from-sky-500 hover:to-cyan-500 hover:shadow-[0_0_40px_rgba(14,165,233,0.5)]'}
                 `}
             >
                 <div className="relative z-10 flex items-center">
@@ -437,12 +429,11 @@ const App = () => {
             {/* --- 主動式區塊 --- */}
             <div>
                 <div className="flex justify-between items-end mb-6 px-2">
-                    {/* 標題顏色改為 Red-400 */}
                     <h3 className="text-lg font-bold text-red-400 uppercase tracking-widest flex items-center">
                         <span className="w-3 h-3 bg-red-500 rounded-full mr-3 animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.4)]"></span>
                         主動式基金排行
                     </h3>
-                    <div className="bg-slate-900/50 p-1.5 rounded-xl inline-flex border border-slate-700/50">
+                    <div className="bg-blue-900/30 p-1.5 rounded-xl inline-flex border border-blue-700/50">
                         <button onClick={() => setActiveTimeRange('year')} className={getToggleClass(activeTimeRange === 'year')}>今年以來</button>
                         <button onClick={() => setActiveTimeRange('week')} className={getToggleClass(activeTimeRange === 'week')}>近一週</button>
                     </div>
@@ -462,12 +453,11 @@ const App = () => {
             {/* --- 被動式區塊 --- */}
             <div>
                 <div className="flex justify-between items-end mb-6 px-2">
-                    {/* 標題顏色改為 Sky-400 */}
                     <h3 className="text-lg font-bold text-sky-400 uppercase tracking-widest flex items-center">
                         <span className="w-3 h-3 bg-sky-500 rounded-full mr-3 animate-pulse shadow-[0_0_10px_rgba(14,165,233,0.4)]"></span>
                         被動式指數排行
                     </h3>
-                    <div className="bg-slate-900/50 p-1.5 rounded-xl inline-flex border border-slate-700/50">
+                    <div className="bg-blue-900/30 p-1.5 rounded-xl inline-flex border border-blue-700/50">
                         <button onClick={() => setPassiveTimeRange('year')} className={getToggleClass(passiveTimeRange === 'year')}>今年以來</button>
                         <button onClick={() => setPassiveTimeRange('week')} className={getToggleClass(passiveTimeRange === 'week')}>近一週</button>
                     </div>
@@ -485,13 +475,13 @@ const App = () => {
             </div>
         </div>
 
-        {/* --- 投資警語區塊 (背景調淡) --- */}
-        <div className="mt-16 p-6 bg-slate-900/40 rounded-2xl border border-red-500/20 text-center shadow-[0_0_15px_rgba(239,68,68,0.1)]">
+        {/* --- 投資警語區塊 (配合藍色背景) --- */}
+        <div className="mt-16 p-6 bg-blue-900/20 rounded-2xl border border-red-500/20 text-center shadow-[0_0_15px_rgba(239,68,68,0.1)]">
             <h4 className="text-red-400 font-bold text-lg mb-3 flex items-center justify-center">
                 <AlertCircle className="w-5 h-5 mr-2" />
                 投資警語
             </h4>
-            <p className="text-slate-400 text-sm md:text-base leading-relaxed">
+            <p className="text-blue-300 text-sm md:text-base leading-relaxed">
                 本網站所提供之資訊僅供參考，不構成任何投資建議或要約。投資人應自行判斷投資風險，並承擔投資結果。
                 基金之過去績效不代表未來表現，本網站不保證資訊之正確性、完整性或即時性。
                 投資一定有風險，基金投資有賺有賠，申購前應詳閱公開說明書。
@@ -499,7 +489,7 @@ const App = () => {
         </div>
         
         {/* --- 頁尾 --- */}
-        <footer className="text-center text-slate-500 text-base mt-16 font-mono mb-8">
+        <footer className="text-center text-blue-400/80 text-base mt-16 font-mono mb-8">
             系統狀態：<span className="text-sky-400">連線中</span> • 數據來源：MoneyDJ • 台灣證券交易所
         </footer>
       </div>
