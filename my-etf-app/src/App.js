@@ -4,7 +4,7 @@ import { TrendingUp, Eye, Zap, Shield, RefreshCw, Loader, AlertCircle, Activity,
 
 // --- 自定義 UI 組件：科技感卡片 ---
 const TechCard = ({ children, className = "" }) => (
-  <div className={`bg-slate-900/80 backdrop-blur-md border border-slate-700/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] rounded-2xl ${className}`}>
+  <div className={`bg-slate-800/60 backdrop-blur-md border border-slate-600/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] rounded-2xl ${className}`}>
     {children}
   </div>
 );
@@ -12,8 +12,8 @@ const TechCard = ({ children, className = "" }) => (
 // --- 自定義 UI 組件：霓虹標籤 (中文化) ---
 const NeonBadge = ({ type, text }) => {
   const styles = type === 'passive' 
-    ? 'bg-cyan-500/10 text-cyan-400 border-cyan-500/50 shadow-[0_0_10px_rgba(6,182,212,0.2)]' 
-    : 'bg-rose-500/10 text-rose-400 border-rose-500/50 shadow-[0_0_10px_rgba(244,63,94,0.2)]';
+    ? 'bg-cyan-500/20 text-cyan-300 border-cyan-400/50 shadow-[0_0_10px_rgba(6,182,212,0.3)]' 
+    : 'bg-rose-500/20 text-rose-300 border-rose-400/50 shadow-[0_0_10px_rgba(244,63,94,0.3)]';
   
   return (
     <span className={`px-4 py-2 rounded-full text-base font-mono font-bold border ${styles}`}>
@@ -34,12 +34,12 @@ const ETFDetailModal = ({ etf, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
-        {/* 背景遮罩 */}
-        <div className="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity"></div>
+        {/* 背景遮罩 - 改亮一點的模糊 */}
+        <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm transition-opacity"></div>
         
-        {/* 彈窗本體 */}
+        {/* 彈窗本體 - 改用稍亮的深藍色 */}
         <div 
-            className="bg-slate-900 border border-slate-700 w-full max-w-5xl max-h-[90vh] overflow-y-auto relative z-10 rounded-3xl shadow-2xl flex flex-col text-slate-200"
+            className="bg-slate-900 border border-slate-600 w-full max-w-5xl max-h-[90vh] overflow-y-auto relative z-10 rounded-3xl shadow-2xl flex flex-col text-slate-100"
             onClick={(e) => e.stopPropagation()}
         >
             {/* 標題區 */}
@@ -54,7 +54,7 @@ const ETFDetailModal = ({ etf, onClose }) => {
                     <div className="mt-4 flex items-center gap-4">
                         <NeonBadge type={etf.type} text={isPassive ? '被動式 (指數追蹤)' : '主動式 (經理人操作)'} />
                         {etf.fundManager && (
-                            <span className="text-base text-slate-400 bg-slate-800 px-3 py-1.5 rounded border border-slate-700">
+                            <span className="text-base text-slate-300 bg-slate-800 px-3 py-1.5 rounded border border-slate-600">
                                 {etf.fundManager}
                             </span>
                         )}
@@ -62,7 +62,7 @@ const ETFDetailModal = ({ etf, onClose }) => {
                 </div>
                 <button 
                     onClick={onClose}
-                    className="text-slate-400 hover:text-white hover:bg-slate-800 transition p-2 rounded-full"
+                    className="text-slate-400 hover:text-white hover:bg-slate-700 transition p-2 rounded-full"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
@@ -71,29 +71,29 @@ const ETFDetailModal = ({ etf, onClose }) => {
             {/* 內容區 */}
             <div className="p-8 grid md:grid-cols-2 gap-8">
                 {/* 走勢圖 */}
-                <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50">
-                    <h3 className="text-lg font-semibold text-cyan-400 mb-6 flex items-center uppercase tracking-wider">
+                <div className="bg-slate-800/40 p-6 rounded-2xl border border-slate-600/50">
+                    <h3 className="text-lg font-semibold text-cyan-300 mb-6 flex items-center uppercase tracking-wider">
                         <TrendingUp className="w-6 h-6 mr-3"/> 績效走勢模擬 (今年以來)
                     </h3>
                     <div className="h-80 w-full">
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart data={etf.performanceData}>
-                                <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
-                                <XAxis dataKey="month" stroke="#94a3b8" tick={{fontSize: 16}} tickLine={false} axisLine={false} dy={10} />
-                                <YAxis domain={['auto', 'auto']} stroke="#94a3b8" tick={{fontSize: 16}} tickLine={false} axisLine={false} dx={-10}/>
+                                <CartesianGrid strokeDasharray="3 3" stroke="#475569" vertical={false} />
+                                <XAxis dataKey="month" stroke="#cbd5e1" tick={{fontSize: 16}} tickLine={false} axisLine={false} dy={10} />
+                                <YAxis domain={['auto', 'auto']} stroke="#cbd5e1" tick={{fontSize: 16}} tickLine={false} axisLine={false} dx={-10}/>
                                 <Tooltip 
                                     contentStyle={{ backgroundColor: '#1e293b', borderColor: '#475569', color: '#f8fafc', fontSize: '16px' }}
-                                    itemStyle={{ color: '#22d3ee' }}
+                                    itemStyle={{ color: '#67e8f9' }}
                                     formatter={(value) => [`${value.toFixed(2)}`, '淨值指數']} 
                                     labelFormatter={(label) => `月份: ${label}`}
                                 />
                                 <Line 
                                     type="monotone" 
                                     dataKey="return" 
-                                    stroke="#22d3ee" 
+                                    stroke="#67e8f9" 
                                     strokeWidth={4} 
-                                    dot={{ fill: '#0f172a', stroke: '#22d3ee', strokeWidth: 3, r: 6 }} 
-                                    activeDot={{ r: 8, fill: '#22d3ee' }} 
+                                    dot={{ fill: '#0f172a', stroke: '#67e8f9', strokeWidth: 3, r: 6 }} 
+                                    activeDot={{ r: 8, fill: '#67e8f9' }} 
                                 />
                             </LineChart>
                         </ResponsiveContainer>
@@ -101,27 +101,27 @@ const ETFDetailModal = ({ etf, onClose }) => {
                 </div>
 
                 {/* 關鍵數據 (中文化) */}
-                <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-col justify-center">
-                    <h3 className="text-lg font-semibold text-indigo-400 mb-6 flex items-center uppercase tracking-wider">
+                <div className="bg-slate-800/40 p-6 rounded-2xl border border-slate-600/50 flex flex-col justify-center">
+                    <h3 className="text-lg font-semibold text-indigo-300 mb-6 flex items-center uppercase tracking-wider">
                         <Activity className="w-6 h-6 mr-3"/> 關鍵指標
                     </h3>
                     <div className="space-y-6">
-                        <div className="flex justify-between items-center p-4 bg-slate-900/50 rounded-xl border border-slate-700/30">
-                            <span className="text-slate-400 text-lg">最新淨值 (NAV)</span>
+                        <div className="flex justify-between items-center p-4 bg-slate-800/60 rounded-xl border border-slate-600/30">
+                            <span className="text-slate-300 text-lg">最新淨值 (NAV)</span>
                             <span className="text-4xl font-mono font-bold text-white">
-                                NT$ <span className="text-cyan-400">{etf.latestNav.toFixed(2)}</span>
+                                NT$ <span className="text-cyan-300">{etf.latestNav.toFixed(2)}</span>
                             </span>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
-                            <div className="p-4 bg-slate-900/50 rounded-xl border border-slate-700/30">
-                                <p className="text-slate-500 text-base mb-2">今年以來 (YTD)</p>
+                            <div className="p-4 bg-slate-800/60 rounded-xl border border-slate-600/30">
+                                <p className="text-slate-400 text-base mb-2">今年以來 (YTD)</p>
                                 <p className={`text-3xl font-mono font-bold ${etf.ytdReturn >= 0 ? 'text-red-400' : 'text-emerald-400'}`}>
                                     {etf.ytdReturn >= 0 ? '+' : ''}{etf.ytdReturn.toFixed(2)}%
                                 </p>
                             </div>
-                            <div className="p-4 bg-slate-900/50 rounded-xl border border-slate-700/30">
-                                <p className="text-slate-500 text-base mb-2">近一週 (Weekly)</p>
+                            <div className="p-4 bg-slate-800/60 rounded-xl border border-slate-600/30">
+                                <p className="text-slate-400 text-base mb-2">近一週 (Weekly)</p>
                                 <p className={`text-3xl font-mono font-bold ${etf.weeklyReturn >= 0 ? 'text-red-400' : 'text-emerald-400'}`}>
                                     {etf.weeklyReturn !== undefined ? (etf.weeklyReturn >= 0 ? '+' : '') + etf.weeklyReturn.toFixed(2) : '0.00'}%
                                 </p>
@@ -130,16 +130,16 @@ const ETFDetailModal = ({ etf, onClose }) => {
 
                         <div className="space-y-4 text-lg pt-4">
                              <div className="flex justify-between border-b border-slate-700 pb-3">
-                                <span className="text-slate-500">成立日期</span>
-                                <span className="text-slate-300 font-mono">{etf.foundedDate || "N/A"}</span>
+                                <span className="text-slate-400">成立日期</span>
+                                <span className="text-slate-200 font-mono">{etf.foundedDate || "N/A"}</span>
                             </div>
                             <div className="flex justify-between border-b border-slate-700 py-3">
-                                <span className="text-slate-500">配息頻率</span>
-                                <span className="text-slate-300">{etf.dividendFreq || "N/A"}</span>
+                                <span className="text-slate-400">配息頻率</span>
+                                <span className="text-slate-200">{etf.dividendFreq || "N/A"}</span>
                             </div>
                             <div className="flex justify-between pt-3">
-                                <span className="text-slate-500">保管銀行</span>
-                                <span className="text-slate-300">{etf.custodianBank || "N/A"}</span>
+                                <span className="text-slate-400">保管銀行</span>
+                                <span className="text-slate-200">{etf.custodianBank || "N/A"}</span>
                             </div>
                         </div>
                     </div>
@@ -153,13 +153,13 @@ const ETFDetailModal = ({ etf, onClose }) => {
                     {isPassive ? '指數成分股' : '經理人配置'}
                 </h3>
                 
-                <div className="overflow-hidden rounded-xl border border-slate-700">
+                <div className="overflow-hidden rounded-xl border border-slate-600">
                     <table className="min-w-full divide-y divide-slate-700">
                         <thead className="bg-slate-800">
                             <tr>
-                                <th className="px-8 py-4 text-left text-base font-semibold text-slate-400 uppercase tracking-wider">股票名稱</th>
-                                <th className="px-8 py-4 text-right text-base font-semibold text-slate-400 uppercase tracking-wider">持股比例</th>
-                                <th className="px-8 py-4 text-right text-base font-semibold text-slate-400 uppercase tracking-wider">模擬變動</th>
+                                <th className="px-8 py-4 text-left text-base font-semibold text-slate-300 uppercase tracking-wider">股票名稱</th>
+                                <th className="px-8 py-4 text-right text-base font-semibold text-slate-300 uppercase tracking-wider">持股比例</th>
+                                <th className="px-8 py-4 text-right text-base font-semibold text-slate-300 uppercase tracking-wider">模擬變動</th>
                             </tr>
                         </thead>
                         <tbody className="bg-slate-900 divide-y divide-slate-800">
@@ -204,7 +204,6 @@ const ETFDetailModal = ({ etf, onClose }) => {
 // --- 2. 輔助組件: 列表表格 (中文化) ---
 const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeRange = 'year' }) => {
     const metricKey = timeRange === 'week' ? 'weeklyReturn' : 'ytdReturn';
-    // 這裡的文字已經不需要了，因為會在父層直接傳入中文標題
     const highlightThreshold = timeRange === 'week' ? 3 : 15;
 
     const sortedData = useMemo(() => {
@@ -216,21 +215,22 @@ const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeR
 
     const IconComponent = type === 'active' ? Zap : Shield;
     const accentColorClass = type === 'active' ? 'text-rose-400' : 'text-cyan-400';
+    // 漸層改亮
     const gradientHeader = type === 'active' 
-        ? 'bg-gradient-to-r from-rose-900/80 to-slate-900' 
-        : 'bg-gradient-to-r from-cyan-900/80 to-slate-900';
+        ? 'bg-gradient-to-r from-rose-900/60 to-slate-800/50' 
+        : 'bg-gradient-to-r from-cyan-900/60 to-slate-800/50';
     
     let content;
     if (isLoading) {
         content = (
-            <div className="flex flex-col items-center justify-center p-16 text-cyan-500">
+            <div className="flex flex-col items-center justify-center p-16 text-cyan-400">
                 <Loader className="w-12 h-12 animate-spin mb-6" />
                 <p className="text-2xl font-medium tracking-wider animate-pulse">系統載入中...</p>
             </div>
         );
     } else if (isError) {
         content = (
-             <div className="flex flex-col items-center justify-center p-12 text-rose-500 border border-rose-900/50 bg-rose-950/20 rounded-xl">
+             <div className="flex flex-col items-center justify-center p-12 text-rose-400 border border-rose-900/50 bg-rose-950/20 rounded-xl">
                 <AlertCircle className="w-12 h-12 mb-4" />
                 <p className="text-2xl font-bold">數據連線失敗</p>
                 <p className="text-lg opacity-70 mt-2">請檢查數據源文件 (etf_data.json)</p>
@@ -238,7 +238,7 @@ const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeR
         );
     } else if (sortedData.length === 0) {
         content = (
-            <div className="p-12 text-center text-slate-500 border border-slate-800 rounded-xl border-dashed text-xl">
+            <div className="p-12 text-center text-slate-400 border border-slate-600 rounded-xl border-dashed text-xl">
                 <p>目前無可用數據</p>
             </div>
         );
@@ -247,7 +247,7 @@ const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeR
             <div className="overflow-x-auto">
                 <table className="min-w-full">
                     <thead>
-                        <tr className="border-b border-slate-700/50 text-slate-400 text-base uppercase tracking-widest">
+                        <tr className="border-b border-slate-600/50 text-slate-300 text-base uppercase tracking-widest">
                             <th className="px-8 py-5 text-left font-semibold">排名 / 名稱</th>
                             <th className="px-8 py-5 text-right font-semibold">
                                 {timeRange === 'week' ? '近一週 (1W)' : '今年以來 (YTD)'}
@@ -256,24 +256,24 @@ const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeR
                             <th className="px-8 py-5 text-center font-semibold">分析</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-800/50">
+                    <tbody className="divide-y divide-slate-700/50">
                         {sortedData.map((etf, index) => (
-                            <tr key={etf.id || etf.ticker} className="group hover:bg-slate-800/40 transition duration-200">
+                            <tr key={etf.id || etf.ticker} className="group hover:bg-slate-700/40 transition duration-200">
                                 <td className="px-8 py-6 align-top"> 
                                     <div className="flex items-start">
                                         {/* 排名徽章 */}
                                         <div className={`
-                                            flex items-center justify-center w-10 h-10 rounded-md bg-slate-800 font-mono font-bold text-2xl mr-6 border border-slate-700
+                                            flex items-center justify-center w-10 h-10 rounded-md bg-slate-800 font-mono font-bold text-2xl mr-6 border border-slate-600
                                             ${index < 3 ? 'text-yellow-400 border-yellow-500/30 shadow-[0_0_15px_rgba(234,179,8,0.2)]' : 'text-slate-500'}
                                         `}>
                                             {index + 1}
                                         </div>
                                         <div>
-                                            <div className="text-lg font-bold text-slate-200 group-hover:text-white transition-colors">
+                                            <div className="text-lg font-bold text-slate-100 group-hover:text-white transition-colors">
                                                 {etf.name}
                                             </div>
-                                            <div className="text-base text-slate-500 font-mono mt-2 flex items-center">
-                                                <span className="bg-slate-800 px-2 py-0.5 rounded text-cyan-300/70 border border-slate-700/50">
+                                            <div className="text-base text-slate-400 font-mono mt-2 flex items-center">
+                                                <span className="bg-slate-800 px-2 py-0.5 rounded text-cyan-300/70 border border-slate-600/50">
                                                     {etf.ticker}
                                                 </span>
                                             </div>
@@ -315,8 +315,8 @@ const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeR
 
     return (
         <TechCard className="mb-12 overflow-hidden">
-            <div className={`p-6 sm:p-8 border-b border-slate-700/50 flex items-center ${gradientHeader}`}>
-                <div className={`p-3 rounded-xl bg-slate-900/50 mr-6 border border-slate-700 ${accentColorClass}`}>
+            <div className={`p-6 sm:p-8 border-b border-slate-600/50 flex items-center ${gradientHeader}`}>
+                <div className={`p-3 rounded-xl bg-slate-800/50 mr-6 border border-slate-600 ${accentColorClass}`}>
                     <IconComponent className="w-8 h-8" />
                 </div>
                 <h2 className="text-3xl font-bold text-white tracking-wide">
@@ -328,7 +328,7 @@ const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeR
     );
 };
 
-// --- 3. 主應用程式 (背景替換、中文化、副標題縮小、新增警語) ---
+// --- 3. 主應用程式 (背景調亮、中文化、副標題縮小、新增警語) ---
 const App = () => {
   const [selectedEtf, setSelectedEtf] = useState(null);
   const [activeETFs, setActiveETFs] = useState([]);
@@ -369,42 +369,42 @@ const App = () => {
     fetchRealData();
   }, [fetchRealData]); 
 
-  // 切換按鈕的樣式生成器 (字體維持，內容中文化)
+  // 切換按鈕的樣式生成器 (顏色調亮)
   const getToggleClass = (isActive) => `
     px-6 py-2 rounded-lg text-lg font-bold font-mono transition-all border
     ${isActive 
-        ? 'bg-slate-700 text-white border-slate-500 shadow-inner' 
-        : 'text-slate-500 border-transparent hover:text-slate-300'}
+        ? 'bg-slate-600 text-white border-slate-400 shadow-inner' 
+        : 'text-slate-400 border-transparent hover:text-slate-200'}
   `;
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-cyan-500 selection:text-white pb-24">
-      {/* --- 全新科技感背景 --- */}
+    // 修改點：基底顏色改為 slate-900 (原本是 slate-950)
+    <div className="min-h-screen bg-slate-900 text-slate-100 font-sans selection:bg-cyan-500 selection:text-white pb-24">
+      {/* --- 全新科技感背景 (調亮版) --- */}
       <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-          {/* 1. 藍色光束背景圖片 (使用一個類似風格的 placeholder 圖片) */}
-          <div className="absolute inset-0 bg-[url('https://img.freepik.com/free-vector/blue-light-streaks-background_23-2148493753.jpg')] bg-cover bg-center opacity-40 mix-blend-screen"></div>
+          {/* 1. 藍色光束背景圖片 - 提高 Opacity 到 60 並改混合模式，讓它更明顯 */}
+          <div className="absolute inset-0 bg-[url('https://img.freepik.com/free-vector/blue-light-streaks-background_23-2148493753.jpg')] bg-cover bg-center opacity-60 mix-blend-screen"></div>
           
-          {/* 2. 漸層疊加，讓底部更深沉，凸顯內容 */}
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/90 to-slate-950"></div>
+          {/* 2. 漸層疊加 - 降低遮罩濃度，讓中間透光，只保留四周暗角 */}
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/50 via-slate-900/70 to-slate-900"></div>
 
           {/* 3. 保留一點點原本的動態光暈 */}
-          <div className="absolute bottom-[-20%] right-[-20%] w-[60%] h-[60%] bg-blue-900/20 rounded-full blur-[150px] animate-pulse-slow delay-1000"></div>
+          <div className="absolute bottom-[-20%] right-[-20%] w-[60%] h-[60%] bg-blue-600/20 rounded-full blur-[150px] animate-pulse-slow delay-1000"></div>
       </div>
 
       <div className="relative z-10 max-w-[90rem] mx-auto px-6 sm:px-8 pt-12">
         {/* Header 區域 */}
         <header className="mb-16 flex flex-col items-center text-center">
-            <div className="inline-block mb-6 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-900/10 text-cyan-400 text-base font-mono tracking-[0.1em] shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+            <div className="inline-block mb-6 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-900/20 text-cyan-300 text-base font-mono tracking-[0.1em] shadow-[0_0_15px_rgba(6,182,212,0.2)]">
                 台灣 ETF 觀測站 v2.0
             </div>
-            <h1 className="text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-slate-400 mb-6 tracking-tight drop-shadow-2xl">
+            <h1 className="text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-slate-300 mb-6 tracking-tight drop-shadow-2xl">
                 ETF 績效觀測站
             </h1>
             {/* --- 副標題字體縮小 --- */}
-            {/* 從原本的 text-lg md:text-xl 改為 text-sm md:text-base */}
-            <p className="text-slate-400 max-w-3xl text-sm md:text-base leading-relaxed mb-10">
+            <p className="text-slate-300 max-w-3xl text-sm md:text-base leading-relaxed mb-10">
                 即時追蹤台灣市場主動與被動式 ETF 表現。數據來源為自動化串接 MoneyDJ，
-                <span className="text-cyan-400 font-semibold"> 每日 AI 運算更新</span>。
+                <span className="text-cyan-300 font-semibold"> 每日 AI 運算更新</span>。
             </p>
 
             <button
@@ -412,7 +412,7 @@ const App = () => {
                 disabled={isLoading}
                 className={`
                     group relative overflow-hidden rounded-full px-10 py-4 text-lg font-bold transition-all duration-300 shadow-[0_0_25px_rgba(6,182,212,0.4)]
-                    ${isLoading ? 'bg-slate-800 text-slate-500 cursor-not-allowed' : 'bg-cyan-600 text-white hover:bg-cyan-500 hover:shadow-[0_0_40px_rgba(6,182,212,0.7)]'}
+                    ${isLoading ? 'bg-slate-700 text-slate-400 cursor-not-allowed' : 'bg-cyan-600 text-white hover:bg-cyan-500 hover:shadow-[0_0_40px_rgba(6,182,212,0.7)]'}
                 `}
             >
                 <div className="relative z-10 flex items-center">
@@ -427,12 +427,12 @@ const App = () => {
             {/* --- 主動式區塊 --- */}
             <div>
                 <div className="flex justify-between items-end mb-6 px-2">
-                    <h3 className="text-lg font-bold text-rose-400 uppercase tracking-widest flex items-center">
+                    <h3 className="text-lg font-bold text-rose-300 uppercase tracking-widest flex items-center">
                         <span className="w-3 h-3 bg-rose-500 rounded-full mr-3 animate-pulse shadow-[0_0_10px_rgba(244,63,94,0.6)]"></span>
                         {/* --- 標題中文化 --- */}
                         主動式基金排行
                     </h3>
-                    <div className="bg-slate-900 p-1.5 rounded-xl inline-flex border border-slate-800">
+                    <div className="bg-slate-800/80 p-1.5 rounded-xl inline-flex border border-slate-600">
                         {/* --- 切換按鈕中文化 --- */}
                         <button onClick={() => setActiveTimeRange('year')} className={getToggleClass(activeTimeRange === 'year')}>今年以來</button>
                         <button onClick={() => setActiveTimeRange('week')} className={getToggleClass(activeTimeRange === 'week')}>近一週</button>
@@ -454,12 +454,12 @@ const App = () => {
             {/* --- 被動式區塊 --- */}
             <div>
                 <div className="flex justify-between items-end mb-6 px-2">
-                    <h3 className="text-lg font-bold text-cyan-400 uppercase tracking-widest flex items-center">
+                    <h3 className="text-lg font-bold text-cyan-300 uppercase tracking-widest flex items-center">
                         <span className="w-3 h-3 bg-cyan-500 rounded-full mr-3 animate-pulse shadow-[0_0_10px_rgba(6,182,212,0.6)]"></span>
                         {/* --- 標題中文化 --- */}
                         被動式指數排行
                     </h3>
-                    <div className="bg-slate-900 p-1.5 rounded-xl inline-flex border border-slate-800">
+                    <div className="bg-slate-800/80 p-1.5 rounded-xl inline-flex border border-slate-600">
                         {/* --- 切換按鈕中文化 --- */}
                         <button onClick={() => setPassiveTimeRange('year')} className={getToggleClass(passiveTimeRange === 'year')}>今年以來</button>
                         <button onClick={() => setPassiveTimeRange('week')} className={getToggleClass(passiveTimeRange === 'week')}>近一週</button>
@@ -479,13 +479,13 @@ const App = () => {
             </div>
         </div>
 
-        {/* --- 新增投資警語區塊 --- */}
-        <div className="mt-16 p-6 bg-slate-900/50 rounded-2xl border border-red-500/30 text-center shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+        {/* --- 新增投資警語區塊 (文字調亮) --- */}
+        <div className="mt-16 p-6 bg-slate-900/60 rounded-2xl border border-red-500/30 text-center shadow-[0_0_15px_rgba(239,68,68,0.2)]">
             <h4 className="text-red-400 font-bold text-lg mb-3 flex items-center justify-center">
                 <AlertCircle className="w-5 h-5 mr-2" />
                 投資警語
             </h4>
-            <p className="text-slate-400 text-sm md:text-base leading-relaxed">
+            <p className="text-slate-300 text-sm md:text-base leading-relaxed">
                 本網站所提供之資訊僅供參考，不構成任何投資建議或要約。投資人應自行判斷投資風險，並承擔投資結果。
                 基金之過去績效不代表未來表現，本網站不保證資訊之正確性、完整性或即時性。
                 投資一定有風險，基金投資有賺有賠，申購前應詳閱公開說明書。
@@ -493,7 +493,7 @@ const App = () => {
         </div>
         
         {/* --- 頁尾中文化 --- */}
-        <footer className="text-center text-slate-500 text-base mt-16 font-mono mb-8">
+        <footer className="text-center text-slate-400 text-base mt-16 font-mono mb-8">
             系統狀態：<span className="text-cyan-400">連線中</span> • 數據來源：MoneyDJ • 台灣證券交易所
         </footer>
       </div>
