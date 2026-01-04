@@ -378,16 +378,16 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-cyan-500 selection:text-white pb-24">
-      {/* --- 全新科技感背景 --- */}
+      {/* --- 全新科技感背景 (AI決策風/岩石灰底/穩重專業) --- */}
       <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-          {/* 1. 藍色數位城市背景圖片 (使用您提供的圖片) */}
-          <div className="absolute inset-0 bg-[url('https://i.imgur.com/8Q5130k.png')] bg-cover bg-bottom opacity-80"></div>
+          {/* 1. 背景圖片替換：使用抽象的灰色科技線路/AI腦神經網絡圖，營造專業決策感 */}
+          <div className="absolute inset-0 bg-[url('https://img.freepik.com/free-vector/abstract-futuristic-hightech-background_23-2148497245.jpg')] bg-cover bg-center opacity-50 mix-blend-luminosity"></div>
           
-          {/* 2. 漸層疊加，讓底部更深沉，凸顯內容 */}
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-950/80 to-slate-950"></div>
+          {/* 2. 漸層疊加修改：改為更深沉、中性的岩石灰/深黑色調，增加穩重感 */}
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/80 via-gray-950/90 to-black"></div>
 
-          {/* 3. 保留一點點原本的動態光暈 */}
-          <div className="absolute bottom-[-20%] right-[-20%] w-[60%] h-[60%] bg-blue-900/20 rounded-full blur-[150px] animate-pulse-slow delay-1000"></div>
+          {/* 3. 動態光暈修改：將原本的藍色光暈改為極其低調的深灰色/冷光，隱喻數據流動而不失穩重 */}
+          <div className="absolute bottom-[-20%] right-[-20%] w-[60%] h-[60%] bg-gray-800/10 rounded-full blur-[150px] animate-pulse-slow delay-1000"></div>
       </div>
 
       <div className="relative z-10 max-w-[90rem] mx-auto px-6 sm:px-8 pt-12">
