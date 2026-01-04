@@ -2,14 +2,14 @@ import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { TrendingUp, Eye, Zap, Shield, RefreshCw, Loader, AlertCircle, Activity, BarChart2 } from 'lucide-react';
 
-// --- 自定義 UI 組件：輕盈科技卡片 ---
+// --- 自定義 UI 組件：輕盈科技卡片 (維持不變) ---
 const TechCard = ({ children, className = "" }) => (
-  <div className={`bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] rounded-2xl ${className}`}>
+  <div className={`bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_4px_20px_-4px_rgba(6,182,212,0.15)] rounded-2xl ${className}`}>
     {children}
   </div>
 );
 
-// --- 自定義 UI 組件：膠囊標籤 (通用) ---
+// --- 自定義 UI 組件：膠囊標籤 (維持不變) ---
 const NeonBadge = ({ type, text }) => {
   const styles = type === 'passive' 
     ? 'bg-sky-50 text-sky-600 border-sky-200' 
@@ -22,7 +22,7 @@ const NeonBadge = ({ type, text }) => {
   );
 };
 
-// --- 1. 輔助組件: ETF 詳情彈窗 (修改：背景色 #656565) ---
+// --- 1. 輔助組件: ETF 詳情彈窗 (修改：本體 #656565) ---
 const ETFDetailModal = ({ etf, onClose }) => {
   useEffect(() => {
     if (etf) document.body.style.overflow = 'hidden';
@@ -34,15 +34,15 @@ const ETFDetailModal = ({ etf, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
-        {/* 背景遮罩 */}
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity"></div>
+        {/* 背景遮罩 - 維持淺灰半透明 */}
+        <div className="absolute inset-0 bg-slate-500/30 backdrop-blur-sm transition-opacity"></div>
         
-        {/* 彈窗本體 - 指定色號 #656565 */}
+        {/* 彈窗本體 - 修改：背景色 #656565 */}
         <div 
-            className="bg-[#656565] border border-gray-500 w-full max-w-5xl max-h-[90vh] overflow-y-auto relative z-10 rounded-3xl shadow-2xl flex flex-col text-white"
+            className="bg-[#656565] border border-slate-500 w-full max-w-5xl max-h-[90vh] overflow-y-auto relative z-10 rounded-3xl shadow-2xl flex flex-col text-white"
             onClick={(e) => e.stopPropagation()}
         >
-            {/* 標題區 */}
+            {/* 標題區 - 配合深色背景，文字改為白色 */}
             <div className="p-8 border-b border-white/10 sticky top-0 bg-[#656565]/95 backdrop-blur z-20 flex justify-between items-start">
                 <div>
                     <div className="flex items-baseline gap-4">
@@ -52,13 +52,13 @@ const ETFDetailModal = ({ etf, onClose }) => {
                         <span className="text-gray-300 font-mono text-2xl">({etf.ticker})</span>
                     </div>
                     <div className="mt-4 flex items-center gap-4">
-                        {/* 這裡的 Badge 為了配合深底色，稍微調整一下樣式 */}
-                        <span className={`px-4 py-2 rounded-full text-sm font-mono font-bold border ${isPassive ? 'bg-sky-900/30 text-sky-300 border-sky-400/30' : 'bg-rose-900/30 text-rose-300 border-rose-400/30'}`}>
+                        {/* Badge 微調以適應深底 */}
+                        <span className={`px-4 py-2 rounded-full text-sm font-mono font-bold border ${isPassive ? 'bg-sky-100 text-sky-700 border-sky-300' : 'bg-rose-100 text-rose-700 border-rose-300'}`}>
                             {isPassive ? '被動式 (指數追蹤)' : '主動式 (經理人操作)'}
                         </span>
                         
                         {etf.fundManager && (
-                            <span className="text-sm font-medium text-gray-300 bg-white/10 px-3 py-1.5 rounded border border-white/10">
+                            <span className="text-sm font-medium text-gray-200 bg-white/10 px-3 py-1.5 rounded border border-white/20">
                                 {etf.fundManager}
                             </span>
                         )}
@@ -66,123 +66,123 @@ const ETFDetailModal = ({ etf, onClose }) => {
                 </div>
                 <button 
                     onClick={onClose}
-                    className="text-gray-400 hover:text-white hover:bg-white/20 transition p-2 rounded-full"
+                    className="text-gray-300 hover:text-white hover:bg-white/20 transition p-2 rounded-full"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
             </div>
 
-            {/* 內容區 */}
+            {/* 內容區 - 內部卡片維持原本的亮色設計 (其他區塊不變動) */}
             <div className="p-8 grid md:grid-cols-2 gap-8">
-                {/* 走勢圖 */}
-                <div className="bg-black/20 p-6 rounded-2xl border border-white/5">
-                    <h3 className="text-lg font-bold text-gray-200 mb-6 flex items-center uppercase tracking-wider">
-                        <TrendingUp className="w-6 h-6 mr-3 text-[#FFC709]"/> 績效走勢模擬 (今年以來)
+                {/* 走勢圖 - 維持亮色卡片 */}
+                <div className="bg-slate-50/90 p-6 rounded-2xl border border-slate-200 text-slate-800">
+                    <h3 className="text-lg font-bold text-slate-700 mb-6 flex items-center uppercase tracking-wider">
+                        <TrendingUp className="w-6 h-6 mr-3 text-sky-500"/> 績效走勢模擬 (今年以來)
                     </h3>
                     <div className="h-80 w-full">
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart data={etf.performanceData}>
-                                <CartesianGrid strokeDasharray="3 3" stroke="#888" vertical={false} />
-                                <XAxis dataKey="month" stroke="#ccc" tick={{fontSize: 14}} tickLine={false} axisLine={false} dy={10} />
-                                <YAxis domain={['auto', 'auto']} stroke="#ccc" tick={{fontSize: 14}} tickLine={false} axisLine={false} dx={-10}/>
+                                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
+                                <XAxis dataKey="month" stroke="#64748b" tick={{fontSize: 14}} tickLine={false} axisLine={false} dy={10} />
+                                <YAxis domain={['auto', 'auto']} stroke="#64748b" tick={{fontSize: 14}} tickLine={false} axisLine={false} dx={-10}/>
                                 <Tooltip 
-                                    contentStyle={{ backgroundColor: '#656565', borderColor: '#999', color: '#fff', fontSize: '14px' }}
-                                    itemStyle={{ color: '#FFC709' }}
+                                    contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', color: '#1e293b', fontSize: '14px', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                                    itemStyle={{ color: '#0ea5e9' }}
                                     formatter={(value) => [`${value.toFixed(2)}`, '淨值指數']} 
                                     labelFormatter={(label) => `月份: ${label}`}
                                 />
                                 <Line 
                                     type="monotone" 
                                     dataKey="return" 
-                                    stroke="#FFC709" 
+                                    stroke="#0ea5e9" 
                                     strokeWidth={3} 
-                                    dot={{ fill: '#656565', stroke: '#FFC709', strokeWidth: 2, r: 5 }} 
-                                    activeDot={{ r: 7, fill: '#FFC709' }} 
+                                    dot={{ fill: '#fff', stroke: '#0ea5e9', strokeWidth: 2, r: 5 }} 
+                                    activeDot={{ r: 7, fill: '#0ea5e9' }} 
                                 />
                             </LineChart>
                         </ResponsiveContainer>
                     </div>
                 </div>
 
-                {/* 關鍵數據 */}
-                <div className="bg-black/20 p-6 rounded-2xl border border-white/5 flex flex-col justify-center">
-                    <h3 className="text-lg font-bold text-gray-200 mb-6 flex items-center uppercase tracking-wider">
-                        <Activity className="w-6 h-6 mr-3 text-[#63BFF4]"/> 關鍵指標
+                {/* 關鍵數據 - 維持亮色卡片 */}
+                <div className="bg-slate-50/90 p-6 rounded-2xl border border-slate-200 text-slate-800 flex flex-col justify-center">
+                    <h3 className="text-lg font-bold text-slate-700 mb-6 flex items-center uppercase tracking-wider">
+                        <Activity className="w-6 h-6 mr-3 text-indigo-500"/> 關鍵指標
                     </h3>
                     <div className="space-y-6">
-                        <div className="flex justify-between items-center p-4 bg-white/5 rounded-xl border border-white/10">
-                            <span className="text-gray-300 text-lg">最新淨值 (NAV)</span>
-                            <span className="text-4xl font-mono font-bold text-white">
-                                NT$ <span className="text-[#63BFF4]">{etf.latestNav.toFixed(2)}</span>
+                        <div className="flex justify-between items-center p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+                            <span className="text-slate-500 text-lg">最新淨值 (NAV)</span>
+                            <span className="text-4xl font-mono font-bold text-slate-800">
+                                NT$ <span className="text-sky-600">{etf.latestNav.toFixed(2)}</span>
                             </span>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
-                            <div className="p-4 bg-white/5 rounded-xl border border-white/10">
-                                <p className="text-gray-400 text-base mb-2">今年以來 (YTD)</p>
-                                <p className={`text-3xl font-mono font-bold ${etf.ytdReturn >= 0 ? 'text-rose-400' : 'text-emerald-400'}`}>
+                            <div className="p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+                                <p className="text-slate-500 text-base mb-2">今年以來 (YTD)</p>
+                                <p className={`text-3xl font-mono font-bold ${etf.ytdReturn >= 0 ? 'text-rose-500' : 'text-emerald-500'}`}>
                                     {etf.ytdReturn >= 0 ? '+' : ''}{etf.ytdReturn.toFixed(2)}%
                                 </p>
                             </div>
-                            <div className="p-4 bg-white/5 rounded-xl border border-white/10">
-                                <p className="text-gray-400 text-base mb-2">近一週 (Weekly)</p>
-                                <p className={`text-3xl font-mono font-bold ${etf.weeklyReturn >= 0 ? 'text-rose-400' : 'text-emerald-400'}`}>
+                            <div className="p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+                                <p className="text-slate-500 text-base mb-2">近一週 (Weekly)</p>
+                                <p className={`text-3xl font-mono font-bold ${etf.weeklyReturn >= 0 ? 'text-rose-500' : 'text-emerald-500'}`}>
                                     {etf.weeklyReturn !== undefined ? (etf.weeklyReturn >= 0 ? '+' : '') + etf.weeklyReturn.toFixed(2) : '0.00'}%
                                 </p>
                             </div>
                         </div>
 
                         <div className="space-y-4 text-lg pt-4">
-                             <div className="flex justify-between border-b border-white/10 pb-3">
-                                <span className="text-gray-400">成立日期</span>
-                                <span className="text-gray-200 font-mono">{etf.foundedDate || "N/A"}</span>
+                             <div className="flex justify-between border-b border-slate-200 pb-3">
+                                <span className="text-slate-500">成立日期</span>
+                                <span className="text-slate-700 font-mono">{etf.foundedDate || "N/A"}</span>
                             </div>
-                            <div className="flex justify-between border-b border-white/10 py-3">
-                                <span className="text-gray-400">配息頻率</span>
-                                <span className="text-gray-200">{etf.dividendFreq || "N/A"}</span>
+                            <div className="flex justify-between border-b border-slate-200 py-3">
+                                <span className="text-slate-500">配息頻率</span>
+                                <span className="text-slate-700">{etf.dividendFreq || "N/A"}</span>
                             </div>
                             <div className="flex justify-between pt-3">
-                                <span className="text-gray-400">保管銀行</span>
-                                <span className="text-gray-200">{etf.custodianBank || "N/A"}</span>
+                                <span className="text-slate-500">保管銀行</span>
+                                <span className="text-slate-700">{etf.custodianBank || "N/A"}</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* 持股明細 */}
+            {/* 持股明細 - 維持亮色卡片 */}
             <div className="p-8 pt-0">
                 <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
-                    <BarChart2 className="w-6 h-6 mr-3 text-gray-400"/>
+                    <BarChart2 className="w-6 h-6 mr-3 text-gray-300"/>
                     {isPassive ? '指數成分股' : '經理人配置'}
                 </h3>
                 
-                <div className="overflow-hidden rounded-xl border border-white/10">
-                    <table className="min-w-full divide-y divide-white/10">
-                        <thead className="bg-black/30">
+                <div className="overflow-hidden rounded-xl border border-slate-500/50">
+                    <table className="min-w-full divide-y divide-slate-200">
+                        <thead className="bg-slate-100">
                             <tr>
-                                <th className="px-8 py-4 text-left text-base font-semibold text-gray-400 uppercase tracking-wider">股票名稱</th>
-                                <th className="px-8 py-4 text-right text-base font-semibold text-gray-400 uppercase tracking-wider">持股比例</th>
-                                <th className="px-8 py-4 text-right text-base font-semibold text-gray-400 uppercase tracking-wider">模擬變動</th>
+                                <th className="px-8 py-4 text-left text-base font-semibold text-slate-500 uppercase tracking-wider">股票名稱</th>
+                                <th className="px-8 py-4 text-right text-base font-semibold text-slate-500 uppercase tracking-wider">持股比例</th>
+                                <th className="px-8 py-4 text-right text-base font-semibold text-slate-500 uppercase tracking-wider">模擬變動</th>
                             </tr>
                         </thead>
-                        <tbody className="bg-white/5 divide-y divide-white/5">
+                        <tbody className="bg-white divide-y divide-slate-100">
                           {etf.holdings && etf.holdings.length > 0 ? (
                             etf.holdings.map((holding, index) => (
-                              <tr key={index} className="hover:bg-white/10 transition duration-150">
-                                <td className="px-8 py-5 whitespace-nowrap text-lg font-medium text-white">
+                              <tr key={index} className="hover:bg-sky-50 transition duration-150">
+                                <td className="px-8 py-5 whitespace-nowrap text-lg font-medium text-slate-800">
                                   {holding.stock}
                                 </td>
-                                <td className="px-8 py-5 whitespace-nowrap text-lg text-gray-300 text-right font-mono">
+                                <td className="px-8 py-5 whitespace-nowrap text-lg text-slate-500 text-right font-mono">
                                   {holding.percent}%
                                 </td>
                                 <td className="px-8 py-5 whitespace-nowrap text-lg text-right font-mono">
                                   <span className={`${
                                     holding.change.includes("🔺") || holding.change.includes("新")
-                                      ? "text-rose-400"
+                                      ? "text-rose-500"
                                       : holding.change.includes("🔻")
-                                      ? "text-emerald-400"
-                                      : "text-gray-500"
+                                      ? "text-emerald-500"
+                                      : "text-slate-400"
                                   }`}>
                                     {holding.change}
                                   </span>
@@ -191,7 +191,7 @@ const ETFDetailModal = ({ etf, onClose }) => {
                             ))
                           ) : (
                             <tr>
-                              <td colSpan="3" className="px-8 py-10 text-center text-gray-500 italic text-lg">
+                              <td colSpan="3" className="px-8 py-10 text-center text-slate-400 italic text-lg">
                                 暫無持股資料
                               </td>
                             </tr>
@@ -205,7 +205,7 @@ const ETFDetailModal = ({ etf, onClose }) => {
   );
 };
 
-// --- 2. 輔助組件: 列表表格 ---
+// --- 2. 輔助組件: 列表表格 (維持不變) ---
 const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeRange = 'year' }) => {
     const metricKey = timeRange === 'week' ? 'weeklyReturn' : 'ytdReturn';
     const highlightThreshold = timeRange === 'week' ? 3 : 15;
@@ -218,14 +218,15 @@ const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeR
     }, [data, type, metricKey]);
 
     const IconComponent = type === 'active' ? Zap : Shield;
-    
-    // 主動式使用指定黃色，被動式保持藍色系
-    const accentColorClass = type === 'active' ? 'text-[#FFC709]' : 'text-sky-500';
+    const accentColorClass = type === 'active' ? 'text-rose-500' : 'text-sky-500';
+    const gradientHeader = type === 'active' 
+        ? 'bg-gradient-to-r from-rose-50 to-transparent' 
+        : 'bg-gradient-to-r from-sky-50 to-transparent';
     
     let content;
     if (isLoading) {
         content = (
-            <div className="flex flex-col items-center justify-center p-16 text-slate-400">
+            <div className="flex flex-col items-center justify-center p-16 text-sky-500">
                 <Loader className="w-12 h-12 animate-spin mb-6" />
                 <p className="text-2xl font-medium tracking-wider animate-pulse">數據同步中...</p>
             </div>
@@ -288,7 +289,7 @@ const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeR
                                             ? 'text-rose-500' 
                                             : (etf[metricKey] || 0) >= 0 
                                                 ? 'text-rose-500' 
-                                                : 'text-emerald-500' 
+                                                : 'text-emerald-500'
                                     }`}>
                                         {etf[metricKey] >= 0 ? '+' : ''}{(etf[metricKey] !== undefined ? etf[metricKey] : 0).toFixed(2)}%
                                     </span>
@@ -316,17 +317,12 @@ const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeR
 
     return (
         <TechCard className="mb-12 overflow-hidden">
-            <div className={`p-6 sm:p-8 border-b border-slate-100 flex items-center`}>
+            <div className={`p-6 sm:p-8 border-b border-slate-100 flex items-center ${gradientHeader}`}>
                 <div className={`p-3 rounded-xl bg-white mr-6 border border-slate-100 shadow-sm ${accentColorClass}`}>
                     <IconComponent className="w-8 h-8" />
                 </div>
-                {/* 修改點：主動式標題用指定黃色 #FFC709
-                   注意：因為 #FFC709 是亮黃色，在白底上可能對比度不足，這裡加上了文字陰影增強可讀性 
-                */}
-                <h2 
-                    className="text-3xl font-bold tracking-wide drop-shadow-sm"
-                    style={{ color: type === 'active' ? '#FFC709' : '#1e293b' }} 
-                >
+                {/* 這裡的標題會由父層傳入 (主動/被動)，如果是主動，我們會特別處理它的顏色 */}
+                <h2 className="text-3xl font-bold text-slate-800 tracking-wide">
                     {title}
                 </h2>
             </div>
@@ -335,7 +331,7 @@ const ETFTableList = ({ title, data, type, openDetail, isLoading, isError, timeR
     );
 };
 
-// --- 3. 主應用程式 ---
+// --- 3. 主應用程式 (修改：應用指定色號) ---
 const App = () => {
   const [selectedEtf, setSelectedEtf] = useState(null);
   const [activeETFs, setActiveETFs] = useState([]);
@@ -352,10 +348,18 @@ const App = () => {
     
     try {
       const response = await fetch(`${process.env.PUBLIC_URL}/etf_data.json?t=${new Date().getTime()}`);
-      if (!response.ok) throw new Error('無法讀取數據檔案');
+      
+      if (!response.ok) {
+        throw new Error('無法讀取數據檔案');
+      }
+
       const data = await response.json();
-      setActiveETFs(data.filter(item => item.type === 'active'));
-      setPassiveETFs(data.filter(item => item.type === 'passive'));
+      const activeData = data.filter(item => item.type === 'active');
+      const passiveData = data.filter(item => item.type === 'passive');
+
+      setActiveETFs(activeData);
+      setPassiveETFs(passiveData);
+
     } catch (error) {
       console.error("Fetch Error:", error);
       setIsError(true);
@@ -368,29 +372,19 @@ const App = () => {
     fetchRealData();
   }, [fetchRealData]); 
 
-  // --- 修改點：按鈕樣式 ---
-  // isWeekButton: 用來判斷是否為「近一週」按鈕
-  // isActive: 是否被選中
-  const getToggleClass = (isActive, isWeekButton) => {
-      // 基礎樣式
-      let base = "px-6 py-2 rounded-lg text-lg font-bold font-mono transition-all border ";
-      
-      if (isActive) {
-          // 如果是「近一週」按鈕且被選中，使用指定色 #63BFF4
-          if (isWeekButton) {
-              return base + "bg-[#63BFF4] text-white border-[#63BFF4] shadow-sm";
-          }
-          // 其他按鈕(今年以來)被選中時的樣式 (維持灰色或預設)
-          return base + "bg-slate-600 text-white border-slate-600 shadow-sm";
-      } else {
-          // 未選中狀態
-          return base + "text-slate-400 border-transparent hover:text-slate-600";
-      }
-  };
+  // 修改：切換按鈕的樣式生成器
+  // 當 isActive 為 true 時，如果是 'week' 模式，背景使用 #63BFF4，否則使用預設的白色
+  // 注意：我們需要一個參數來判斷現在是不是 week 按鈕
+  const getToggleClass = (isActive, isWeekBtn) => `
+    px-6 py-2 rounded-lg text-lg font-bold font-mono transition-all border
+    ${isActive 
+        ? (isWeekBtn ? 'bg-[#63BFF4] text-white border-[#63BFF4] shadow-md' : 'bg-white text-sky-600 border-slate-200 shadow-sm')
+        : 'text-slate-400 border-transparent hover:text-slate-600'}
+  `;
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-sky-100 selection:text-sky-700 pb-24">
-      {/* 淺色科技背景 */}
+      {/* --- 背景維持不變 --- */}
       <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
           <div className="absolute inset-0 bg-slate-50"></div>
           <div className="absolute inset-0 bg-[url('https://img.freepik.com/free-vector/white-abstract-background-design_23-2148825582.jpg')] bg-cover bg-center opacity-40 mix-blend-multiply"></div>
@@ -404,9 +398,11 @@ const App = () => {
             <div className="inline-block mb-6 px-4 py-2 rounded-full border border-slate-200 bg-white/50 text-slate-500 text-base font-mono tracking-[0.1em] backdrop-blur-sm shadow-sm">
                 台灣 ETF 觀測站 v2.0
             </div>
+            
             <h1 className="text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-800 via-sky-600 to-cyan-500 mb-6 tracking-tight drop-shadow-sm">
                 ETF 績效觀測站
             </h1>
+            
             <p className="text-slate-500 max-w-3xl text-sm md:text-base leading-relaxed mb-10">
                 即時追蹤台灣市場主動與被動式 ETF 表現。數據來源為自動化串接 MoneyDJ，
                 <span className="text-sky-600 font-bold"> 每日 AI 運算更新</span>。
@@ -431,20 +427,21 @@ const App = () => {
             {/* --- 主動式區塊 --- */}
             <div>
                 <div className="flex justify-between items-end mb-6 px-2">
-                    <h3 className="text-lg font-bold text-[#FFC709] uppercase tracking-widest flex items-center drop-shadow-sm">
+                    {/* 修改：主動式標題顏色為 #FFC709 */}
+                    <h3 className="text-lg font-bold text-[#FFC709] uppercase tracking-widest flex items-center">
                         <span className="w-3 h-3 bg-[#FFC709] rounded-full mr-3 animate-pulse"></span>
                         主動式基金排行
                     </h3>
                     <div className="bg-slate-200/50 p-1.5 rounded-xl inline-flex border border-slate-200">
-                        {/* 傳入 false 表示這是「今年以來」按鈕 */}
+                        {/* 傳入第二個參數 false，表示這是 'year' 按鈕 */}
                         <button onClick={() => setActiveTimeRange('year')} className={getToggleClass(activeTimeRange === 'year', false)}>今年以來</button>
-                        {/* 傳入 true 表示這是「近一週」按鈕 -> 會變 #63BFF4 */}
+                        {/* 傳入第二個參數 true，表示這是 'week' 按鈕，將應用 #63BFF4 */}
                         <button onClick={() => setActiveTimeRange('week')} className={getToggleClass(activeTimeRange === 'week', true)}>近一週</button>
                     </div>
                 </div>
 
                 <ETFTableList 
-                    title={`主動式精選 (${activeTimeRange === 'year' ? '今年以來' : '近一週'})`}
+                    title={<span className="text-slate-800">主動式精選 ({activeTimeRange === 'year' ? '今年以來' : '近一週'})</span>}
                     data={activeETFs} 
                     type="active" 
                     timeRange={activeTimeRange}
@@ -462,13 +459,15 @@ const App = () => {
                         被動式指數排行
                     </h3>
                     <div className="bg-slate-200/50 p-1.5 rounded-xl inline-flex border border-slate-200">
+                         {/* 傳入第二個參數 false */}
                         <button onClick={() => setPassiveTimeRange('year')} className={getToggleClass(passiveTimeRange === 'year', false)}>今年以來</button>
+                         {/* 傳入第二個參數 true，將應用 #63BFF4 */}
                         <button onClick={() => setPassiveTimeRange('week')} className={getToggleClass(passiveTimeRange === 'week', true)}>近一週</button>
                     </div>
                 </div>
 
                 <ETFTableList 
-                    title={`指數追蹤榜 (${passiveTimeRange === 'year' ? '今年以來' : '近一週'})`}
+                    title={<span className="text-slate-800">指數追蹤榜 ({passiveTimeRange === 'year' ? '今年以來' : '近一週'})</span>}
                     data={passiveETFs} 
                     type="passive" 
                     timeRange={passiveTimeRange} 
@@ -492,6 +491,7 @@ const App = () => {
             </p>
         </div>
         
+        {/* --- 頁尾 --- */}
         <footer className="text-center text-slate-400 text-base mt-16 font-mono mb-8">
             系統狀態：<span className="text-sky-500">連線中</span> • 數據來源：MoneyDJ • 台灣證券交易所
         </footer>
