@@ -7,7 +7,7 @@
     "manager": "統一投信",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 18.13,
+    "latestNav": 18.41,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -16,63 +16,63 @@
     "holdings": [
       {
         "stock": "台積電(2330.TW)",
-        "percent": 9.72,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 9.65,
+        "change": "🔻0.07%",
+        "changeVal": -0.07000000000000028
       },
       {
         "stock": "群聯(8299.TW)",
-        "percent": 7.35,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 7.69,
+        "change": "🔺0.34%",
+        "changeVal": 0.34000000000000075
       },
       {
         "stock": "台達電(2308.TW)",
-        "percent": 7.25,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 7.21,
+        "change": "🔻0.04%",
+        "changeVal": -0.040000000000000036
       },
       {
         "stock": "奇鋐(3017.TW)",
-        "percent": 6.1,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 6.11,
+        "change": "🔺0.01%",
+        "changeVal": 0.010000000000000675
       },
       {
         "stock": "智邦(2345.TW)",
-        "percent": 5.47,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 5.38,
+        "change": "🔻0.09%",
+        "changeVal": -0.08999999999999986
       },
       {
         "stock": "台燿(6274.TW)",
-        "percent": 5.37,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 5.3,
+        "change": "🔻0.07%",
+        "changeVal": -0.07000000000000028
       },
       {
         "stock": "緯穎(6669.TW)",
-        "percent": 5.01,
-        "change": "-",
-        "changeVal": 0.0
-      },
-      {
-        "stock": "旺矽(6223.TW)",
-        "percent": 4.93,
-        "change": "-",
-        "changeVal": 0.0
-      },
-      {
-        "stock": "健策(3653.TW)",
-        "percent": 4.71,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 4.87,
+        "change": "🔻0.14%",
+        "changeVal": -0.13999999999999968
       },
       {
         "stock": "台光電(2383.TW)",
-        "percent": 4.61,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 4.68,
+        "change": "🔺0.07%",
+        "changeVal": 0.0699999999999994
+      },
+      {
+        "stock": "旺矽(6223.TW)",
+        "percent": 4.65,
+        "change": "🔻0.28%",
+        "changeVal": -0.27999999999999936
+      },
+      {
+        "stock": "健策(3653.TW)",
+        "percent": 4.64,
+        "change": "🔻0.07%",
+        "changeVal": -0.07000000000000028
       }
     ],
     "performanceData": [
@@ -170,7 +170,7 @@
       },
       {
         "month": "01/26",
-        "return": 18.32
+        "return": 18.2
       }
     ],
     "foundedDate": "2025/05/15",
@@ -185,7 +185,7 @@
     "manager": "野村投信",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 16.38,
+    "latestNav": 16.63,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -195,62 +195,62 @@
       {
         "stock": "台積電(2330.TW)",
         "percent": 9.44,
-        "change": "🔺0.10%",
-        "changeVal": 0.09999999999999964
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "台達電(2308.TW)",
         "percent": 4.82,
-        "change": "🔺0.07%",
-        "changeVal": 0.07000000000000028
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "鴻海(2317.TW)",
         "percent": 3.84,
-        "change": "🔻0.07%",
-        "changeVal": -0.07000000000000028
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "聯發科(2454.TW)",
         "percent": 3.65,
-        "change": "🔻0.07%",
-        "changeVal": -0.07000000000000028
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "金像電(2368.TW)",
         "percent": 2.95,
-        "change": "🔺0.15%",
-        "changeVal": 0.15000000000000036
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "華邦電(2344.TW)",
         "percent": 2.88,
-        "change": "🔺0.26%",
-        "changeVal": 0.2599999999999998
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "奇鋐(3017.TW)",
         "percent": 2.78,
-        "change": "🔺0.11%",
-        "changeVal": 0.10999999999999988
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "川湖(2059.TW)",
         "percent": 2.7,
-        "change": "🔻0.16%",
-        "changeVal": -0.1599999999999997
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "緯穎(6669.TW)",
         "percent": 2.51,
-        "change": "🔻0.15%",
-        "changeVal": -0.15000000000000036
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "中信金(2891.TW)",
         "percent": 2.49,
-        "change": "🔻0.05%",
-        "changeVal": -0.04999999999999982
+        "change": "-",
+        "changeVal": 0.0
       }
     ],
     "performanceData": [
@@ -360,7 +360,7 @@
       },
       {
         "month": "01/26",
-        "return": 16.6
+        "return": 16.52
       }
     ],
     "foundedDate": "2025/04/22",
@@ -375,7 +375,7 @@
     "manager": "野村投信",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 15.03,
+    "latestNav": 15.23,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -384,63 +384,63 @@
     "holdings": [
       {
         "stock": "台積電(2330.TW)",
-        "percent": 20.11,
-        "change": "🔺0.26%",
-        "changeVal": 0.259999999999998
+        "percent": 20.33,
+        "change": "🔺0.22%",
+        "changeVal": 0.21999999999999886
       },
       {
         "stock": "華新(1605.TW)",
-        "percent": 4.01,
-        "change": "🔺0.50%",
-        "changeVal": 0.5
+        "percent": 4.12,
+        "change": "🔺0.11%",
+        "changeVal": 0.11000000000000032
       },
       {
         "stock": "華通(2313.TW)",
-        "percent": 3.5,
-        "change": "🆕新進",
-        "changeVal": 3.5
+        "percent": 3.56,
+        "change": "🔺0.06%",
+        "changeVal": 0.06000000000000005
       },
       {
         "stock": "聯發科(2454.TW)",
-        "percent": 3.28,
-        "change": "🔻0.04%",
-        "changeVal": -0.040000000000000036
-      },
-      {
-        "stock": "鈊象(3293.TW)",
-        "percent": 3.05,
-        "change": "🔻0.03%",
-        "changeVal": -0.03000000000000025
+        "percent": 3.16,
+        "change": "🔻0.12%",
+        "changeVal": -0.11999999999999966
       },
       {
         "stock": "中華電(2412.TW)",
-        "percent": 2.98,
-        "change": "🔺0.26%",
-        "changeVal": 0.2599999999999998
+        "percent": 3.0,
+        "change": "🔺0.02%",
+        "changeVal": 0.020000000000000018
       },
       {
         "stock": "文曄(3036.TW)",
-        "percent": 2.98,
-        "change": "🔺0.87%",
-        "changeVal": 0.8700000000000001
+        "percent": 2.89,
+        "change": "🔻0.09%",
+        "changeVal": -0.08999999999999986
       },
       {
         "stock": "遠傳(4904.TW)",
         "percent": 2.51,
-        "change": "🔺0.43%",
-        "changeVal": 0.4299999999999997
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "富邦金(2881.TW)",
         "percent": 2.4,
-        "change": "🔻0.03%",
-        "changeVal": -0.03000000000000025
+        "change": "-",
+        "changeVal": 0.0
       },
       {
-        "stock": "穎崴(6515.TW)",
-        "percent": 2.38,
-        "change": "🔻0.19%",
-        "changeVal": -0.18999999999999995
+        "stock": "研華(2395.TW)",
+        "percent": 2.25,
+        "change": "🆕新進",
+        "changeVal": 2.25
+      },
+      {
+        "stock": "台達電(2308.TW)",
+        "percent": 2.21,
+        "change": "🆕新進",
+        "changeVal": 2.21
       }
     ],
     "performanceData": [
@@ -550,7 +550,7 @@
       },
       {
         "month": "01/26",
-        "return": 15.2
+        "return": 15.13
       }
     ],
     "foundedDate": "2025/07/08",
@@ -565,7 +565,7 @@
     "manager": "安聯投信",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 12.21,
+    "latestNav": 12.33,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -702,7 +702,7 @@
       },
       {
         "month": "01/26",
-        "return": 12.3
+        "return": 12.21
       }
     ],
     "foundedDate": "2025/07/03",
@@ -717,7 +717,7 @@
     "manager": "群益投信",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 11.56,
+    "latestNav": 11.79,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -726,63 +726,63 @@
     "holdings": [
       {
         "stock": "台積電(2330.TW)",
-        "percent": 8.08,
-        "change": "🔻0.28%",
-        "changeVal": -0.27999999999999936
+        "percent": 7.72,
+        "change": "🔻0.36%",
+        "changeVal": -0.3600000000000003
       },
       {
         "stock": "台達電(2308.TW)",
-        "percent": 5.04,
-        "change": "🔻0.17%",
-        "changeVal": -0.16999999999999993
+        "percent": 4.92,
+        "change": "🔻0.12%",
+        "changeVal": -0.1200000000000001
       },
       {
         "stock": "群聯(8299.TW)",
-        "percent": 4.71,
-        "change": "🔻0.13%",
-        "changeVal": -0.1299999999999999
+        "percent": 4.83,
+        "change": "🔺0.12%",
+        "changeVal": 0.1200000000000001
       },
       {
         "stock": "智邦(2345.TW)",
-        "percent": 4.51,
-        "change": "🔻0.20%",
-        "changeVal": -0.20000000000000018
+        "percent": 4.36,
+        "change": "🔻0.15%",
+        "changeVal": -0.14999999999999947
       },
       {
         "stock": "貿聯-KY(3665.TW)",
-        "percent": 4.39,
-        "change": "🔻0.26%",
-        "changeVal": -0.2600000000000007
-      },
-      {
-        "stock": "旺矽(6223.TW)",
-        "percent": 3.84,
-        "change": "🔺0.14%",
-        "changeVal": 0.13999999999999968
+        "percent": 4.25,
+        "change": "🔻0.14%",
+        "changeVal": -0.13999999999999968
       },
       {
         "stock": "奇鋐(3017.TW)",
-        "percent": 3.77,
-        "change": "🔺0.07%",
-        "changeVal": 0.06999999999999984
+        "percent": 3.7,
+        "change": "🔻0.07%",
+        "changeVal": -0.06999999999999984
+      },
+      {
+        "stock": "旺矽(6223.TW)",
+        "percent": 3.55,
+        "change": "🔻0.29%",
+        "changeVal": -0.29000000000000004
       },
       {
         "stock": "川湖(2059.TW)",
-        "percent": 3.73,
-        "change": "🔻0.08%",
-        "changeVal": -0.08000000000000007
-      },
-      {
-        "stock": "穎崴(6515.TW)",
-        "percent": 3.45,
-        "change": "🔺0.11%",
-        "changeVal": 0.11000000000000032
+        "percent": 3.46,
+        "change": "🔻0.27%",
+        "changeVal": -0.27
       },
       {
         "stock": "台光電(2383.TW)",
-        "percent": 3.27,
-        "change": "🔺0.29%",
-        "changeVal": 0.29000000000000004
+        "percent": 3.25,
+        "change": "🔻0.02%",
+        "changeVal": -0.020000000000000018
+      },
+      {
+        "stock": "穎崴(6515.TW)",
+        "percent": 3.1,
+        "change": "🔻0.35%",
+        "changeVal": -0.3500000000000001
       }
     ],
     "performanceData": [
@@ -796,7 +796,7 @@
       },
       {
         "month": "01/26",
-        "return": 11.79
+        "return": 11.64
       }
     ],
     "foundedDate": "2025/12/16",
@@ -831,7 +831,7 @@
     "manager": "群益投信",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 15.56,
+    "latestNav": 15.81,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -840,63 +840,63 @@
     "holdings": [
       {
         "stock": "台積電(2330.TW)",
-        "percent": 9.49,
-        "change": "🔻0.45%",
-        "changeVal": -0.4499999999999993
+        "percent": 9.55,
+        "change": "🔺0.06%",
+        "changeVal": 0.0600000000000005
       },
       {
         "stock": "群聯(8299.TW)",
-        "percent": 6.43,
-        "change": "🔺0.08%",
-        "changeVal": 0.08000000000000007
+        "percent": 6.83,
+        "change": "🔺0.40%",
+        "changeVal": 0.40000000000000036
       },
       {
         "stock": "聖暉*(5536.TW)",
-        "percent": 5.7,
-        "change": "🔻0.09%",
-        "changeVal": -0.08999999999999986
+        "percent": 5.64,
+        "change": "🔻0.06%",
+        "changeVal": -0.0600000000000005
       },
       {
         "stock": "緯穎(6669.TW)",
-        "percent": 5.15,
-        "change": "🔻0.23%",
-        "changeVal": -0.22999999999999954
+        "percent": 5.07,
+        "change": "🔻0.08%",
+        "changeVal": -0.08000000000000007
+      },
+      {
+        "stock": "亞翔(6139.TW)",
+        "percent": 4.21,
+        "change": "🔺1.23%",
+        "changeVal": 1.23
       },
       {
         "stock": "欣銓(3264.TW)",
-        "percent": 3.82,
+        "percent": 3.84,
         "change": "🔺0.02%",
         "changeVal": 0.020000000000000018
       },
       {
         "stock": "鴻勁(7769.TW)",
-        "percent": 3.59,
-        "change": "🔻0.04%",
-        "changeVal": -0.040000000000000036
-      },
-      {
-        "stock": "亞翔(6139.TW)",
-        "percent": 2.98,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 3.54,
+        "change": "🔻0.05%",
+        "changeVal": -0.04999999999999982
       },
       {
         "stock": "智邦(2345.TW)",
-        "percent": 2.98,
+        "percent": 2.97,
         "change": "🔻0.01%",
-        "changeVal": -0.010000000000000231
+        "changeVal": -0.009999999999999787
       },
       {
         "stock": "致茂(2360.TW)",
-        "percent": 2.94,
-        "change": "🔺0.03%",
-        "changeVal": 0.029999999999999805
+        "percent": 2.89,
+        "change": "🔻0.05%",
+        "changeVal": -0.04999999999999982
       },
       {
-        "stock": "台達電(2308.TW)",
-        "percent": 2.85,
+        "stock": "台光電(2383.TW)",
+        "percent": 2.89,
         "change": "🆕新進",
-        "changeVal": 2.85
+        "changeVal": 2.89
       }
     ],
     "performanceData": [
@@ -1006,7 +1006,7 @@
       },
       {
         "month": "01/26",
-        "return": 15.72
+        "return": 15.61
       }
     ],
     "foundedDate": "2025/05/13",
@@ -1021,7 +1021,7 @@
     "manager": "台新投信",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 12.01,
+    "latestNav": 12.08,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -1030,63 +1030,63 @@
     "holdings": [
       {
         "stock": "Alphabet - Class A(GOOGL.US)",
-        "percent": 8.2,
-        "change": "🔺0.09%",
-        "changeVal": 0.08999999999999986
+        "percent": 8.08,
+        "change": "🔻0.12%",
+        "changeVal": -0.11999999999999922
       },
       {
         "stock": "台積電(2330.TW)",
-        "percent": 6.39,
-        "change": "🔻0.07%",
-        "changeVal": -0.07000000000000028
+        "percent": 6.37,
+        "change": "🔻0.02%",
+        "changeVal": -0.019999999999999574
       },
       {
         "stock": "NVIDIA(NVDA.US)",
-        "percent": 6.33,
-        "change": "🔻0.07%",
-        "changeVal": -0.07000000000000028
+        "percent": 6.28,
+        "change": "🔻0.05%",
+        "changeVal": -0.04999999999999982
       },
       {
         "stock": "Broadcom(AVGO.US)",
-        "percent": 6.2,
-        "change": "🔺0.06%",
-        "changeVal": 0.0600000000000005
+        "percent": 6.23,
+        "change": "🔺0.03%",
+        "changeVal": 0.03000000000000025
       },
       {
         "stock": "Microsoft(MSFT.US)",
-        "percent": 4.39,
-        "change": "🔺0.02%",
-        "changeVal": 0.019999999999999574
-      },
-      {
-        "stock": "Goldman Sachs(GS.US)",
-        "percent": 4.35,
-        "change": "🔺0.04%",
-        "changeVal": 0.040000000000000036
+        "percent": 4.4,
+        "change": "🔺0.01%",
+        "changeVal": 0.010000000000000675
       },
       {
         "stock": "Micron(MU.US)",
-        "percent": 4.13,
-        "change": "🔻0.13%",
-        "changeVal": -0.1299999999999999
+        "percent": 4.27,
+        "change": "🔺0.14%",
+        "changeVal": 0.13999999999999968
+      },
+      {
+        "stock": "Goldman Sachs(GS.US)",
+        "percent": 4.26,
+        "change": "🔻0.09%",
+        "changeVal": -0.08999999999999986
       },
       {
         "stock": "Meta(META.US)",
-        "percent": 3.55,
-        "change": "🔺0.06%",
-        "changeVal": 0.05999999999999961
+        "percent": 3.48,
+        "change": "🔻0.07%",
+        "changeVal": -0.06999999999999984
       },
       {
-        "stock": "Eli Lilly(LLY.US)",
-        "percent": 3.16,
-        "change": "🔻0.02%",
-        "changeVal": -0.020000000000000018
+        "stock": "Lumentum(LITE.US)",
+        "percent": 3.09,
+        "change": "🆕新進",
+        "changeVal": 3.09
       },
       {
         "stock": "Amazon(AMZN.US)",
-        "percent": 3.03,
-        "change": "🔻0.03%",
-        "changeVal": -0.03000000000000025
+        "percent": 3.06,
+        "change": "🔺0.03%",
+        "changeVal": 0.03000000000000025
       }
     ],
     "performanceData": [
@@ -1168,7 +1168,7 @@
       },
       {
         "month": "01/26",
-        "return": 12.0
+        "return": 12.08
       }
     ],
     "foundedDate": "2025/08/18",
@@ -1183,7 +1183,7 @@
     "manager": "台新投信",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 10.21,
+    "latestNav": 10.42,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -1192,63 +1192,63 @@
     "holdings": [
       {
         "stock": "台積電(2330.TW)",
-        "percent": 9.97,
-        "change": "🔺0.08%",
-        "changeVal": 0.08000000000000007
+        "percent": 10.5,
+        "change": "🔺0.53%",
+        "changeVal": 0.5299999999999994
       },
       {
         "stock": "群聯(8299.TW)",
-        "percent": 5.43,
-        "change": "🔺0.08%",
-        "changeVal": 0.08000000000000007
+        "percent": 6.03,
+        "change": "🔺0.60%",
+        "changeVal": 0.6000000000000005
       },
       {
         "stock": "奇鋐(3017.TW)",
-        "percent": 5.22,
-        "change": "🔺0.15%",
-        "changeVal": 0.14999999999999947
-      },
-      {
-        "stock": "鴻勁(7769.TW)",
-        "percent": 4.43,
-        "change": "🔻0.05%",
-        "changeVal": -0.05000000000000071
+        "percent": 5.56,
+        "change": "🔺0.34%",
+        "changeVal": 0.33999999999999986
       },
       {
         "stock": "台達電(2308.TW)",
-        "percent": 4.4,
-        "change": "🔺0.04%",
-        "changeVal": 0.040000000000000036
+        "percent": 4.64,
+        "change": "🔺0.24%",
+        "changeVal": 0.23999999999999932
+      },
+      {
+        "stock": "鴻勁(7769.TW)",
+        "percent": 4.58,
+        "change": "🔺0.15%",
+        "changeVal": 0.15000000000000036
       },
       {
         "stock": "弘塑(3131.TW)",
-        "percent": 3.67,
-        "change": "🔻0.03%",
-        "changeVal": -0.03000000000000025
+        "percent": 3.86,
+        "change": "🔺0.19%",
+        "changeVal": 0.18999999999999995
       },
       {
         "stock": "緯穎(6669.TW)",
-        "percent": 3.35,
-        "change": "🔻0.15%",
-        "changeVal": -0.1499999999999999
+        "percent": 3.46,
+        "change": "🔺0.11%",
+        "changeVal": 0.10999999999999988
       },
       {
         "stock": "東陽(1319.TW)",
-        "percent": 3.29,
-        "change": "🔺0.15%",
-        "changeVal": 0.1499999999999999
+        "percent": 3.34,
+        "change": "🔺0.05%",
+        "changeVal": 0.04999999999999982
       },
       {
         "stock": "雙鴻(3324.TW)",
-        "percent": 3.11,
-        "change": "🔻0.04%",
-        "changeVal": -0.040000000000000036
+        "percent": 3.22,
+        "change": "🔺0.11%",
+        "changeVal": 0.11000000000000032
       },
       {
-        "stock": "金居(8358.TW)",
-        "percent": 3.03,
+        "stock": "全新(2455.TW)",
+        "percent": 3.16,
         "change": "🆕新進",
-        "changeVal": 3.03
+        "changeVal": 3.16
       }
     ],
     "performanceData": [
@@ -1262,7 +1262,7 @@
       },
       {
         "month": "01/26",
-        "return": 10.34
+        "return": 10.29
       }
     ],
     "foundedDate": "2025/12/16",
@@ -1286,63 +1286,63 @@
     "holdings": [
       {
         "stock": "Tesla(TSLA.US)",
-        "percent": 7.85,
-        "change": "🔻0.01%",
-        "changeVal": -0.010000000000000675
+        "percent": 7.95,
+        "change": "🔺0.10%",
+        "changeVal": 0.10000000000000053
       },
       {
         "stock": "Palantir Technologies(PLTR.US)",
-        "percent": 6.94,
-        "change": "🔻0.05%",
-        "changeVal": -0.04999999999999982
+        "percent": 6.7,
+        "change": "🔻0.24%",
+        "changeVal": -0.2400000000000002
       },
       {
         "stock": "Robinhood Markets(HOOD.US)",
-        "percent": 6.34,
-        "change": "🔻0.08%",
-        "changeVal": -0.08000000000000007
+        "percent": 6.33,
+        "change": "🔻0.01%",
+        "changeVal": -0.009999999999999787
       },
       {
         "stock": "Tempus(TEM.US)",
-        "percent": 6.21,
-        "change": "🔻0.06%",
-        "changeVal": -0.05999999999999961
+        "percent": 6.1,
+        "change": "🔻0.11%",
+        "changeVal": -0.11000000000000032
       },
       {
         "stock": "Shopify(SHOP.US)",
-        "percent": 5.52,
-        "change": "🔺0.06%",
-        "changeVal": 0.05999999999999961
+        "percent": 5.67,
+        "change": "🔺0.15%",
+        "changeVal": 0.15000000000000036
       },
       {
         "stock": "Roku(ROKU.US)",
-        "percent": 5.44,
+        "percent": 5.33,
         "change": "🔻0.11%",
-        "changeVal": -0.10999999999999943
+        "changeVal": -0.11000000000000032
       },
       {
         "stock": "Teradyne(TER.US)",
-        "percent": 4.85,
-        "change": "🔺0.16%",
-        "changeVal": 0.15999999999999925
+        "percent": 5.17,
+        "change": "🔺0.32%",
+        "changeVal": 0.3200000000000003
       },
       {
         "stock": "Coinbase(COIN.US)",
-        "percent": 4.65,
-        "change": "🔻0.04%",
-        "changeVal": -0.040000000000000036
+        "percent": 4.7,
+        "change": "🔺0.05%",
+        "changeVal": 0.04999999999999982
       },
       {
         "stock": "AMD(AMD.US)",
-        "percent": 3.66,
-        "change": "🔺0.03%",
-        "changeVal": 0.03000000000000025
+        "percent": 3.73,
+        "change": "🔺0.07%",
+        "changeVal": 0.06999999999999984
       },
       {
         "stock": "Kratos Defense & Security(KTOS.US)",
-        "percent": 3.15,
-        "change": "🔺0.19%",
-        "changeVal": 0.18999999999999995
+        "percent": 3.05,
+        "change": "🔻0.10%",
+        "changeVal": -0.10000000000000009
       }
     ],
     "performanceData": [
@@ -1440,7 +1440,7 @@
       },
       {
         "month": "01/26",
-        "return": 12.02
+        "return": 11.91
       }
     ],
     "foundedDate": "2025/06/10",
@@ -1464,63 +1464,63 @@
     "holdings": [
       {
         "stock": "Micron(MU.US)",
-        "percent": 8.04,
-        "change": "🔺0.14%",
-        "changeVal": 0.1399999999999988
+        "percent": 8.29,
+        "change": "🔺0.25%",
+        "changeVal": 0.25
       },
       {
         "stock": "Alphabet - Class A(GOOGL.US)",
-        "percent": 5.88,
-        "change": "🔻0.19%",
-        "changeVal": -0.1900000000000004
+        "percent": 5.74,
+        "change": "🔻0.14%",
+        "changeVal": -0.13999999999999968
       },
       {
         "stock": "Lumentum(LITE.US)",
-        "percent": 4.7,
-        "change": "🔺0.34%",
-        "changeVal": 0.33999999999999986
-      },
-      {
-        "stock": "SIEMENS ENERGY AG",
-        "percent": 3.77,
-        "change": "🔻0.09%",
-        "changeVal": -0.08999999999999986
+        "percent": 4.74,
+        "change": "🔺0.04%",
+        "changeVal": 0.040000000000000036
       },
       {
         "stock": "Sandisk(SNDK.US)",
-        "percent": 3.74,
+        "percent": 3.99,
+        "change": "🔺0.25%",
+        "changeVal": 0.25
+      },
+      {
+        "stock": "SIEMENS ENERGY AG",
+        "percent": 3.71,
+        "change": "🔻0.06%",
+        "changeVal": -0.06000000000000005
+      },
+      {
+        "stock": "NVIDIA(NVDA.US)",
+        "percent": 3.68,
         "change": "🔻0.05%",
         "changeVal": -0.04999999999999982
       },
       {
-        "stock": "NVIDIA(NVDA.US)",
-        "percent": 3.73,
-        "change": "🔻0.09%",
-        "changeVal": -0.08999999999999986
-      },
-      {
         "stock": "Broadcom(AVGO.US)",
-        "percent": 3.6,
-        "change": "🔻0.04%",
-        "changeVal": -0.040000000000000036
+        "percent": 3.5,
+        "change": "🔻0.10%",
+        "changeVal": -0.10000000000000009
       },
       {
         "stock": "RHEINMETALL AG",
-        "percent": 3.3,
-        "change": "🔻0.01%",
-        "changeVal": -0.010000000000000231
+        "percent": 3.23,
+        "change": "🔻0.07%",
+        "changeVal": -0.06999999999999984
       },
       {
         "stock": "台達電(2308.TW)",
-        "percent": 3.23,
-        "change": "🔻0.06%",
-        "changeVal": -0.06000000000000005
+        "percent": 3.22,
+        "change": "🔻0.01%",
+        "changeVal": -0.009999999999999787
       },
       {
         "stock": "台積電(2330.TW)",
-        "percent": 3.16,
-        "change": "🔻0.06%",
-        "changeVal": -0.06000000000000005
+        "percent": 3.15,
+        "change": "🔻0.01%",
+        "changeVal": -0.010000000000000231
       }
     ],
     "performanceData": [
@@ -1562,7 +1562,7 @@
       },
       {
         "month": "01/26",
-        "return": 11.68
+        "return": 11.84
       }
     ],
     "foundedDate": "2025/10/21",
@@ -1587,62 +1587,62 @@
       {
         "stock": "NVIDIA(NVDA.US)",
         "percent": 4.72,
-        "change": "🔺0.01%",
-        "changeVal": 0.009999999999999787
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Alphabet - Class C(GOOG.US)",
         "percent": 4.6,
-        "change": "🔻0.03%",
-        "changeVal": -0.03000000000000025
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Lam Research(LRCX.US)",
         "percent": 4.42,
-        "change": "🔺0.25%",
-        "changeVal": 0.25
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Take-Two(TTWO.US)",
         "percent": 3.82,
-        "change": "🔻0.04%",
-        "changeVal": -0.040000000000000036
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "TSMC(ADR)(TSM.US)",
         "percent": 3.7,
-        "change": "🔺0.02%",
-        "changeVal": 0.020000000000000018
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Snowflake(SNOW.US)",
         "percent": 3.69,
-        "change": "🔻0.01%",
-        "changeVal": -0.010000000000000231
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Tesla(TSLA.US)",
         "percent": 3.65,
-        "change": "🔻0.08%",
-        "changeVal": -0.08000000000000007
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Broadcom(AVGO.US)",
         "percent": 3.2,
-        "change": "🔺0.05%",
-        "changeVal": 0.050000000000000266
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Ciena(CIEN.US)",
         "percent": 3.06,
-        "change": "🔺0.16%",
-        "changeVal": 0.16000000000000014
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Robinhood Markets(HOOD.US)",
         "percent": 3.01,
-        "change": "🔻0.08%",
-        "changeVal": -0.08000000000000007
+        "change": "-",
+        "changeVal": 0.0
       }
     ],
     "performanceData": [
@@ -1688,7 +1688,7 @@
       },
       {
         "month": "01/26",
-        "return": 15.29
+        "return": 15.32
       }
     ],
     "foundedDate": "2025/10/14",
@@ -1712,63 +1712,63 @@
     "holdings": [
       {
         "stock": "台積電(2330.TW)",
-        "percent": 6.25,
-        "change": "🔻0.07%",
-        "changeVal": -0.07000000000000028
-      },
-      {
-        "stock": "Alphabet - Class A(GOOGL.US)",
-        "percent": 5.69,
-        "change": "🔻0.14%",
-        "changeVal": -0.13999999999999968
-      },
-      {
-        "stock": "Micron(MU.US)",
-        "percent": 5.37,
-        "change": "🔺0.14%",
-        "changeVal": 0.13999999999999968
-      },
-      {
-        "stock": "NVIDIA(NVDA.US)",
-        "percent": 5.25,
-        "change": "🔻0.08%",
-        "changeVal": -0.08000000000000007
-      },
-      {
-        "stock": "Sandisk(SNDK.US)",
-        "percent": 4.5,
-        "change": "🔻0.02%",
-        "changeVal": -0.019999999999999574
-      },
-      {
-        "stock": "Broadcom(AVGO.US)",
-        "percent": 4.04,
+        "percent": 6.24,
         "change": "🔻0.01%",
         "changeVal": -0.009999999999999787
       },
       {
-        "stock": "台達電(2308.TW)",
-        "percent": 3.67,
-        "change": "🔻0.04%",
-        "changeVal": -0.040000000000000036
+        "stock": "Alphabet - Class A(GOOGL.US)",
+        "percent": 5.55,
+        "change": "🔻0.14%",
+        "changeVal": -0.14000000000000057
+      },
+      {
+        "stock": "Micron(MU.US)",
+        "percent": 5.53,
+        "change": "🔺0.16%",
+        "changeVal": 0.16000000000000014
+      },
+      {
+        "stock": "NVIDIA(NVDA.US)",
+        "percent": 5.18,
+        "change": "🔻0.07%",
+        "changeVal": -0.07000000000000028
+      },
+      {
+        "stock": "Sandisk(SNDK.US)",
+        "percent": 4.79,
+        "change": "🔺0.29%",
+        "changeVal": 0.29000000000000004
       },
       {
         "stock": "Lumentum(LITE.US)",
-        "percent": 3.59,
-        "change": "🔺0.28%",
-        "changeVal": 0.2799999999999998
+        "percent": 4.63,
+        "change": "🔺1.04%",
+        "changeVal": 1.04
+      },
+      {
+        "stock": "Broadcom(AVGO.US)",
+        "percent": 3.92,
+        "change": "🔻0.12%",
+        "changeVal": -0.1200000000000001
+      },
+      {
+        "stock": "台達電(2308.TW)",
+        "percent": 3.68,
+        "change": "🔺0.01%",
+        "changeVal": 0.010000000000000231
       },
       {
         "stock": "ASML HOLDING NV",
-        "percent": 3.37,
-        "change": "🔺0.02%",
-        "changeVal": 0.020000000000000018
+        "percent": 3.25,
+        "change": "🔻0.12%",
+        "changeVal": -0.1200000000000001
       },
       {
         "stock": "Tower Semiconductor(TSEM.US)",
-        "percent": 2.95,
+        "percent": 3.0,
         "change": "🔺0.05%",
-        "changeVal": 0.050000000000000266
+        "changeVal": 0.04999999999999982
       }
     ],
     "performanceData": [
@@ -1794,7 +1794,7 @@
       },
       {
         "month": "01/26",
-        "return": 11.23
+        "return": 11.37
       }
     ],
     "foundedDate": "2025/12/02",
@@ -1809,7 +1809,7 @@
     "manager": "復華投信",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 11.58,
+    "latestNav": 11.9,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -1818,63 +1818,63 @@
     "holdings": [
       {
         "stock": "台積電(2330.TW)",
-        "percent": 19.81,
-        "change": "🔺0.82%",
-        "changeVal": 0.8200000000000003
+        "percent": 19.4,
+        "change": "🔻0.41%",
+        "changeVal": -0.41000000000000014
       },
       {
         "stock": "群聯(8299.TW)",
-        "percent": 9.06,
-        "change": "🔺0.02%",
-        "changeVal": 0.02000000000000135
+        "percent": 9.36,
+        "change": "🔺0.30%",
+        "changeVal": 0.29999999999999893
       },
       {
         "stock": "南亞科(2408.TW)",
-        "percent": 7.15,
-        "change": "🔺0.07%",
-        "changeVal": 0.07000000000000028
+        "percent": 7.63,
+        "change": "🔺0.48%",
+        "changeVal": 0.47999999999999954
       },
       {
         "stock": "台達電(2308.TW)",
-        "percent": 6.01,
-        "change": "🔻0.01%",
-        "changeVal": -0.009999999999999787
-      },
-      {
-        "stock": "鴻勁(7769.TW)",
-        "percent": 5.16,
+        "percent": 5.89,
         "change": "🔻0.12%",
         "changeVal": -0.1200000000000001
       },
       {
+        "stock": "鴻勁(7769.TW)",
+        "percent": 4.96,
+        "change": "🔻0.20%",
+        "changeVal": -0.20000000000000018
+      },
+      {
         "stock": "台光電(2383.TW)",
-        "percent": 4.6,
-        "change": "🔺0.12%",
-        "changeVal": 0.11999999999999922
+        "percent": 4.79,
+        "change": "🔺0.19%",
+        "changeVal": 0.1900000000000004
       },
       {
         "stock": "信驊(5274.TW)",
-        "percent": 4.43,
+        "percent": 4.28,
         "change": "🔻0.15%",
-        "changeVal": -0.15000000000000036
+        "changeVal": -0.14999999999999947
       },
       {
         "stock": "貿聯-KY(3665.TW)",
-        "percent": 3.95,
-        "change": "🔻0.10%",
-        "changeVal": -0.09999999999999964
+        "percent": 4.05,
+        "change": "🔺0.10%",
+        "changeVal": 0.09999999999999964
       },
       {
-        "stock": "旺矽(6223.TW)",
-        "percent": 3.04,
-        "change": "🔺0.11%",
-        "changeVal": 0.10999999999999988
+        "stock": "台燿(6274.TW)",
+        "percent": 2.93,
+        "change": "🆕新進",
+        "changeVal": 2.93
       },
       {
         "stock": "華新(1605.TW)",
-        "percent": 2.88,
-        "change": "🔻0.02%",
-        "changeVal": -0.020000000000000018
+        "percent": 2.92,
+        "change": "🔺0.04%",
+        "changeVal": 0.040000000000000036
       }
     ],
     "performanceData": [
@@ -1892,7 +1892,7 @@
       },
       {
         "month": "01/26",
-        "return": 11.91
+        "return": 11.82
       }
     ],
     "foundedDate": "2025/12/09",
@@ -1907,7 +1907,7 @@
     "index": "台灣50指數",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 73.01,
+    "latestNav": 74.22,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -1916,63 +1916,63 @@
     "holdings": [
       {
         "stock": "台積電(2330.TW)",
-        "percent": 63.42,
-        "change": "🔺0.21%",
-        "changeVal": 0.21000000000000085
+        "percent": 63.79,
+        "change": "🔺0.37%",
+        "changeVal": 0.36999999999999744
       },
       {
         "stock": "鴻海(2317.TW)",
-        "percent": 4.02,
-        "change": "🔻0.01%",
-        "changeVal": -0.010000000000000675
+        "percent": 3.95,
+        "change": "🔻0.07%",
+        "changeVal": -0.0699999999999994
       },
       {
         "stock": "聯發科(2454.TW)",
-        "percent": 3.81,
-        "change": "🔻0.04%",
-        "changeVal": -0.040000000000000036
+        "percent": 3.76,
+        "change": "🔻0.05%",
+        "changeVal": -0.050000000000000266
       },
       {
         "stock": "台達電(2308.TW)",
-        "percent": 3.53,
+        "percent": 3.55,
         "change": "🔺0.02%",
         "changeVal": 0.020000000000000018
       },
       {
         "stock": "日月光投控(3711.TW)",
-        "percent": 1.47,
-        "change": "🔻0.04%",
-        "changeVal": -0.040000000000000036
+        "percent": 1.48,
+        "change": "🔺0.01%",
+        "changeVal": 0.010000000000000009
       },
       {
         "stock": "中信金(2891.TW)",
-        "percent": 1.31,
-        "change": "🔻0.02%",
-        "changeVal": -0.020000000000000018
-      },
-      {
-        "stock": "聯電(2303.TW)",
         "percent": 1.3,
-        "change": "🔺0.11%",
-        "changeVal": 0.1100000000000001
-      },
-      {
-        "stock": "富邦金(2881.TW)",
-        "percent": 1.13,
-        "change": "🔻0.02%",
-        "changeVal": -0.020000000000000018
-      },
-      {
-        "stock": "廣達(2382.TW)",
-        "percent": 1.11,
         "change": "🔻0.01%",
         "changeVal": -0.010000000000000009
       },
       {
-        "stock": "國泰金(2882.TW)",
-        "percent": 1.04,
+        "stock": "聯電(2303.TW)",
+        "percent": 1.27,
         "change": "🔻0.03%",
         "changeVal": -0.030000000000000027
+      },
+      {
+        "stock": "富邦金(2881.TW)",
+        "percent": 1.11,
+        "change": "🔻0.02%",
+        "changeVal": -0.019999999999999796
+      },
+      {
+        "stock": "廣達(2382.TW)",
+        "percent": 1.09,
+        "change": "🔻0.02%",
+        "changeVal": -0.020000000000000018
+      },
+      {
+        "stock": "國泰金(2882.TW)",
+        "percent": 1.02,
+        "change": "🔻0.02%",
+        "changeVal": -0.020000000000000018
       }
     ],
     "performanceData": [
@@ -2082,7 +2082,7 @@
       },
       {
         "month": "01/26",
-        "return": 74.2
+        "return": 73.75
       }
     ],
     "foundedDate": "2003/06/25",
@@ -2097,7 +2097,7 @@
     "index": "ESG永續高股息",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 23.56,
+    "latestNav": 23.69,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -2106,63 +2106,63 @@
     "holdings": [
       {
         "stock": "國泰金(2882.TW)",
-        "percent": 10.01,
-        "change": "🔻0.21%",
-        "changeVal": -0.21000000000000085
+        "percent": 9.95,
+        "change": "🔻0.06%",
+        "changeVal": -0.0600000000000005
       },
       {
         "stock": "中信金(2891.TW)",
-        "percent": 9.17,
-        "change": "🔻0.09%",
-        "changeVal": -0.08999999999999986
+        "percent": 9.2,
+        "change": "🔺0.03%",
+        "changeVal": 0.02999999999999936
       },
       {
         "stock": "聯電(2303.TW)",
-        "percent": 8.86,
-        "change": "🔺0.72%",
-        "changeVal": 0.7199999999999989
-      },
-      {
-        "stock": "富邦金(2881.TW)",
-        "percent": 8.06,
-        "change": "🔻0.11%",
-        "changeVal": -0.10999999999999943
-      },
-      {
-        "stock": "聯發科(2454.TW)",
-        "percent": 5.75,
-        "change": "🔻0.02%",
-        "changeVal": -0.019999999999999574
-      },
-      {
-        "stock": "日月光投控(3711.TW)",
-        "percent": 3.78,
+        "percent": 8.79,
         "change": "🔻0.07%",
         "changeVal": -0.07000000000000028
       },
       {
+        "stock": "富邦金(2881.TW)",
+        "percent": 8.03,
+        "change": "🔻0.03%",
+        "changeVal": -0.030000000000001137
+      },
+      {
+        "stock": "聯發科(2454.TW)",
+        "percent": 5.74,
+        "change": "🔻0.01%",
+        "changeVal": -0.009999999999999787
+      },
+      {
+        "stock": "日月光投控(3711.TW)",
+        "percent": 3.85,
+        "change": "🔺0.07%",
+        "changeVal": 0.07000000000000028
+      },
+      {
         "stock": "京元電子(2449.TW)",
-        "percent": 3.43,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 3.54,
+        "change": "🔺0.11%",
+        "changeVal": 0.10999999999999988
       },
       {
         "stock": "華碩(2357.TW)",
-        "percent": 3.42,
-        "change": "🔻0.04%",
-        "changeVal": -0.040000000000000036
+        "percent": 3.45,
+        "change": "🔺0.03%",
+        "changeVal": 0.03000000000000025
       },
       {
         "stock": "元大金(2885.TW)",
         "percent": 2.97,
-        "change": "🔻0.03%",
-        "changeVal": -0.029999999999999805
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "世界(5347.TW)",
-        "percent": 2.75,
-        "change": "🆕新進",
-        "changeVal": 2.75
+        "percent": 2.8,
+        "change": "🔺0.05%",
+        "changeVal": 0.04999999999999982
       }
     ],
     "performanceData": [
@@ -2272,7 +2272,7 @@
       },
       {
         "month": "01/26",
-        "return": 23.51
+        "return": 23.29
       }
     ],
     "foundedDate": "2020/07/10",
@@ -2287,7 +2287,7 @@
     "index": "臺灣高股息指數",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 38.64,
+    "latestNav": 38.82,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -2296,63 +2296,63 @@
     "holdings": [
       {
         "stock": "聯電(2303.TW)",
-        "percent": 5.97,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 5.91,
+        "change": "🔻0.06%",
+        "changeVal": -0.05999999999999961
       },
       {
         "stock": "聯發科(2454.TW)",
-        "percent": 5.18,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 5.2,
+        "change": "🔺0.02%",
+        "changeVal": 0.020000000000000462
       },
       {
         "stock": "中信金(2891.TW)",
-        "percent": 4.43,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 4.45,
+        "change": "🔺0.02%",
+        "changeVal": 0.020000000000000462
       },
       {
         "stock": "廣達(2382.TW)",
-        "percent": 4.3,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 4.25,
+        "change": "🔻0.05%",
+        "changeVal": -0.04999999999999982
       },
       {
         "stock": "日月光投控(3711.TW)",
-        "percent": 3.88,
-        "change": "-",
-        "changeVal": 0.0
-      },
-      {
-        "stock": "華碩(2357.TW)",
-        "percent": 3.29,
-        "change": "-",
-        "changeVal": 0.0
-      },
-      {
-        "stock": "緯創(3231.TW)",
-        "percent": 3.28,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 3.95,
+        "change": "🔺0.07%",
+        "changeVal": 0.07000000000000028
       },
       {
         "stock": "長榮(2603.TW)",
-        "percent": 3.27,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 3.33,
+        "change": "🔺0.06%",
+        "changeVal": 0.06000000000000005
+      },
+      {
+        "stock": "華碩(2357.TW)",
+        "percent": 3.31,
+        "change": "🔺0.02%",
+        "changeVal": 0.020000000000000018
       },
       {
         "stock": "華南金(2880.TW)",
-        "percent": 3.25,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 3.28,
+        "change": "🔺0.03%",
+        "changeVal": 0.029999999999999805
+      },
+      {
+        "stock": "緯創(3231.TW)",
+        "percent": 3.23,
+        "change": "🔻0.05%",
+        "changeVal": -0.04999999999999982
       },
       {
         "stock": "京元電子(2449.TW)",
-        "percent": 3.12,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 3.22,
+        "change": "🔺0.10%",
+        "changeVal": 0.10000000000000009
       }
     ],
     "performanceData": [
@@ -2462,7 +2462,7 @@
       },
       {
         "month": "01/26",
-        "return": 38.62
+        "return": 38.26
       }
     ],
     "foundedDate": "2007/12/13",
@@ -2477,7 +2477,7 @@
     "index": "科技優息指數",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 20.47,
+    "latestNav": 20.64,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -2486,21 +2486,21 @@
     "holdings": [
       {
         "stock": "聯電(2303.TW)",
-        "percent": 10.4,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 10.19,
+        "change": "🔻0.21%",
+        "changeVal": -0.21000000000000085
       },
       {
         "stock": "聯發科(2454.TW)",
-        "percent": 6.69,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 6.74,
+        "change": "🔺0.05%",
+        "changeVal": 0.04999999999999982
       },
       {
         "stock": "力成(6239.TW)",
-        "percent": 5.94,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 5.92,
+        "change": "🔻0.02%",
+        "changeVal": -0.020000000000000462
       },
       {
         "stock": "華碩(2357.TW)",
@@ -2510,39 +2510,39 @@
       },
       {
         "stock": "漢唐(2404.TW)",
-        "percent": 4.75,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 4.76,
+        "change": "🔺0.01%",
+        "changeVal": 0.009999999999999787
       },
       {
         "stock": "大立光(3008.TW)",
-        "percent": 4.64,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 4.59,
+        "change": "🔻0.05%",
+        "changeVal": -0.04999999999999982
       },
       {
         "stock": "仁寶(2324.TW)",
-        "percent": 4.05,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 4.04,
+        "change": "🔻0.01%",
+        "changeVal": -0.009999999999999787
       },
       {
         "stock": "健鼎(3044.TW)",
-        "percent": 3.81,
-        "change": "-",
-        "changeVal": 0.0
-      },
-      {
-        "stock": "聯詠(3034.TW)",
-        "percent": 3.43,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 3.86,
+        "change": "🔺0.05%",
+        "changeVal": 0.04999999999999982
       },
       {
         "stock": "威剛(3260.TW)",
-        "percent": 3.33,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 3.47,
+        "change": "🔺0.14%",
+        "changeVal": 0.14000000000000012
+      },
+      {
+        "stock": "聯詠(3034.TW)",
+        "percent": 3.37,
+        "change": "🔻0.06%",
+        "changeVal": -0.06000000000000005
       }
     ],
     "performanceData": [
@@ -2652,7 +2652,7 @@
       },
       {
         "month": "01/26",
-        "return": 20.5
+        "return": 20.01
       }
     ],
     "foundedDate": "2023/06/01",
@@ -2667,7 +2667,7 @@
     "index": "ICE半導體指數",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 23.94,
+    "latestNav": 24.22,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -2676,63 +2676,63 @@
     "holdings": [
       {
         "stock": "台積電(2330.TW)",
-        "percent": 42.09,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 42.68,
+        "change": "🔺0.59%",
+        "changeVal": 0.5899999999999963
       },
       {
         "stock": "聯發科(2454.TW)",
-        "percent": 10.75,
-        "change": "-",
-        "changeVal": 0.0
-      },
-      {
-        "stock": "聯電(2303.TW)",
-        "percent": 4.19,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 10.78,
+        "change": "🔺0.03%",
+        "changeVal": 0.02999999999999936
       },
       {
         "stock": "日月光投控(3711.TW)",
-        "percent": 4.18,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 4.23,
+        "change": "🔺0.05%",
+        "changeVal": 0.05000000000000071
+      },
+      {
+        "stock": "聯電(2303.TW)",
+        "percent": 3.76,
+        "change": "🔻0.43%",
+        "changeVal": -0.4300000000000006
       },
       {
         "stock": "信驊(5274.TW)",
-        "percent": 2.95,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 3.13,
+        "change": "🔺0.18%",
+        "changeVal": 0.17999999999999972
       },
       {
         "stock": "健策(3653.TW)",
-        "percent": 2.8,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 2.9,
+        "change": "🔺0.10%",
+        "changeVal": 0.10000000000000009
       },
       {
-        "stock": "世芯-KY(3661.TW)",
-        "percent": 2.53,
-        "change": "-",
-        "changeVal": 0.0
-      },
-      {
-        "stock": "旺矽(6223.TW)",
-        "percent": 2.53,
-        "change": "-",
-        "changeVal": 0.0
+        "stock": "創意(3443.TW)",
+        "percent": 2.49,
+        "change": "🆕新進",
+        "changeVal": 2.49
       },
       {
         "stock": "聯詠(3034.TW)",
-        "percent": 2.52,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 2.45,
+        "change": "🔻0.07%",
+        "changeVal": -0.06999999999999984
       },
       {
         "stock": "瑞昱(2379.TW)",
-        "percent": 2.51,
-        "change": "-",
-        "changeVal": 0.0
+        "percent": 2.42,
+        "change": "🔻0.09%",
+        "changeVal": -0.08999999999999986
+      },
+      {
+        "stock": "世芯-KY(3661.TW)",
+        "percent": 2.41,
+        "change": "🔻0.12%",
+        "changeVal": -0.11999999999999966
       }
     ],
     "performanceData": [
@@ -2842,7 +2842,7 @@
       },
       {
         "month": "01/26",
-        "return": 24.22
+        "return": 24.02
       }
     ],
     "foundedDate": "2021/05/20",
@@ -2857,7 +2857,7 @@
     "index": "資訊科技指數",
     "ytdReturn": 0.0,
     "weeklyReturn": 0.0,
-    "latestNav": 43.32,
+    "latestNav": 44.15,
     "changeSinceLast": 0,
     "lastDividend": "N/A",
     "exDate": "N/A",
@@ -2866,63 +2866,63 @@
     "holdings": [
       {
         "stock": "台積電(2330.TW)",
-        "percent": 70.64,
-        "change": "🔺0.10%",
-        "changeVal": 0.09999999999999432
+        "percent": 71.03,
+        "change": "🔺0.39%",
+        "changeVal": 0.39000000000000057
       },
       {
         "stock": "鴻海(2317.TW)",
-        "percent": 4.48,
-        "change": "🔻0.02%",
-        "changeVal": -0.019999999999999574
+        "percent": 4.41,
+        "change": "🔻0.07%",
+        "changeVal": -0.07000000000000028
       },
       {
         "stock": "聯發科(2454.TW)",
-        "percent": 4.25,
-        "change": "🔻0.04%",
-        "changeVal": -0.040000000000000036
+        "percent": 4.22,
+        "change": "🔻0.03%",
+        "changeVal": -0.03000000000000025
       },
       {
         "stock": "日月光投控(3711.TW)",
         "percent": 1.64,
-        "change": "🔻0.05%",
-        "changeVal": -0.050000000000000044
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "聯電(2303.TW)",
-        "percent": 1.44,
-        "change": "🔺0.11%",
-        "changeVal": 0.10999999999999988
+        "percent": 1.29,
+        "change": "🔻0.15%",
+        "changeVal": -0.1499999999999999
       },
       {
         "stock": "廣達(2382.TW)",
-        "percent": 1.23,
+        "percent": 1.21,
         "change": "🔻0.02%",
         "changeVal": -0.020000000000000018
       },
       {
         "stock": "台光電(2383.TW)",
-        "percent": 0.83,
-        "change": "🔺0.02%",
-        "changeVal": 0.019999999999999907
-      },
-      {
-        "stock": "欣興(3037.TW)",
-        "percent": 0.77,
-        "change": "🔺0.04%",
-        "changeVal": 0.040000000000000036
+        "percent": 0.81,
+        "change": "🔻0.02%",
+        "changeVal": -0.019999999999999907
       },
       {
         "stock": "奇鋐(3017.TW)",
-        "percent": 0.75,
-        "change": "🔺0.02%",
-        "changeVal": 0.020000000000000018
+        "percent": 0.78,
+        "change": "🔺0.03%",
+        "changeVal": 0.030000000000000027
+      },
+      {
+        "stock": "欣興(3037.TW)",
+        "percent": 0.74,
+        "change": "🔻0.03%",
+        "changeVal": -0.030000000000000027
       },
       {
         "stock": "國巨*(2327.TW)",
-        "percent": 0.75,
-        "change": "🔺0.02%",
-        "changeVal": 0.020000000000000018
+        "percent": 0.69,
+        "change": "🔻0.06%",
+        "changeVal": -0.06000000000000005
       }
     ],
     "performanceData": [
@@ -3032,7 +3032,7 @@
       },
       {
         "month": "01/26",
-        "return": 44.23
+        "return": 43.96
       }
     ],
     "foundedDate": "2006/08/28",
@@ -3056,63 +3056,63 @@
     "holdings": [
       {
         "stock": "US TREASURY N/B 4.625% 05/15/2054",
-        "percent": 5.82,
-        "change": "🔺0.01%",
-        "changeVal": 0.010000000000000675
-      },
-      {
-        "stock": "US TREASURY N/B 4.5% 11/15/2054",
-        "percent": 5.58,
+        "percent": 5.83,
         "change": "🔺0.01%",
         "changeVal": 0.009999999999999787
       },
       {
+        "stock": "US TREASURY N/B 4.5% 11/15/2054",
+        "percent": 5.6,
+        "change": "🔺0.02%",
+        "changeVal": 0.019999999999999574
+      },
+      {
         "stock": "US TREASURY N/B 4.25% 08/15/2054",
-        "percent": 5.46,
+        "percent": 5.47,
         "change": "🔺0.01%",
         "changeVal": 0.009999999999999787
       },
       {
         "stock": "US TREASURY N/B 4.625% 02/15/2055",
-        "percent": 5.11,
+        "percent": 5.12,
         "change": "🔺0.01%",
-        "changeVal": 0.010000000000000675
+        "changeVal": 0.009999999999999787
       },
       {
         "stock": "US TREASURY N/B 4.25% 02/15/2054",
-        "percent": 4.99,
+        "percent": 5.0,
         "change": "🔺0.01%",
         "changeVal": 0.009999999999999787
       },
       {
         "stock": "US TREASURY N/B 4.75% 05/15/2055",
-        "percent": 4.76,
+        "percent": 4.77,
         "change": "🔺0.01%",
         "changeVal": 0.009999999999999787
       },
       {
         "stock": "US TREASURY N/B 4.75% 11/15/2053",
-        "percent": 4.65,
-        "change": "🔻0.19%",
-        "changeVal": -0.1899999999999995
-      },
-      {
-        "stock": "US TREASURY N/B 4.125% 08/15/2053",
-        "percent": 3.56,
+        "percent": 4.66,
         "change": "🔺0.01%",
-        "changeVal": 0.010000000000000231
+        "changeVal": 0.009999999999999787
       },
       {
         "stock": "US TREASURY N/B 4% 11/15/2052",
-        "percent": 3.47,
+        "percent": 3.48,
         "change": "🔺0.01%",
-        "changeVal": 0.010000000000000231
+        "changeVal": 0.009999999999999787
+      },
+      {
+        "stock": "US TREASURY N/B 4.125% 08/15/2053",
+        "percent": 3.44,
+        "change": "🔻0.12%",
+        "changeVal": -0.1200000000000001
       },
       {
         "stock": "US TREASURY N/B 4.75% 08/15/2055",
-        "percent": 3.37,
+        "percent": 3.38,
         "change": "🔺0.01%",
-        "changeVal": 0.010000000000000231
+        "changeVal": 0.009999999999999787
       }
     ],
     "performanceData": [],
