@@ -1454,62 +1454,62 @@
       {
         "stock": "Alphabet - Class C(GOOG.US)",
         "percent": 4.57,
-        "change": "🔻0.09%",
-        "changeVal": -0.08999999999999986
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "TSMC(ADR)(TSM.US)",
         "percent": 4.41,
-        "change": "🔺0.16%",
-        "changeVal": 0.16000000000000014
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Lam Research(LRCX.US)",
         "percent": 4.37,
-        "change": "🔺0.18%",
-        "changeVal": 0.17999999999999972
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Tesla(TSLA.US)",
         "percent": 4.1,
-        "change": "🔺0.05%",
-        "changeVal": 0.04999999999999982
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "NVIDIA(NVDA.US)",
         "percent": 3.82,
-        "change": "🔺0.04%",
-        "changeVal": 0.040000000000000036
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Meta(META.US)",
         "percent": 3.72,
-        "change": "🔺0.01%",
-        "changeVal": 0.010000000000000231
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Ciena(CIEN.US)",
         "percent": 3.71,
-        "change": "🔻0.01%",
-        "changeVal": -0.010000000000000231
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Take-Two(TTWO.US)",
         "percent": 3.52,
-        "change": "🔻0.10%",
-        "changeVal": -0.10000000000000009
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Broadcom(AVGO.US)",
         "percent": 3.5,
-        "change": "🔺0.03%",
-        "changeVal": 0.029999999999999805
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Snowflake(SNOW.US)",
         "percent": 3.33,
-        "change": "🔻0.06%",
-        "changeVal": -0.06000000000000005
+        "change": "-",
+        "changeVal": 0.0
       }
     ],
     "performanceData": [
@@ -1584,62 +1584,62 @@
       {
         "stock": "Lumentum(LITE.US)",
         "percent": 6.94,
-        "change": "🔻0.01%",
-        "changeVal": -0.009999999999999787
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "NVIDIA(NVDA.US)",
         "percent": 5.96,
-        "change": "🔻0.09%",
-        "changeVal": -0.08999999999999986
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "台積電(2330.TW)",
         "percent": 5.76,
-        "change": "🔻0.01%",
-        "changeVal": -0.009999999999999787
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Sandisk(SNDK.US)",
         "percent": 5.15,
-        "change": "🔺0.39%",
-        "changeVal": 0.39000000000000057
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Micron(MU.US)",
         "percent": 5.03,
-        "change": "🔺0.35%",
-        "changeVal": 0.35000000000000053
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Broadcom(AVGO.US)",
         "percent": 4.92,
-        "change": "🔻0.08%",
-        "changeVal": -0.08000000000000007
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Teradyne(TER.US)",
         "percent": 4.1,
-        "change": "🔺0.12%",
-        "changeVal": 0.11999999999999966
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Alphabet - Class A(GOOGL.US)",
         "percent": 4.07,
-        "change": "🔻0.79%",
-        "changeVal": -0.79
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "台達電(2308.TW)",
         "percent": 3.47,
-        "change": "🔺0.14%",
-        "changeVal": 0.14000000000000012
+        "change": "-",
+        "changeVal": 0.0
       },
       {
         "stock": "Tower Semiconductor(TSEM.US)",
         "percent": 3.28,
-        "change": "🔻0.13%",
-        "changeVal": -0.13000000000000034
+        "change": "-",
+        "changeVal": 0.0
       }
     ],
     "performanceData": [
