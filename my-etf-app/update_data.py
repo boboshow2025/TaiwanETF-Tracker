@@ -350,12 +350,11 @@ def fetch_real_chart(ticker_id):
         print(f"      ⚠️ Yahoo Finance 抓取失敗: {e}")
         return None       
 
-# --- 主程式 ---
+# --- 主程式：請確保所有動作都在同一個 for 迴圈內完成 ---
 print(f"🚀 開始執行...並進行持股比對")
 
-# 1. 先讀取舊資料 (歷史紀錄)
+# 1. 先讀取舊資料
 previous_data_list = load_previous_data()
-# 建立快速查詢表: { "00981A": [持股list], "0050": [持股list] }
 previous_map = { item['ticker']: item.get('控股', []) for item in previous_data_list }
 
 output_data = []
@@ -366,92 +365,59 @@ for etf in target_etfs:
     
     print(f"\n[{etf['id']}] 處理中: {etf['name']}")
     
-    # 抓取各項資料
-    # 注意：這裡 fetch_holdings 抓回來的是「純淨值」，change 還是 "-"
+    # --- A. 抓取資料 (這部分要放在迴圈裡面，資料才會更新) ---
     holdings_raw = fetch_holdings(target_id)
-    holdings_raw_chinese = [{"庫存": h['stock'], "百分比": h['percent']} for h in holdings_raw] 
     nav = fetch_nav(target_id)
     perf = fetch_performance_metrics(target_id)
     profile = fetch_basic_profile(target_id)
     
-    # ★★★ 關鍵步驟：進行持股比對 ★★★
-    # 從舊資料中找出這檔 ETF 上次的持股
-    old_holdings_for_this_etf = previous_map.get(etf['ticker'], [])
-    # 計算變化
-    holdings_with_change = compare_holdings(holdings_raw_chinese, old_holdings_for_this_etf)
-    
-    ytd = perf["ytd"]
-    weekly = perf["weekly"]
-    
-    status = "MoneyDJ 真實數據"
-    if nav == 0 and ytd == 0: status = "查無數據"
-
-
-    # --- 走勢圖邏輯 (升級版) ---
-    chart_data = []
-    
-    # 1. 優先嘗試抓取「真實」歷史股價
-    real_chart = fetch_real_chart(target_id)
-    
-    if real_chart:
-        print(f"      📈 成功抓取真實走勢圖 ({len(real_chart)} 點)")
-        chart_data = real_chart
-        # 如果有真實股價，我們把最新的股價也更新一下 NAV (通常 Yahoo 更新稍慢，但可作參考)
-        # nav = real_chart[-1]['return'] 
-    
-    # 2. 如果抓不到 (例如昨天才上市，Yahoo還沒建檔)，則使用「模擬」算法
-    elif ytd != 0:
-        print(f"      🧪 使用模擬走勢圖")
-        start_val = nav / (1 + ytd/100) # 反推期初淨值
-        steps = 5
-        for i in range(steps + 1):
-            # 線性插值
-            val = start_val + (nav - start_val) * (i/steps)
-            # 產生 T-5, T-4 這種標籤
-            chart_data.append({"month": f"T-{steps-i}", "return": round(val, 2)})
-
-    # 組裝最終資料
-
-    # ... 前面抓取資料的步驟保持不變 ...
-
-for etf in target_etfs:
-    # (抓取資料過程省略，沿用你原本的 fetch 函式)
-    
-    # 準備新抓到的持股資料 (先轉為中文 Key 格式以便比對)
+    # --- B. 轉換資料格式 ---
     holdings_raw_chinese = [{"庫存": h['stock'], "百分比": h['percent']} for h in holdings_raw]
     
-    # 取得舊資料中的這檔 ETF
+    # --- C. 持股比對 ---
     old_holdings_for_this_etf = previous_map.get(etf['ticker'], [])
-    # 如果舊資料是用 "控股" 存的，記得提取出來
     if isinstance(old_holdings_for_this_etf, dict): 
         old_holdings_for_this_etf = old_holdings_for_this_etf.get("控股", [])
-
-    # 進行比對
+    
     holdings_with_change = compare_holdings(holdings_raw_chinese, old_holdings_for_this_etf)
+    
+    # --- D. 處理走勢圖 ---
+    chart_data = []
+    real_chart = fetch_real_chart(target_id)
+    if real_chart:
+        chart_data = real_chart
+    elif perf["ytd"] != 0:
+        start_val = nav / (1 + perf["ytd"]/100)
+        steps = 5
+        for i in range(steps + 1):
+            val = start_val + (nav - start_val) * (i/steps)
+            chart_data.append({"month": f"T-{steps-i}", "return": round(val, 2)})
 
-    # 組裝成中文 Key 的最終資料 (完全對照你的 JSON 截圖)
+    # --- E. 組裝最終資料 (針對當前的 etf) ---
     final_data = {
         "id": etf['id'],
         "ticker": etf['ticker'],
         "名稱": etf['name'],
         "類型": etf['type'],
         "主管": etf.get("manager", "N/A"),
-        "ytdReturn": perf["ytd"],          # 截圖中此項似乎維持英文
+        "ytdReturn": perf["ytd"],
         "每週回報": perf["weekly"],
-        "latestNav": nav,                 # 截圖中此項似乎維持英文
+        "latestNav": nav,
         "自上次以來的變化": 0,
         "lastDividend": "不適用",
         "exDate": "不適用",
         "基金經理": etf.get("manager", "N/A"),
-        "changeStatus": status,
-        "控股": holdings_with_change,      # 這裡放入中文 Key 的持股陣列
+        "changeStatus": "MoneyDJ 真實數據" if nav > 0 else "查無數據",
+        "控股": holdings_with_change,
         "performanceData": chart_data,
         "foundedDate": profile["foundedDate"],
         "dividendFreq": profile["dividendFreq"],
         "custodianBank": profile["custodian"]
     }
+    
     output_data.append(final_data)
-    time.sleep(1.0)
+    print(f"      ✅ {etf['name']} 處理完成")
+    time.sleep(1.0) # 避免抓取過快被封鎖
 
 # --- 數據清理工具 ---
 def clean_data(data):
