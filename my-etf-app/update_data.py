@@ -86,20 +86,18 @@ def load_previous_data():
 # --- 4. 新增：計算持股變化 ---
 def compare_holdings(new_holdings, old_holdings):
     """
-    比對新舊持股，計算增減
-    new_holdings: [{"stock": "台積電", "percent": 50.0}, ...]
-    old_holdings: 同上，來自上次存檔
+    比對新舊持股，計算增減 (使用中文 Key)
+    new_holdings: [{"庫存": "台積電", "百分比": 50.0}, ...]
     """
-    # 將舊持股轉為字典以便查詢: {'台積電': 50.0, '聯發科': 10.0}
-    old_map = {item['stock']: item['percent'] for item in old_holdings}
+    # 從舊資料中建立查詢表，注意這裡改用 "庫存" 與 "百分比"
+    old_map = {item['庫存']: item['百分比'] for item in old_holdings if '庫存' in item}
     
     processed_holdings = []
     
     for stock in new_holdings:
-        name = stock['stock']
-        curr_pct = stock['percent']
+        name = stock['庫存']
+        curr_pct = stock['百分比']
         
-        # 預設變化字串
         change_str = "-"
         change_val = 0.0
         
@@ -107,22 +105,21 @@ def compare_holdings(new_holdings, old_holdings):
             old_pct = old_map[name]
             diff = curr_pct - old_pct
             
-            # 設定門檻，微小誤差忽略
             if abs(diff) > 0.001:
                 if diff > 0:
-                    change_str = f"🔺{diff:.2f}%" # 增加
+                    change_str = f"🔺{diff:.2f}%"
                 else:
-                    change_str = f"🔻{abs(diff):.2f}%" # 減少
+                    change_str = f"🔻{abs(diff):.2f}%"
                 change_val = diff
         else:
-            change_str = "🆕新進" # 舊資料沒有，新資料有
+            change_str = "🆕新進"
             change_val = curr_pct
             
         processed_holdings.append({
-            "stock": name,
-            "percent": curr_pct,
-            "change": change_str,      # 顯示用的字串 (e.g., 🔺0.5%)
-            "changeVal": change_val    # 數值，方便以後排序用
+            "庫存": name,
+            "百分比": curr_pct,
+            "改變": change_str,
+            "changeVal": change_val  # 保留這個英文 Key 給前端排序用，不影響顯示
         })
         
     return processed_holdings
@@ -359,7 +356,7 @@ print(f"🚀 開始執行...並進行持股比對")
 # 1. 先讀取舊資料 (歷史紀錄)
 previous_data_list = load_previous_data()
 # 建立快速查詢表: { "00981A": [持股list], "0050": [持股list] }
-previous_map = { item['ticker']: item.get('holdings', []) for item in previous_data_list }
+previous_map = { item['ticker']: item.get('控股', []) for item in previous_data_list }
 
 output_data = []
 
@@ -371,7 +368,8 @@ for etf in target_etfs:
     
     # 抓取各項資料
     # 注意：這裡 fetch_holdings 抓回來的是「純淨值」，change 還是 "-"
-    holdings_raw = fetch_holdings(target_id) 
+    holdings_raw = fetch_holdings(target_id)
+    holdings_raw_chinese = [{"庫存": h['stock'], "百分比": h['percent']} for h in holdings_raw] 
     nav = fetch_nav(target_id)
     perf = fetch_performance_metrics(target_id)
     profile = fetch_basic_profile(target_id)
@@ -380,7 +378,7 @@ for etf in target_etfs:
     # 從舊資料中找出這檔 ETF 上次的持股
     old_holdings_for_this_etf = previous_map.get(etf['ticker'], [])
     # 計算變化
-    holdings_with_change = compare_holdings(holdings_raw, old_holdings_for_this_etf)
+    holdings_with_change = compare_holdings(holdings_raw_chinese, old_holdings_for_this_etf)
     
     ytd = perf["ytd"]
     weekly = perf["weekly"]
@@ -414,17 +412,39 @@ for etf in target_etfs:
 
     # 組裝最終資料
 
+    # ... 前面抓取資料的步驟保持不變 ...
+
+for etf in target_etfs:
+    # (抓取資料過程省略，沿用你原本的 fetch 函式)
+    
+    # 準備新抓到的持股資料 (先轉為中文 Key 格式以便比對)
+    holdings_raw_chinese = [{"庫存": h['stock'], "百分比": h['percent']} for h in holdings_raw]
+    
+    # 取得舊資料中的這檔 ETF
+    old_holdings_for_this_etf = previous_map.get(etf['ticker'], [])
+    # 如果舊資料是用 "控股" 存的，記得提取出來
+    if isinstance(old_holdings_for_this_etf, dict): 
+        old_holdings_for_this_etf = old_holdings_for_this_etf.get("控股", [])
+
+    # 進行比對
+    holdings_with_change = compare_holdings(holdings_raw_chinese, old_holdings_for_this_etf)
+
+    # 組裝成中文 Key 的最終資料 (完全對照你的 JSON 截圖)
     final_data = {
-        **etf,
-        "ytdReturn": ytd,
-        "weeklyReturn": weekly,
-        "latestNav": nav,
-        "changeSinceLast": 0,
-        "lastDividend": "N/A",
-        "exDate": "N/A",
-        "fundManager": etf.get("manager", "N/A"),
+        "id": etf['id'],
+        "ticker": etf['ticker'],
+        "名稱": etf['name'],
+        "類型": etf['type'],
+        "主管": etf.get("manager", "N/A"),
+        "ytdReturn": perf["ytd"],          # 截圖中此項似乎維持英文
+        "每週回報": perf["weekly"],
+        "latestNav": nav,                 # 截圖中此項似乎維持英文
+        "自上次以來的變化": 0,
+        "lastDividend": "不適用",
+        "exDate": "不適用",
+        "基金經理": etf.get("manager", "N/A"),
         "changeStatus": status,
-        "holdings": holdings_with_change,  # <--- 這裡放入計算好變化的持股
+        "控股": holdings_with_change,      # 這裡放入中文 Key 的持股陣列
         "performanceData": chart_data,
         "foundedDate": profile["foundedDate"],
         "dividendFreq": profile["dividendFreq"],

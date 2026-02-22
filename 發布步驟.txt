@@ -1,42 +1,7 @@
-第一階段：修改與預覽 (在您的電腦上)
-打開 VS Code： 開啟您的 my-etf-app 資料夾。
 
-修改程式碼：
-
-如果是要更新 ETF 數據：打開 src/App.js，找到 const initialActiveETFs = [...] 那一段，直接修改裡面的數字或文字。
-
-如果是要改樣式：修改 src/App.js 的 className 或 src/index.css。
-
-記得存檔 (Ctrl + S)。
-
-本地預覽 (檢查有沒有寫錯)： 在終端機輸入：
-npm start
-這會開啟 http://localhost:3000。請確認畫面是您想要樣子，而且沒有紅字錯誤。 (確認沒問題後，在終端機按 Ctrl + C 停止預覽)
-
-
-第二階段：正式發布 (更新到網路上)
-只要確認本地預覽沒問題，接下來只需要 2 個步驟 就能更新網站：
-
-步驟 1：更新網站內容 (Deploy)
-這是最重要的一步，它會把新版網頁推送到 GitHub Pages。 在終端機輸入：
-npm run deploy
-當看到 "Published" 出現，代表網路上的畫面已經更新了！(通常等待 1~2 分鐘生效)
-步驟 2：備份原始碼 (Git Push)
-雖然上一步已經讓網友看到新畫面，但為了良好的開發習慣，我們要把「原始程式碼」也同步備份到 GitHub 的 main 分支。
-
-依序輸入：
+python 新持股要更新
+python my-etf-app/update_data.py
 git add .
-git commit -m "更新本週ETF數據"
-git push origin main
-(註：引號內的文字 "更新本週ETF數據" 可以隨便寫，讓自己知道這次改了什麼就好)
-
-總結：懶人包指令
-下次您改完程式並存檔後，只要在終端機依序執行這 4 行，就收工了：
-
-# 1. 發布新網頁
-npm run deploy
-
-# 2. 備份程式碼 (選做，但強烈建議)
-git add .
-git commit -m "update"
-git push origin main
+git commit -m "Update ETF data with holdings change"
+git pull origin main  # 先抓雲端（避免別人改過或你在網頁改過）
+git push origin main  # 送上雲端
