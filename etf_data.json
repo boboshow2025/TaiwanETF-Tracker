@@ -1831,14 +1831,6 @@
     ],
     "performanceData": [
       {
-        "month": "12/15",
-        "return": 10.0
-      },
-      {
-        "month": "12/22",
-        "return": 10.01
-      },
-      {
         "month": "12/29",
         "return": 10.04
       },
@@ -2752,10 +2744,6 @@
       }
     ],
     "performanceData": [
-      {
-        "month": "12/08",
-        "return": 9.99
-      },
       {
         "month": "12/15",
         "return": 9.84
